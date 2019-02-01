@@ -5,9 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    //Declare public variables
     public GameObject Player;
     public float xLimit;
+    public float sensitivity = 10.0f;
 
+    //Declare private variables
     private bool dragging;
     private Vector2 previousPos;
     private Vector2 firstTouchPos;
@@ -15,7 +18,7 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         dragging = true;
-        previousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 5));        
+        previousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));        
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -25,7 +28,7 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private void Update()
     {
-        Vector2 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 5));
+        Vector2 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
         var movementOffset = currentPos.x - previousPos.x;
 
         if (dragging)
