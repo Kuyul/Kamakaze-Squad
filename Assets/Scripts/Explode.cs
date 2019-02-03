@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Explode : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.tag == "player")
+        {
+            other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="squad" || collision.gameObject.tag == "player")
+        
+        if(collision.gameObject.tag == "squad")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             Destroy(this.gameObject);
         }
 
