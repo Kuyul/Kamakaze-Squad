@@ -46,6 +46,14 @@ public class Player : MonoBehaviour
         if (other.tag == "squad")
         {
             ListOfSquads.Add(other.gameObject);
+            //other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
+            StartCoroutine(Delay(other));
         }
+    }
+
+    IEnumerator Delay(Collider other)
+    {
+        yield return new WaitForSeconds(0.2f);
+        other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
     }
 }
