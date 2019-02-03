@@ -8,9 +8,9 @@ public class Explode : MonoBehaviour
     {
         if (other.tag == "player")
         {
-            other.gameObject.GetComponent<BoxCollider>().enabled = false;
-            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            Destroy(this.gameObject);
+            other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            other.gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            Destroy(gameObject);
         }
     }
 
@@ -20,7 +20,7 @@ public class Explode : MonoBehaviour
         if(collision.gameObject.tag == "squad")
         {
             collision.gameObject.SetActive(false);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
     }
