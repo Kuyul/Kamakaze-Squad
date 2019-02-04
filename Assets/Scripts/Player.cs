@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     //Declare public variables
     public float KeepDistance = 1.0f;
+    public GameObject Mesh;
+    public GameObject Beanie;
+    public GameObject Vest;
 
     //Declare private variables
     private Rigidbody rb;
@@ -60,5 +63,14 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
+    }
+
+    //Called from explode script to disable player
+    public void DisablePlayer()
+    {
+        GetComponent<Collider>().enabled = false;
+        Mesh.SetActive(false);
+        Beanie.SetActive(false);
+        Vest.SetActive(false);
     }
 }
