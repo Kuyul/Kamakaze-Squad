@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     //Declare public variables
     public float KeepDistance = 1.0f;
+    public float ChaseSpeed = 5.0f;
     public GameObject Mesh;
     public GameObject Beanie;
     public GameObject Vest;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
             {
                 var a = transform.position - ListOfSquads[i].transform.position;
                 ListOfSquads[i].transform.rotation = transform.rotation;
-                ListOfSquads[i].gameObject.GetComponent<Rigidbody>().velocity = a * 6f;
+                ListOfSquads[i].gameObject.GetComponent<Rigidbody>().velocity = a * ChaseSpeed;
             }
             else
             {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -345,6 +345,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Squad3 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201049583884422362, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 322508781194819022, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
         type: 3}
@@ -980,6 +985,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squad3 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5201049583884422362, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 322508781194819022, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1069,7 +1079,7 @@ MonoBehaviour:
   CameraScript: {fileID: 534669906}
   Player: {fileID: 1756920010}
   PlayerSpeed: 10
-  peSquad: {fileID: 0}
+  peSquad: {fileID: 6059764457070607872, guid: 5b76b2f838d28e34d8017f3ea0ddc401, type: 3}
 --- !u!4 &1595922487
 Transform:
   m_ObjectHideFlags: 0
@@ -1155,14 +1165,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 081ddeedcf71b81459604b319b59b4c1, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e64b2514dca55084eba0f78291a4469d, type: 2}
-    - target: {fileID: 2300002, guid: 081ddeedcf71b81459604b319b59b4c1, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e64b2514dca55084eba0f78291a4469d, type: 2}
     - target: {fileID: 9500000, guid: 081ddeedcf71b81459604b319b59b4c1, type: 3}
       propertyPath: m_Controller
       value: 
@@ -1171,6 +1173,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 081ddeedcf71b81459604b319b59b4c1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e64b2514dca55084eba0f78291a4469d, type: 2}
+    - target: {fileID: 2300002, guid: 081ddeedcf71b81459604b319b59b4c1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e64b2514dca55084eba0f78291a4469d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 081ddeedcf71b81459604b319b59b4c1, type: 3}
 --- !u!1 &1756920010 stripped
@@ -1207,7 +1217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cb84dda5da8f4468fc43cce3026eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeepDistance: 2
+  KeepDistance: 1
+  ChaseSpeed: 5
   Mesh: {fileID: 123144012}
   Beanie: {fileID: 135636238}
   Vest: {fileID: 1757814774}
@@ -1224,9 +1235,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.55
-  m_Height: 2.63
+  m_Height: 1.85
   m_Direction: 1
-  m_Center: {x: 0, y: 1.69, z: 0}
+  m_Center: {x: 0, y: 1.55, z: 0}
 --- !u!1 &1757814774 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100074, guid: 081ddeedcf71b81459604b319b59b4c1,
