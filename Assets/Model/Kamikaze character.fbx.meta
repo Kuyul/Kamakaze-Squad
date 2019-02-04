@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a2861cf2f3c74ea4c95a2256746306d7
+guid: 081ddeedcf71b81459604b319b59b4c1
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -10,35 +10,37 @@ ModelImporter:
     100008: arm2.r
     100010: arm2.r_end
     100012: Armature
-    100014: Cube
-    100016: head
-    100018: head_end
-    100020: ik.pole.arm.l
-    100022: ik.pole.arm.l_end
-    100024: ik.pole.arm.r
-    100026: ik.pole.arm.r_end
-    100028: ik.pole.leg.l
-    100030: ik.pole.leg.l_end
-    100032: ik.pole.leg.r
-    100034: ik.pole.leg.r_end
-    100036: ik.target.arm.l
-    100038: ik.target.arm.l_end
-    100040: ik.target.arm.r
-    100042: ik.target.arm.r_end
-    100044: ik.target.leg.l
-    100046: ik.target.leg.l_end
-    100048: ik.target.leg.r
-    100050: ik.target.leg.r_end
-    100052: leg1.l
-    100054: leg1.r
-    100056: leg2.l
-    100058: leg2.l_end
-    100060: leg2.r
-    100062: leg2.r_end
-    100064: neck
-    100066: //RootNode
-    100068: spine1
-    100070: spine2
+    100014: Beanie
+    100016: Cube
+    100018: head
+    100020: head_end
+    100022: ik.pole.arm.l
+    100024: ik.pole.arm.l_end
+    100026: ik.pole.arm.r
+    100028: ik.pole.arm.r_end
+    100030: ik.pole.leg.l
+    100032: ik.pole.leg.l_end
+    100034: ik.pole.leg.r
+    100036: ik.pole.leg.r_end
+    100038: ik.target.arm.l
+    100040: ik.target.arm.l_end
+    100042: ik.target.arm.r
+    100044: ik.target.arm.r_end
+    100046: ik.target.leg.l
+    100048: ik.target.leg.l_end
+    100050: ik.target.leg.r
+    100052: ik.target.leg.r_end
+    100054: //RootNode
+    100056: leg1.l
+    100058: leg1.r
+    100060: leg2.l
+    100062: leg2.l_end
+    100064: leg2.r
+    100066: leg2.r_end
+    100068: neck
+    100070: spine1
+    100072: spine2
+    100074: Vest
     400000: arm1.l
     400002: arm1.r
     400004: arm2.l
@@ -46,42 +48,70 @@ ModelImporter:
     400008: arm2.r
     400010: arm2.r_end
     400012: Armature
-    400014: Cube
-    400016: head
-    400018: head_end
-    400020: ik.pole.arm.l
-    400022: ik.pole.arm.l_end
-    400024: ik.pole.arm.r
-    400026: ik.pole.arm.r_end
-    400028: ik.pole.leg.l
-    400030: ik.pole.leg.l_end
-    400032: ik.pole.leg.r
-    400034: ik.pole.leg.r_end
-    400036: ik.target.arm.l
-    400038: ik.target.arm.l_end
-    400040: ik.target.arm.r
-    400042: ik.target.arm.r_end
-    400044: ik.target.leg.l
-    400046: ik.target.leg.l_end
-    400048: ik.target.leg.r
-    400050: ik.target.leg.r_end
-    400052: leg1.l
-    400054: leg1.r
-    400056: leg2.l
-    400058: leg2.l_end
-    400060: leg2.r
-    400062: leg2.r_end
-    400064: neck
-    400066: //RootNode
-    400068: spine1
-    400070: spine2
-    2100000: Material
-    4300000: Cube
-    7400000: Armature|Run
-    7400002: Armature|Run.001
+    400014: Beanie
+    400016: Cube
+    400018: head
+    400020: head_end
+    400022: ik.pole.arm.l
+    400024: ik.pole.arm.l_end
+    400026: ik.pole.arm.r
+    400028: ik.pole.arm.r_end
+    400030: ik.pole.leg.l
+    400032: ik.pole.leg.l_end
+    400034: ik.pole.leg.r
+    400036: ik.pole.leg.r_end
+    400038: ik.target.arm.l
+    400040: ik.target.arm.l_end
+    400042: ik.target.arm.r
+    400044: ik.target.arm.r_end
+    400046: ik.target.leg.l
+    400048: ik.target.leg.l_end
+    400050: ik.target.leg.r
+    400052: ik.target.leg.r_end
+    400054: //RootNode
+    400056: leg1.l
+    400058: leg1.r
+    400060: leg2.l
+    400062: leg2.l_end
+    400064: leg2.r
+    400066: leg2.r_end
+    400068: neck
+    400070: spine1
+    400072: spine2
+    400074: Vest
+    2100000: Beanier
+    2100002: Vest
+    2100004: Body
+    2300000: Beanie
+    2300002: Vest
+    3300000: Beanie
+    3300002: Vest
+    4300000: Beanie
+    4300002: Vest
+    4300004: Cube
+    7400000: Armature|Cube.001Action
+    7400002: Armature|Idle
+    7400004: Armature|Run
+    7400006: Vest|Cube.001Action
+    7400008: Vest|Run
     9500000: //RootNode
     13700000: Cube
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beanier
+    second: {fileID: 2100000, guid: ed5069f021ba1e84f8a66424a7b21588, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: cfdb6292cbc72074da8dc7d6c72b95f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Vest
+    second: {fileID: 2100000, guid: fdeb7d39b935a5e4a9a0feb9c5d8f884, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -109,6 +139,34 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Idle
+      takeName: Armature|Idle
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Armature|Run
       takeName: Armature|Run
