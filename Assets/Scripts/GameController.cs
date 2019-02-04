@@ -66,4 +66,15 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
     }
+
+    public void RemoveSquad(GameObject obj)
+    {
+        PlayerScript.RemoveSquad(obj);
+    }
+
+    //Called from Levelcontrol class??
+    public int GetSquadCount()
+    {
+        return PlayerScript.GetSquadCount();
+    }
 }

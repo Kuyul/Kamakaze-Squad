@@ -44,6 +44,32 @@ public class Player : MonoBehaviour
         rb.velocity = Vector3.forward * GameController.instance.PlayerSpeed;
     }
 
+    IEnumerator Delay(Collider other)
+    {
+        yield return new WaitForSeconds(0.2f);
+        other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
+    }
+
+    //Called from explode script to disable player
+    private void DisablePlayer()
+    {
+        GetComponent<Collider>().enabled = false;
+        Mesh.SetActive(false);
+        Beanie.SetActive(false);
+        Vest.SetActive(false);
+    }
+
+    //Remove Squad from list
+    public void RemoveSquad(GameObject Squad) {
+        ListOfSquads.Remove(Squad);
+    }
+
+    //Called from Game Controller 
+    public int GetSquadCount()
+    {
+        return ListOfSquads.Count;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "squad")
@@ -53,24 +79,16 @@ public class Player : MonoBehaviour
             StartCoroutine(Delay(other));
         }
 
+        if (other.tag == "block")
+        {
+            Destroy(other.gameObject);
+            DisablePlayer();
+        }
+
         if (other.tag == "finishline")
         {
             GameController.instance.StopCamera();
+            LevelControl.instance.finishLinePassed = true;
         }
-    }
-
-    IEnumerator Delay(Collider other)
-    {
-        yield return new WaitForSeconds(0.2f);
-        other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
-    }
-
-    //Called from explode script to disable player
-    public void DisablePlayer()
-    {
-        GetComponent<Collider>().enabled = false;
-        Mesh.SetActive(false);
-        Beanie.SetActive(false);
-        Vest.SetActive(false);
     }
 }
