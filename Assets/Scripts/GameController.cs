@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
     public GameObject Player;
     public float PlayerSpeed;
 
+    public GameObject peSquad;
+
     //Declare private variables
     private Player PlayerScript;
 

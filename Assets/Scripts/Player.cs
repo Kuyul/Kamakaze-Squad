@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public GameObject Mesh;
     public GameObject Beanie;
     public GameObject Vest;
+    public GameObject Dynamite;
+    public GameObject peRun;
 
     //Declare private variables
     private Rigidbody rb;
@@ -81,6 +83,8 @@ public class Player : MonoBehaviour
         if (other.tag == "block")
         {
             other.gameObject.SetActive(false);
+            Dynamite.SetActive(false);
+            peRun.SetActive(false);
             DisablePlayer();
         }
 
