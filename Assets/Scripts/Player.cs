@@ -75,13 +75,12 @@ public class Player : MonoBehaviour
         if (other.tag == "squad")
         {
             ListOfSquads.Add(other.gameObject);
-            //other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
             StartCoroutine(Delay(other));
         }
 
         if (other.tag == "block")
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             DisablePlayer();
         }
 

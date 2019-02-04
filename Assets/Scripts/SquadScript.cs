@@ -16,6 +16,7 @@ public class SquadScript : MonoBehaviour
         if(other.tag == "endblock")
         {
             Destroy(gameObject);
+            GameController.instance.RemoveSquad(gameObject);
         }
     }
 
@@ -23,7 +24,7 @@ public class SquadScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "block")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             GameController.instance.RemoveSquad(gameObject);
             gameObject.SetActive(false);
         }
