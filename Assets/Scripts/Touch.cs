@@ -10,6 +10,7 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public float sensitivity = 10.0f;
     public float maxRotation = 30f;
     public float rotationSensitivity = 5.0f;
+    public float multiplier;
 
     //Declare private variables
     private GameObject Player;
@@ -54,7 +55,7 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             var newPosX = Player.transform.position.x + movementOffset;
             if (Mathf.Abs(newPosX) <= xLimit)
             {
-                Player.transform.position += new Vector3(movementOffset, 0, 0);
+                Player.transform.position += new Vector3(movementOffset * multiplier, 0, 0);
                 Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, rotateTo, 0), rotationSensitivity * Time.deltaTime);
             }
         }
