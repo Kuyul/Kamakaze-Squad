@@ -49,6 +49,11 @@ public class Player : MonoBehaviour
             //other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
             StartCoroutine(Delay(other));
         }
+
+        if (other.tag == "finishline")
+        {
+            GameController.instance.StopCamera();
+        }
     }
 
     IEnumerator Delay(Collider other)

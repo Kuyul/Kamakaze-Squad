@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    //Declare public variables
+    [HideInInspector]
+    public bool FollowPlayer = true;
+
+    //Declare private variables
     private Vector3 offset;
     private Transform Player;
 
@@ -11,12 +16,15 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         Player = GameController.instance.Player.transform;
-        offset = Player.transform.position - transform.position;    
+        offset = Player.transform.position - transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, Player.transform.position.z - offset.z);
+        if (FollowPlayer)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, Player.transform.position.z - offset.z);
+        }
     }
 }
