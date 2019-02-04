@@ -20,9 +20,11 @@ public class LevelControl : MonoBehaviour
 
     [HideInInspector]
     public bool finishLinePassed = false;
+
     //Declare private variables
     private GameObject SpawnedBuilding;
     private GameObject Bomb;
+    private bool BombLanded = false;
 
     private void Awake()
     {
@@ -42,32 +44,57 @@ public class LevelControl : MonoBehaviour
         //Spawn Squads
 
         //Spawn a random building...? maybe it shouldn't be random, but for now we'll make it random.
-        var building = Buildings[Random.Range(0,Buildings.Length)];
-        SpawnedBuilding = Instantiate(building, finishLinePos + new Vector3(0, 0, BuildingDistance), Quaternion.identity);
+        //Check whether the level is a new level or a continued level. If its a new level, we'll spawn a brand new building, if its continued,
+        //LevelContinue object will hold reference to the state of the building prior to continuing, so it'll begin from there.
+        if (!LevelContinue.instance.levelIsContinued)
+        {
+            var building = Buildings[Random.Range(0, Buildings.Length)];
+            SpawnedBuilding = Instantiate(building, finishLinePos + new Vector3(0, 0, BuildingDistance), Quaternion.identity);
+            LevelContinue.instance.Building = SpawnedBuilding;
+            LevelContinue.instance.TriesLeft = NumberOfTries;
+        }
+        else
+        {
+            SpawnedBuilding = LevelContinue.instance.Building;
+        }
         Bomb = SpawnedBuilding.GetComponent<BuildingScript>().Bomb;
         Instantiate(EndBlock, SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
     }
 
-    private void Update()
+    private void ContinueLevel()
     {
-        if (finishLinePassed)
+        if (LevelContinue.instance.TriesLeft - 1 == 0)
         {
-            if(GameController.instance.GetSquadCount() == 0)
-            {
-                Debug.Log(Bomb.GetComponent<Rigidbody>().velocity);
-                //If bomb velocity is 0, restart level.. well not really, we have to restart the level while keeping the building shape as is.
-                if(Bomb.GetComponent<Rigidbody>().velocity == Vector3.zero)
-                {
-                    GameController.instance.GameOver();
-                }
-            }
+            LevelContinue.instance.ResetLevel();
+            Debug.Log("Game Over");
         }
+        else
+        {
+            DontDestroyOnLoad(LevelContinue.instance.Building);
+            LevelContinue.instance.TriesLeft--;
+            Debug.Log("Tries Left: " + LevelContinue.instance.TriesLeft);
+            LevelContinue.instance.levelIsContinued = true;
+            Debug.Log("Game Continued");
+        }
+        GameController.instance.GameOver();
     }
 
     public void BombFall()
     {
         //We need to later change this to level complete method, just for now.
+        BombLanded = true;
         GameController.instance.GameOver();
+        Debug.Log("Level Clear!");
+        LevelContinue.instance.ResetLevel();
         SpawnedBuilding.GetComponent<BuildingScript>().DestroyCubes();
+    }
+
+    //Called from the Player script after 3 seconds of player hitting a block or an endblock
+    public void CheckBombFallen()
+    {
+        if (!BombLanded)
+        {
+            ContinueLevel();
+        }
     }
 }

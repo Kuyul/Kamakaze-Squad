@@ -53,13 +53,22 @@ public class Player : MonoBehaviour
         other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
     }
 
-    //Called from explode script to disable player
+    //Called when player hits a block or an endblock to disable the relevant components so that player doesn't collide with more blocks and seems like its disabled.
+    //We can't disable the whole player because the squads need a reference object to follow
     private void DisablePlayer()
     {
         GetComponent<Collider>().enabled = false;
         Mesh.SetActive(false);
         Beanie.SetActive(false);
         Vest.SetActive(false);
+        StartCoroutine(CheckAfterThreeSeconds());
+    }
+
+    //Wait for three seconds after player is disabled. See whether the bomb has fallen.
+    IEnumerator CheckAfterThreeSeconds()
+    {
+        yield return new WaitForSeconds(3.0f);
+        LevelControl.instance.CheckBombFallen();
     }
 
     //Remove Squad from list
@@ -86,6 +95,11 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
             Dynamite.SetActive(false);
             peRun.SetActive(false);
+            DisablePlayer();
+        }
+
+        if (other.tag == "endblock")
+        {
             DisablePlayer();
         }
 
