@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     //Declare public variables
+    public CameraScript CameraScript;
     public GameObject Player;
     public float PlayerSpeed;
 
@@ -47,5 +48,22 @@ public class GameController : MonoBehaviour
         CancelInvoke();
         PlayerSpeed = 1;
         InvokeRepeating("IncreaseSpeed", 0f, 1f);
+    }
+
+    //Called from Player class to stop camera movement when player reaches the finishline
+    public void StopCamera()
+    {
+        CameraScript.FollowPlayer = false;
+    }
+
+    //GameOver
+    public void GameOver()
+    {
+        StartCoroutine(Delay());
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1.0f);
     }
 }

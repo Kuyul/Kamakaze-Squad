@@ -8,8 +8,7 @@ public class Explode : MonoBehaviour
     {
         if (other.tag == "player")
         {
-            other.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            other.gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<Player>().DisablePlayer();
             Destroy(gameObject);
         }
     }
