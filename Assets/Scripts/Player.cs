@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     //Declare public variables
     public float KeepDistance = 1.0f;
 
@@ -27,6 +26,7 @@ public class Player : MonoBehaviour
             if (transform.position.z - ListOfSquads[i].transform.position.z >= KeepDistance)
             {
                 var a = transform.position - ListOfSquads[i].transform.position;
+                ListOfSquads[i].transform.rotation = transform.rotation;
                 ListOfSquads[i].gameObject.GetComponent<Rigidbody>().velocity = a * 6f;
             }
             else
@@ -46,6 +46,14 @@ public class Player : MonoBehaviour
         if (other.tag == "squad")
         {
             ListOfSquads.Add(other.gameObject);
+            //other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
+            StartCoroutine(Delay(other));
         }
+    }
+
+    IEnumerator Delay(Collider other)
+    {
+        yield return new WaitForSeconds(0.2f);
+        other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
     }
 }

@@ -8,8 +8,11 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     //Declare public variables
-    public Player PlayerScript;
+    public GameObject Player;
     public float PlayerSpeed;
+
+    //Declare private variables
+    private Player PlayerScript;
 
     private void Awake()
     {
@@ -22,6 +25,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerScript = Player.GetComponent<Player>();
         InvokeRepeating("IncreaseSpeed", 1f, 1f);
     }
 

@@ -6,11 +6,13 @@ using UnityEngine.EventSystems;
 public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     //Declare public variables
-    public GameObject Player;
     public float xLimit;
     public float sensitivity = 10.0f;
+    public float maxRotation = 30f;
+    public float rotationSensitivity = 5.0f;
 
     //Declare private variables
+    private GameObject Player;
     private bool dragging;
     private Vector2 previousPos;
     private Vector2 firstTouchPos;
@@ -18,7 +20,8 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         dragging = true;
-        previousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));        
+        Player = GameController.instance.Player;
+        previousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -31,17 +34,30 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         Vector2 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
         var movementOffset = currentPos.x - previousPos.x;
 
-        if (dragging)
+        //Change player facing angle depending on where the player is going
+        float rotateTo;
+        if(movementOffset > 0)
         {
-            Player.transform.position += new Vector3(movementOffset, 0, 0);
-            if (Mathf.Abs(Player.transform.position.x) > xLimit)
-            {
-                Player.transform.position -= new Vector3(movementOffset, 0, 0);
-            }
+            rotateTo = maxRotation;
+        }
+        else if(movementOffset < 0)
+        {
+            rotateTo = -maxRotation;
+        }
+        else
+        {
+            rotateTo = 0;
         }
 
+        if (dragging)
+        {
+            var newPosX = Player.transform.position.x + movementOffset;
+            if (Mathf.Abs(newPosX) <= xLimit)
+            {
+                Player.transform.position += new Vector3(movementOffset, 0, 0);
+                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, rotateTo, 0), rotationSensitivity * Time.deltaTime);
+            }
+        }
         previousPos = currentPos;
     }
-
-
 }
