@@ -69,9 +69,9 @@ GameObject:
   - component: {fileID: 435774247987578581}
   - component: {fileID: 435774247987578576}
   - component: {fileID: 435774247987578583}
-  - component: {fileID: 435774247987578582}
   - component: {fileID: 435774247987578577}
   - component: {fileID: 6510424199210049987}
+  - component: {fileID: 1383656742}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -138,19 +138,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &435774247987578582
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 435774247987578580}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &435774247987578577
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,6 +166,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d226adac409ee46a0361fc9e090e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1383656742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435774247987578580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9190394199925326181
 GameObject:
   m_ObjectHideFlags: 0
