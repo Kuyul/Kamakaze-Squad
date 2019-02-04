@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 664442472}
   - component: {fileID: 664442471}
   - component: {fileID: 664442470}
+  - component: {fileID: 8088491812298351727}
   m_Layer: 0
   m_Name: Squad
   m_TagString: squad
@@ -581,6 +582,20 @@ CapsuleCollider:
   m_Height: 2.63
   m_Direction: 1
   m_Center: {x: 0, y: 1.76, z: 0}
+--- !u!114 &8088491812298351727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664442469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678faab55232daa41ae870b95bb02f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Beanie: {fileID: 1649986928}
+  Vest: {fileID: 693666200}
 --- !u!1 &678745295
 GameObject:
   m_ObjectHideFlags: 0

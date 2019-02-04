@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -65,6 +66,7 @@ public class GameController : MonoBehaviour
     IEnumerator Delay()
     {
         yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(0);
     }
 
     public void RemoveSquad(GameObject obj)

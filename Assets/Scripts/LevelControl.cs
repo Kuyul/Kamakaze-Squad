@@ -7,6 +7,7 @@ public class LevelControl : MonoBehaviour
     public static LevelControl instance;
 
     //Declare public variables
+    public int NumberOfTries = 3;
     public float DistanceToFinishLine = 50.0f;
     public GameObject FinishLinePrefab;
     public float BuildingDistance = 10.0f;
@@ -20,6 +21,7 @@ public class LevelControl : MonoBehaviour
     [HideInInspector]
     public bool finishLinePassed = false;
     //Declare private variables
+    private GameObject bomb;
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class LevelControl : MonoBehaviour
         //Spawn a random building...? maybe it shouldn't be random, but for now we'll make it random.
         var building = Buildings[Random.Range(0,Buildings.Length)];
         var spawn = Instantiate(building, finishLinePos + new Vector3(0, 0, BuildingDistance), Quaternion.identity);
+        bomb = spawn.GetComponent<BuildingScript>().Bomb;
         Instantiate(EndBlock, spawn.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
     }
 
@@ -48,6 +51,15 @@ public class LevelControl : MonoBehaviour
     {
         if (finishLinePassed)
         {
+            if(GameController.instance.GetSquadCount() == 0)
+            {
+                Debug.Log(bomb.GetComponent<Rigidbody>().velocity);
+                //If bomb velocity is 0, restart level.. well not really, we have to restart the level while keeping the building shape as is.
+                if(bomb.GetComponent<Rigidbody>().velocity == Vector3.zero)
+                {
+                    GameController.instance.GameOver();
+                }
+            }
         }
     }
 
@@ -55,10 +67,5 @@ public class LevelControl : MonoBehaviour
     {
         //We need to later change this to level complete method, just for now.
         GameController.instance.GameOver();
-    }
-
-    private void SpwanSquads()
-    {
-
     }
 }
