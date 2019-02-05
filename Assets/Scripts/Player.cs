@@ -61,6 +61,8 @@ public class Player : MonoBehaviour
         Mesh.SetActive(false);
         Beanie.SetActive(false);
         Vest.SetActive(false);
+        Dynamite.SetActive(false);
+        peRun.SetActive(false);
         StartCoroutine(CheckAfterThreeSeconds());
     }
 
@@ -93,8 +95,6 @@ public class Player : MonoBehaviour
         if (other.tag == "block")
         {
             other.gameObject.SetActive(false);
-            Dynamite.SetActive(false);
-            peRun.SetActive(false);
             DisablePlayer();
         }
 

@@ -12,6 +12,11 @@ public class SquadScript : MonoBehaviour
     //Declare private variables
     private Animator anim;
 
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "endblock")
@@ -26,6 +31,7 @@ public class SquadScript : MonoBehaviour
             Vest.SetActive(true);
             Dynamite.SetActive(true);
             Instantiate(GameController.instance.peSquad, transform.position, Quaternion.identity);
+            anim.SetTrigger("run");
         }
     }
 
