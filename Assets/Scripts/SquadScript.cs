@@ -8,9 +8,16 @@ public class SquadScript : MonoBehaviour
     public GameObject Beanie;
     public GameObject Vest;
     public GameObject Dynamite;
+    public GameObject peTrail;
+
 
     //Declare private variables
     private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +33,7 @@ public class SquadScript : MonoBehaviour
             Vest.SetActive(true);
             Dynamite.SetActive(true);
             Instantiate(GameController.instance.peSquad, transform.position, Quaternion.identity);
+            anim.SetTrigger("run");
         }
     }
 

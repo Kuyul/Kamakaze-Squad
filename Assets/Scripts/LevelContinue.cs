@@ -14,7 +14,7 @@ public class LevelContinue : MonoBehaviour
     [HideInInspector]
     public int TriesLeft = 0;
 
-    // Use this for initialization
+    //This gameobject will persist between scene reloads as we need to keep track of tries counts and building states.
     void Start()
     {
         if (instance == null)

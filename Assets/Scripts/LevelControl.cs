@@ -6,22 +6,23 @@ public class LevelControl : MonoBehaviour
 {
     public static LevelControl instance;
 
+    //Declare Level Gameobjects
+    public LevelScript[] Levels;
+
     //Declare public variables
     public int NumberOfTries = 3;
-    public float DistanceToFinishLine = 50.0f;
     public GameObject FinishLinePrefab;
     public float BuildingDistance = 10.0f;
-    public GameObject[] Buildings;
     public float EndblockDistance = 3.0f;
     public GameObject EndBlock;
-    public int NoOfSquads = 5;
-    public float MinimumDistanceApart = 8.0f;
     public GameObject[] SquadPrefabs;
+    public float SquadXAxisRange = 3.0f;
 
     [HideInInspector]
     public bool finishLinePassed = false;
 
     //Declare private variables
+    private LevelScript CurrentLevel;
     private GameObject SpawnedBuilding;
     private GameObject Bomb;
     private bool BombLanded = false;
@@ -37,10 +38,13 @@ public class LevelControl : MonoBehaviour
     //Initialise level
     void Start()
     {
-        //Generate finishline
-        var finishLinePos = new Vector3(0,0,DistanceToFinishLine);
-        Instantiate(FinishLinePrefab, finishLinePos, Quaternion.identity);
+        //TODO retrieve all level information from LevelScript
+        CurrentLevel = Levels[GetCurrentLevel() - 1];
 
+        //Generate finishline
+        var finishLinePos = new Vector3(0,0,CurrentLevel.LevelLength);
+        Instantiate(FinishLinePrefab, finishLinePos, Quaternion.identity);
+        SquadRandomiser();
         //Spawn Squads
 
         //Spawn a random building...? maybe it shouldn't be random, but for now we'll make it random.
@@ -48,10 +52,9 @@ public class LevelControl : MonoBehaviour
         //LevelContinue object will hold reference to the state of the building prior to continuing, so it'll begin from there.
         if (!LevelContinue.instance.levelIsContinued)
         {
-            var building = Buildings[Random.Range(0, Buildings.Length)];
-            SpawnedBuilding = Instantiate(building, finishLinePos + new Vector3(0, 0, BuildingDistance), Quaternion.identity);
+            SpawnedBuilding = Instantiate(CurrentLevel.Building, finishLinePos + new Vector3(0, 0, BuildingDistance), Quaternion.identity);
             LevelContinue.instance.Building = SpawnedBuilding;
-            LevelContinue.instance.TriesLeft = NumberOfTries;
+            LevelContinue.instance.TriesLeft = CurrentLevel.NumberOfTries;
         }
         else
         {
@@ -61,6 +64,14 @@ public class LevelControl : MonoBehaviour
         Instantiate(EndBlock, SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
     }
 
+    public int GetCurrentLevel()
+    {
+        return PlayerPrefs.GetInt("Level", 1);
+    }
+
+    //This method determines whether the level should continue or whether we should begin a new level.
+    //When we see that the bomb is still active on the buidling (means game is still not over), then we check
+    //whether there are more tries left, if so, continue on with the current level while keeping the building where it was left off from this level.
     private void ContinueLevel()
     {
         if (LevelContinue.instance.TriesLeft - 1 == 0)
@@ -79,10 +90,16 @@ public class LevelControl : MonoBehaviour
         GameController.instance.GameOver();
     }
 
+    //Called from the Bomb script to let levelhandler know that the bomb has fallen.
+    //TODO: Bomb will detonate instantly right now, but we might want to give it a little bit of time before it destroys the cubes from the scene
     public void BombFall()
     {
-        //We need to later change this to level complete method, just for now.
         BombLanded = true;
+        LevelClear();
+    }
+
+    private void LevelClear()
+    {
         GameController.instance.GameOver();
         Debug.Log("Level Clear!");
         LevelContinue.instance.ResetLevel();
@@ -95,6 +112,43 @@ public class LevelControl : MonoBehaviour
         if (!BombLanded)
         {
             ContinueLevel();
+        }
+    }
+
+    //Randomises the squad groups on the map, the total squad count must be greater than the designated number
+    private void SquadRandomiser()
+    {
+        int[] a = { 0, 1, 2, 3 };
+        List<int> alloc = new List<int>();
+        int total = 0;
+        var numAllocationSpots = CurrentLevel.LevelLength / CurrentLevel.MinSquadDistance - 1;
+        while (total < CurrentLevel.NumberOfSquads)
+        {
+            total = 0;
+            alloc.Clear();
+            for (int i = 0; i < numAllocationSpots; i++)
+            {
+                var value = a[Random.Range(0, a.Length)];
+                total += value;
+                alloc.Add(value);
+                if(total >= CurrentLevel.NumberOfSquads)
+                {
+                    break;
+                }
+            }
+        }
+
+        //Once the squad counts are allocated, run a loop spawning them
+        float zOffset = 0;
+        for (int i = 0; i < alloc.Count; i++)
+        {
+            zOffset += CurrentLevel.MinSquadDistance;
+            if (alloc[i] > 0)
+            {
+                var squadObj = SquadPrefabs[alloc[i] - 1]; //Squad prefabs must be organised in an incremental manner in the inspector
+                var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
+                Instantiate(squadObj, new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
+            }
         }
     }
 }

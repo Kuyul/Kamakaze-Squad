@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public GameObject Vest;
     public GameObject Dynamite;
     public GameObject peRun;
+    public GameObject peTrail;
 
     //Declare private variables
     private Rigidbody rb;
@@ -61,6 +62,9 @@ public class Player : MonoBehaviour
         Mesh.SetActive(false);
         Beanie.SetActive(false);
         Vest.SetActive(false);
+        Dynamite.SetActive(false);
+        peRun.SetActive(false);
+        peTrail.SetActive(false);
         StartCoroutine(CheckAfterThreeSeconds());
     }
 
@@ -93,8 +97,6 @@ public class Player : MonoBehaviour
         if (other.tag == "block")
         {
             other.gameObject.SetActive(false);
-            Dynamite.SetActive(false);
-            peRun.SetActive(false);
             DisablePlayer();
         }
 
@@ -107,6 +109,11 @@ public class Player : MonoBehaviour
         {
             GameController.instance.StopCamera();
             LevelControl.instance.finishLinePassed = true;
+            peTrail.SetActive(true);
+            for (int i = 0; i < ListOfSquads.Count; i++)
+            {
+                ListOfSquads[i].GetComponent<SquadScript>().peTrail.SetActive(true);
+            }
         }
     }
 }
