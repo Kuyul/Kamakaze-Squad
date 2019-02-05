@@ -15,7 +15,7 @@ public class LevelContinue : MonoBehaviour
     public int TriesLeft = 0;
 
     //This gameobject will persist between scene reloads as we need to keep track of tries counts and building states.
-    void Start()
+    void Awake()
     {
         if (instance == null)
         {

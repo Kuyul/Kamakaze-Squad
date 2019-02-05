@@ -100,6 +100,12 @@ public class LevelControl : MonoBehaviour
 
     private void LevelClear()
     {
+        var newLvl = GetCurrentLevel() + 1;
+        if(newLvl > Levels.Length)
+        {
+            newLvl = 1;
+        }
+        PlayerPrefs.SetInt("Level", newLvl);
         GameController.instance.GameOver();
         Debug.Log("Level Clear!");
         LevelContinue.instance.ResetLevel();
