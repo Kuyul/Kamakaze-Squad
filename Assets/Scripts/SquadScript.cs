@@ -8,6 +8,8 @@ public class SquadScript : MonoBehaviour
     public GameObject Beanie;
     public GameObject Vest;
     public GameObject Dynamite;
+    public GameObject peTrail;
+
 
     //Declare private variables
     private Animator anim;
