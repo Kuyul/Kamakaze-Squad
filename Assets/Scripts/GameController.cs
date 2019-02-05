@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     public GameObject peBlock;
     public GameObject peSquad;
     public GameObject peExplosion;
+    public GameObject peBigBomb;
 
     //Declare private variables
     private Player PlayerScript;

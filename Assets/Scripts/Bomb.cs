@@ -8,6 +8,7 @@ public class Bomb : MonoBehaviour
     {
         if(collision.gameObject.tag == "road")
         {
+            Instantiate(GameController.instance.peBigBomb, transform.position, Quaternion.identity);
             LevelControl.instance.BombFall();
         }
     }
