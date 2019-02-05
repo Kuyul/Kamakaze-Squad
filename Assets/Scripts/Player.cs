@@ -98,6 +98,10 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             DisablePlayer();
+            GameObject temp = Instantiate(GameController.instance.peBlock,other.transform.position,Quaternion.identity);
+            Destroy(temp, 5f);
+            GameObject temp2 = Instantiate(GameController.instance.peExplosion, transform.position, Quaternion.identity);
+            Destroy(temp2, 5f);
         }
 
         if (other.tag == "endblock")

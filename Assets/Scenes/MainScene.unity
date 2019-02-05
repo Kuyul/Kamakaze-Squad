@@ -230,7 +230,7 @@ MonoBehaviour:
   FinishLinePrefab: {fileID: 1094440860404183172, guid: 5289b325b1a1e884eb7bca7c06797fd7,
     type: 3}
   BuildingDistance: 30
-  EndblockDistance: 3
+  EndblockDistance: 10
   EndBlock: {fileID: 2899244374349684154, guid: 6bd39fdfbeda26b43999269517bd8dd6,
     type: 3}
   SquadPrefabs:
@@ -456,7 +456,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -481,14 +481,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.14751811, y: -0, z: -0, w: 0.9890594}
-  m_LocalPosition: {x: 0, y: 14.830654, z: -21}
+  m_LocalRotation: {x: 0.18487255, y: -0, z: -0, w: 0.9827626}
+  m_LocalPosition: {x: 0, y: 17.454496, z: -19.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 882018851}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 16.966002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.307001, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,7 +978,10 @@ MonoBehaviour:
   CameraScript: {fileID: 534669906}
   Player: {fileID: 1756920010}
   PlayerSpeed: 12
+  peBlock: {fileID: 2829308816992472173, guid: d30c9efa13351a047a6563a08afc66bb, type: 3}
   peSquad: {fileID: 6059764457070607872, guid: 5b76b2f838d28e34d8017f3ea0ddc401, type: 3}
+  peExplosion: {fileID: 5998876251357722393, guid: 261f84640490c0a4f8b0495f46dc3e33,
+    type: 3}
 --- !u!4 &1595922487
 Transform:
   m_ObjectHideFlags: 0
