@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
         if (other.tag == "squad")
         {
             ListOfSquads.Add(other.gameObject);
+            other.gameObject.transform.SetParent(null);
             StartCoroutine(Delay(other));
         }
 
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             DisablePlayer();
-            GameObject temp = Instantiate(GameController.instance.peBlock,other.transform.position,Quaternion.identity);
+            GameObject temp = Instantiate(GameController.instance.peBlock, other.transform.position, Quaternion.identity);
             Destroy(temp, 5f);
             GameObject temp2 = Instantiate(GameController.instance.peExplosion, transform.position, Quaternion.identity);
             Destroy(temp2, 5f);
@@ -118,6 +119,13 @@ public class Player : MonoBehaviour
             {
                 ListOfSquads[i].GetComponent<SquadScript>().peTrail.SetActive(true);
             }
+        }
+
+        if (other.tag == "rotate")
+        {
+            GameObject dummyObj = new GameObject();
+            dummyObj.transform.position = other.gameObject.transform.position;
+            LevelControl.instance.MotherRotationChange(dummyObj);
         }
     }
 }

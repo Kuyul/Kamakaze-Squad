@@ -10,6 +10,8 @@ public class LevelControl : MonoBehaviour
     public LevelScript[] Levels;
 
     //Declare public variables
+    public GameObject Mother;
+    public GameObject Road;
     public int NumberOfTries = 3;
     public GameObject FinishLinePrefab;
     public float BuildingDistance = 10.0f;
@@ -17,6 +19,7 @@ public class LevelControl : MonoBehaviour
     public GameObject EndBlock;
     public GameObject[] SquadPrefabs;
     public float SquadXAxisRange = 3.0f;
+    public float LevelRotationSpeed = 90.0f;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -26,6 +29,10 @@ public class LevelControl : MonoBehaviour
     private GameObject SpawnedBuilding;
     private GameObject Bomb;
     private bool BombLanded = false;
+    private GameObject Center;
+    private float MotherAngle = 0;
+    private int NumberOfRotates = 0;
+    private GameObject RotateAroundObj;
 
     private void Awake()
     {
@@ -43,7 +50,8 @@ public class LevelControl : MonoBehaviour
 
         //Generate finishline
         var finishLinePos = new Vector3(0,0,CurrentLevel.LevelLength);
-        Instantiate(FinishLinePrefab, finishLinePos, Quaternion.identity);
+        var finishlineobj = Instantiate(FinishLinePrefab, finishLinePos, Quaternion.identity);
+        finishlineobj.transform.SetParent(Mother.transform);
         SquadRandomiser();
         //Spawn Squads
 
@@ -61,7 +69,19 @@ public class LevelControl : MonoBehaviour
             SpawnedBuilding = LevelContinue.instance.Building;
         }
         Bomb = SpawnedBuilding.GetComponent<BuildingScript>().Bomb;
-        Instantiate(EndBlock, SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
+        SpawnedBuilding.transform.SetParent(Mother.transform);
+        var endblockObj = Instantiate(EndBlock, SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
+        endblockObj.transform.SetParent(Mother.transform);
+        RoadGeneration();
+    }
+
+    void Update()
+    {
+        if (RotateAroundObj != null)
+        {
+            var step = LevelRotationSpeed * Time.deltaTime;
+            RotateAroundObj.transform.rotation = Quaternion.RotateTowards(RotateAroundObj.transform.rotation, Quaternion.Euler(0, MotherAngle, 0), step);
+        }
     }
 
     public int GetCurrentLevel()
@@ -153,8 +173,40 @@ public class LevelControl : MonoBehaviour
             {
                 var squadObj = SquadPrefabs[alloc[i] - 1]; //Squad prefabs must be organised in an incremental manner in the inspector
                 var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
-                Instantiate(squadObj, new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
+                var obj = Instantiate(squadObj, new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
+                obj.transform.parent = Mother.transform;
             }
         }
+    }
+
+    private void RoadGeneration()
+    {
+        //Complex algorithm. Hopefully I don't have to touch this part of the code again ;)
+        var div = CurrentLevel.LevelLength / CurrentLevel.NumberOfRoads;
+        Road.transform.localScale = new Vector3(Road.transform.localScale.x, Road.transform.localScale.y, div);
+        float xPos = 0.0f;
+        float zPos = div/2;
+        float yAngle = 0;
+        for(int i = 0; i < CurrentLevel.NumberOfRoads; i++)
+        {
+            var position = new Vector3(xPos, 0, zPos);
+            var angle = Quaternion.Euler(0, yAngle, 0);
+            var obj = Instantiate(Road, position, angle);
+            obj.transform.parent = Mother.transform;
+            xPos = xPos - Road.transform.localScale.x / 2 + Road.transform.localScale.z / 2;
+            zPos = zPos - Road.transform.localScale.x / 2 + Road.transform.localScale.z / 2;
+            yAngle += 90 * Mathf.Pow(-1, i);
+        }
+    }
+
+    public void MotherRotationChange(GameObject dummyObj)
+    {
+        if(NumberOfRotates > 0)
+        {
+            MotherAngle = Mathf.Pow(-1, NumberOfRotates) * 90;
+            RotateAroundObj = dummyObj;
+            Mother.transform.parent = RotateAroundObj.transform;
+        }
+        NumberOfRotates++;
     }
 }
