@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,7 +256,7 @@ PrefabInstance:
     - target: {fileID: 5201049583884422362, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 322508781194819022, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
         type: 3}
@@ -458,7 +458,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 70
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -809,7 +809,7 @@ PrefabInstance:
     - target: {fileID: 5201049583884422362, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 322508781194819022, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
         type: 3}
@@ -889,7 +889,7 @@ PrefabInstance:
     - target: {fileID: 5201049583884422362, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 322508781194819022, guid: 2c79412fe3b5ade4e94f546ce09ec6b6,
         type: 3}
@@ -986,6 +986,10 @@ MonoBehaviour:
     type: 3}
   peBigBomb: {fileID: 7753919420187405724, guid: abf0aad285297b8469a2312dcf6aa35f,
     type: 3}
+  ExplosionPower: 12
+  ExplosionRadius: 5
+  ExplosionUpForce: 0
+  expForceMode: 1
 --- !u!4 &1595922487
 Transform:
   m_ObjectHideFlags: 0
@@ -1076,15 +1080,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8088491812298351727, guid: 39ee082a9cb42914190237b4e26d0158,
         type: 3}
-    - target: {fileID: 123144013, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 299502f0db6034a46afa0d8f789e5a58, type: 2}
     - target: {fileID: 2709703093122758755, guid: b6ebe8f382882bf49915a8281ecee7b6,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 123144013, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 299502f0db6034a46afa0d8f789e5a58, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
 --- !u!1 &1756920010 stripped

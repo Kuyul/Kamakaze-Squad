@@ -42,7 +42,7 @@ public class SquadScript : MonoBehaviour
         if (collision.gameObject.tag == "block")
         {
             collision.gameObject.SetActive(false);
-            //GameController.instance.RemoveSquad(gameObject);
+            GameController.instance.Detonate(transform.position);
             gameObject.SetActive(false);
             GameObject temp = Instantiate(GameController.instance.peBlock, collision.transform.position, Quaternion.identity);
             Destroy(temp, 5f);

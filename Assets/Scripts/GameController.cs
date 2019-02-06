@@ -18,6 +18,11 @@ public class GameController : MonoBehaviour
     public GameObject peExplosion;
     public GameObject peBigBomb;
 
+    public float ExplosionPower = 3.0f;
+    public float ExplosionRadius = 5.0f;
+    public float ExplosionUpForce = 1.0f;
+    public ForceMode expForceMode;
+
     //Declare private variables
     private Player PlayerScript;
 
@@ -83,5 +88,20 @@ public class GameController : MonoBehaviour
     public int GetSquadCount()
     {
         return PlayerScript.GetSquadCount();
+    }
+
+    //Called from the player class and squad class when it collides with a block.
+    //It'll add force to the surrounding blocks to give an explosion effect
+    public void Detonate(Vector3 pos)
+    {
+        Collider[] colliders = Physics.OverlapSphere(pos, ExplosionRadius);
+        foreach (Collider hit in colliders)
+        {
+            if (hit.gameObject.tag == "block")
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                rb.AddExplosionForce(ExplosionPower, pos, ExplosionRadius, ExplosionUpForce, expForceMode);
+            }
+        }
     }
 }

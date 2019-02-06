@@ -97,6 +97,8 @@ public class Player : MonoBehaviour
         if (other.tag == "block")
         {
             other.gameObject.SetActive(false);
+            //Explode
+            GameController.instance.Detonate(transform.position);
             DisablePlayer();
             GameObject temp = Instantiate(GameController.instance.peBlock,other.transform.position,Quaternion.identity);
             Destroy(temp, 5f);
