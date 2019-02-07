@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -232,11 +232,12 @@ MonoBehaviour:
   - {fileID: 2100299146577725585, guid: 0aea3076bb2842d4192d34ed519f4aeb, type: 3}
   - {fileID: 720378466766734306, guid: 738b448321585994ca417ad24afa8369, type: 3}
   - {fileID: 2253452635090185024, guid: 7f02ce2dfdf9a6c4d9964f22d5e4a9e6, type: 3}
+  LevelLength: 80
   NumberOfTries: 3
   FinishLinePrefab: {fileID: 1094440860404183172, guid: 5289b325b1a1e884eb7bca7c06797fd7,
     type: 3}
   BuildingDistance: 30
-  EndblockDistance: 10
+  EndblockDistance: 15
   EndBlock: {fileID: 2899244374349684154, guid: 6bd39fdfbeda26b43999269517bd8dd6,
     type: 3}
   SquadPrefabs:
@@ -335,7 +336,7 @@ Transform:
   m_GameObject: {fileID: 438265258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 120}
-  m_LocalScale: {x: 20, y: 1, z: 300}
+  m_LocalScale: {x: 12, y: 1, z: 300}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -418,7 +419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.16656561, y: -0, z: -0, w: 0.9860304}
-  m_LocalPosition: {x: 0, y: 11.63, z: -19.17}
+  m_LocalPosition: {x: 0, y: 11.63, z: -34.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 882018851}
@@ -815,7 +816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1756920012, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -14.980001
       objectReference: {fileID: 0}
     - target: {fileID: 1756920012, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: m_LocalRotation.x

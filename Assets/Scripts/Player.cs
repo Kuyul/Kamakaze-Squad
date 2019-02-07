@@ -113,6 +113,7 @@ public class Player : MonoBehaviour
 
         if (other.tag == "finishline")
         {
+            rb.velocity = Vector3.forward * 23;
             GameController.instance.StopCamera();
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
