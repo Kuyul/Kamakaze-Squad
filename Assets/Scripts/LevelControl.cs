@@ -173,7 +173,7 @@ public class LevelControl : MonoBehaviour
         {
             var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange); //Obstacles share the same X range with squads
             var zPos = Random.Range(10.0f, CurrentLevel.LevelLength - 10.0f); //10 here is the offset
-            var pos = new Vector3(xPos, 2, zPos);
+            var pos = new Vector3(xPos, 3.8f, zPos);
             //Check if given position overlaps with any other gameobjects in the scene
             Collider[] colliders = Physics.OverlapSphere(pos, 1); //2 is Yoffset, 1 is radius of the obstacle.. I know hardcoding is not good, but I think we can get away with it here :)
 
