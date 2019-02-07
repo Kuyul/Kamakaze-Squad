@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
   - component: {fileID: 534669907}
+  - component: {fileID: 534669908}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -511,7 +512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.16656561, y: -0, z: -0, w: 0.9860304}
-  m_LocalPosition: {x: 0, y: 11.63, z: -34.15}
+  m_LocalPosition: {x: 0, y: 11.63, z: -34.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 882018851}
@@ -547,6 +548,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!95 &534669908
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 041dc84a1345d63499f27b9a81beca6a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &882018850
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,6 +880,7 @@ MonoBehaviour:
   Player: {fileID: 1756920010}
   PlayerSpeed: 17
   PlayerMaxSpeed: 25
+  CamMove: {fileID: 534669908}
   peBlock: {fileID: 2829308816992472173, guid: d30c9efa13351a047a6563a08afc66bb, type: 3}
   peSquadedSplash: {fileID: 6059764457070607872, guid: 5b76b2f838d28e34d8017f3ea0ddc401,
     type: 3}

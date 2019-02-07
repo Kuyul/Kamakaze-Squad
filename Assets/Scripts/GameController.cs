@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     public float PlayerSpeed;
     public float PlayerMaxSpeed;
 
+    public Animator CamMove;
+
     public GameObject peBlock;
     public GameObject peSquadedSplash;
     public GameObject peExplosion;

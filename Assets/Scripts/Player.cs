@@ -119,7 +119,8 @@ public class Player : MonoBehaviour
             GameController.instance.StopCamera();
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
-
+            GameController.instance.CamMove.enabled=true;
+            GameController.instance.CamMove.SetTrigger("CamMove");
             touchScript.IncreaseXLimit();
 
             for (int i = 0; i < ListOfSquads.Count; i++)
