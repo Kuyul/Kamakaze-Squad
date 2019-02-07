@@ -40,11 +40,11 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         //Change player facing angle depending on where the player is going
         float rotateTo = 0;
-        if(movementOffset > 0.001)
+        if(movementOffset > 0.01)
         {
             rotateTo = maxRotation;
         }
-        else if(movementOffset < -0.001)
+        else if(movementOffset < -0.01)
         {
             rotateTo = -maxRotation;
         }
@@ -59,9 +59,14 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (Mathf.Abs(newPosX) <= xLimit)
             {
                 Player.transform.position += new Vector3(movementOffset, 0, 0);
+                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, rotateTo, 0), rotationSensitivity * Time.deltaTime);
             }
         }
-        Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, rotateTo, 0), rotationSensitivity * Time.deltaTime);
+        else
+        {
+            Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, 0, 0), rotationSensitivity * Time.deltaTime);
+        }
+       
         previousPos = currentPos;
     }
 }

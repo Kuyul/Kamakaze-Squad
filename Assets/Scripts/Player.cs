@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public GameObject Vest;
     public GameObject Dynamite;
     public GameObject peRun;
+    public GameObject peTrail;
 
     //Declare private variables
     private Rigidbody rb;
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
         Vest.SetActive(false);
         Dynamite.SetActive(false);
         peRun.SetActive(false);
+        peTrail.SetActive(false);
         StartCoroutine(CheckAfterThreeSeconds());
     }
 

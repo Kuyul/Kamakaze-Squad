@@ -19,6 +19,7 @@ public class LevelControl : MonoBehaviour
     public float SquadXAxisRange = 3.0f;
     public GameObject Obstacle;
     public float ObstacleAngularVel = 60.0f;
+    public GameObject ExplosionZone;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -62,6 +63,11 @@ public class LevelControl : MonoBehaviour
         {
             SpawnedBuilding = LevelContinue.instance.Building;
         }
+
+        //Instantiate an explosion zone below the building
+        ExplosionZone.transform.localScale = new Vector3(BuildingDistance * 2, 1.1f, BuildingDistance * 2);
+        Instantiate(ExplosionZone, SpawnedBuilding.transform.position, Quaternion.identity);
+
         Bomb = SpawnedBuilding.GetComponent<BuildingScript>().Bomb;
         Instantiate(EndBlock, SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
     }

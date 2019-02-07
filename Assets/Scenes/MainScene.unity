@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,6 +228,10 @@ MonoBehaviour:
   - {fileID: 925257179649688561, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
   - {fileID: 3353258821064624800, guid: e0574af56164d954f98d0f76ea7ec9a5, type: 3}
   - {fileID: 2134101763108355015, guid: ac244eccca3bd52448a6cfcbd627a46c, type: 3}
+  - {fileID: 6151306016754724926, guid: 46bce7456d7944241b1701d6e66923e4, type: 3}
+  - {fileID: 2100299146577725585, guid: 0aea3076bb2842d4192d34ed519f4aeb, type: 3}
+  - {fileID: 720378466766734306, guid: 738b448321585994ca417ad24afa8369, type: 3}
+  - {fileID: 2253452635090185024, guid: 7f02ce2dfdf9a6c4d9964f22d5e4a9e6, type: 3}
   NumberOfTries: 3
   FinishLinePrefab: {fileID: 1094440860404183172, guid: 5289b325b1a1e884eb7bca7c06797fd7,
     type: 3}
@@ -242,6 +246,8 @@ MonoBehaviour:
   SquadXAxisRange: 3
   Obstacle: {fileID: 674260255471773610, guid: 8e33f3fbdac802547b8a414004141f8c, type: 3}
   ObstacleAngularVel: 5
+  ExplosionZone: {fileID: 3282655563817964747, guid: ff31a859a9acae24a93c3047750462f7,
+    type: 3}
   finishLinePassed: 0
 --- !u!1 &438265258
 GameObject:
@@ -495,10 +501,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xLimit: 5
-  sensitivity: 10
-  maxRotation: 45
-  rotationSensitivity: 5
-  multiplier: 2.5
+  sensitivity: 25
+  maxRotation: 60
+  rotationSensitivity: 7
 --- !u!64 &882018853
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -767,8 +772,8 @@ MonoBehaviour:
     type: 3}
   peBigBomb: {fileID: 7753919420187405724, guid: abf0aad285297b8469a2312dcf6aa35f,
     type: 3}
-  ExplosionPower: 5
-  ExplosionRadius: 3
+  ExplosionPower: 8
+  ExplosionRadius: 4
   ExplosionUpForce: 0
   expForceMode: 1
 --- !u!4 &1595922487
