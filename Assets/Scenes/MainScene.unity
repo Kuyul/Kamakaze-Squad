@@ -299,7 +299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
+  - {fileID: 2100000, guid: e64b2514dca55084eba0f78291a4469d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -390,7 +390,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
+  - {fileID: 2100000, guid: e64b2514dca55084eba0f78291a4469d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -446,7 +446,6 @@ GameObject:
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
   - component: {fileID: 534669907}
-  - component: {fileID: 534669908}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -548,25 +547,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
---- !u!95 &534669908
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 041dc84a1345d63499f27b9a81beca6a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &882018850
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,12 +821,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1373448804 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7168037624376485511, guid: b6ebe8f382882bf49915a8281ecee7b6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1756920009}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1595922485
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,13 +854,7 @@ MonoBehaviour:
   Player: {fileID: 1756920010}
   PlayerSpeed: 17
   PlayerMaxSpeed: 25
-  CamMove: {fileID: 534669908}
-  peBlock: {fileID: 2829308816992472173, guid: d30c9efa13351a047a6563a08afc66bb, type: 3}
   peSquadedSplash: {fileID: 6059764457070607872, guid: 5b76b2f838d28e34d8017f3ea0ddc401,
-    type: 3}
-  peExplosion: {fileID: 5998876251357722393, guid: 261f84640490c0a4f8b0495f46dc3e33,
-    type: 3}
-  peBigBomb: {fileID: 7753919420187405724, guid: abf0aad285297b8469a2312dcf6aa35f,
     type: 3}
   ExplosionPower: 8
   ExplosionRadius: 4
@@ -918,6 +886,11 @@ PrefabInstance:
       value: Kamikaze character
       objectReference: {fileID: 0}
     - target: {fileID: 1756920010, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168037624376485511, guid: b6ebe8f382882bf49915a8281ecee7b6,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -976,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 1756920034, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: Dynamite
       value: 
-      objectReference: {fileID: 1373448804}
+      objectReference: {fileID: 0}
     - target: {fileID: 1756920034, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: peTrail
       value: 
@@ -1004,6 +977,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 135636240, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
+    - target: {fileID: 1757814776, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
 --- !u!1 &1756920010 stripped
