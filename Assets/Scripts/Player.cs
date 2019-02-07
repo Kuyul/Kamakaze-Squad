@@ -119,5 +119,13 @@ public class Player : MonoBehaviour
                 ListOfSquads[i].GetComponent<SquadScript>().peRun.SetActive(true);
             }
         }
+
+        if (other.tag == "obstacle")
+        {
+            gameObject.SetActive(false);
+            Destroy(other.gameObject);
+            LevelControl.instance.LevelFail();
+            Instantiate(GameController.instance.peBigBomb, other.gameObject.transform.position, Quaternion.identity);
+        }
     }
 }

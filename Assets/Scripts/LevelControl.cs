@@ -17,6 +17,8 @@ public class LevelControl : MonoBehaviour
     public GameObject EndBlock;
     public GameObject[] SquadPrefabs;
     public float SquadXAxisRange = 3.0f;
+    public GameObject Obstacle;
+    public float ObstacleAngularVel = 60.0f;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -44,8 +46,8 @@ public class LevelControl : MonoBehaviour
         //Generate finishline
         var finishLinePos = new Vector3(0,0,CurrentLevel.LevelLength);
         Instantiate(FinishLinePrefab, finishLinePos, Quaternion.identity);
-        SquadRandomiser();
-        //Spawn Squads
+        SquadRandomiser(); //Spawn Squads
+        PlaceObstacles(); //Spawn Obstacles
 
         //Spawn a random building...? maybe it shouldn't be random, but for now we'll make it random.
         //Check whether the level is a new level or a continued level. If its a new level, we'll spawn a brand new building, if its continued,
@@ -76,8 +78,7 @@ public class LevelControl : MonoBehaviour
     {
         if (LevelContinue.instance.TriesLeft - 1 == 0)
         {
-            LevelContinue.instance.ResetLevel();
-            Debug.Log("Game Over");
+            LevelFail();
         }
         else
         {
@@ -85,9 +86,10 @@ public class LevelControl : MonoBehaviour
             LevelContinue.instance.TriesLeft--;
             Debug.Log("Tries Left: " + LevelContinue.instance.TriesLeft);
             LevelContinue.instance.levelIsContinued = true;
+            GameController.instance.GameOver();
             Debug.Log("Game Continued");
         }
-        GameController.instance.GameOver();
+       
     }
 
     //Called from the Bomb script to let levelhandler know that the bomb has fallen.
@@ -96,6 +98,13 @@ public class LevelControl : MonoBehaviour
     {
         BombLanded = true;
         LevelClear();
+    }
+
+    public void LevelFail()
+    {
+        LevelContinue.instance.ResetLevel();
+        GameController.instance.GameOver();
+        Debug.Log("Game Over");
     }
 
     private void LevelClear()
@@ -155,6 +164,31 @@ public class LevelControl : MonoBehaviour
                 var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
                 Instantiate(squadObj, new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
             }
+        }
+    }
+
+    private void PlaceObstacles()
+    {
+        for(int i = 0; i < CurrentLevel.NumberOfObstacles; i++)
+        {
+            var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange); //Obstacles share the same X range with squads
+            var zPos = Random.Range(10.0f, CurrentLevel.LevelLength - 10.0f); //10 here is the offset
+            var pos = new Vector3(xPos, 2, zPos);
+            //Check if given position overlaps with any other gameobjects in the scene
+            Collider[] colliders = Physics.OverlapSphere(pos, 1); //2 is Yoffset, 1 is radius of the obstacle.. I know hardcoding is not good, but I think we can get away with it here :)
+
+            //Re-calculate position until there is no overlap
+            while(colliders.Length > 0)
+            {
+                xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
+                zPos = Random.Range(20.0f, CurrentLevel.LevelLength - 10.0f);
+                pos = new Vector3(xPos, 2, zPos);
+                colliders = Physics.OverlapSphere(pos, 1);
+            }
+
+            //At this point we found a vacant position
+            var obj = Instantiate(Obstacle, pos, Quaternion.identity);
+            obj.GetComponent<Rigidbody>().angularVelocity = new Vector3(ObstacleAngularVel, ObstacleAngularVel, 0);
         }
     }
 }
