@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public GameObject peRun;
     public GameObject peTrail;
 
+    public Touch touchScript;
+
     //Declare private variables
     private Rigidbody rb;
     private List<GameObject> ListOfSquads = new List<GameObject>();
@@ -113,10 +115,13 @@ public class Player : MonoBehaviour
 
         if (other.tag == "finishline")
         {
-            rb.velocity = Vector3.forward * 23;
+            rb.velocity = Vector3.forward * GameController.instance.PlayerMaxSpeed;
             GameController.instance.StopCamera();
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
+
+            touchScript.IncreaseXLimit();
+
             for (int i = 0; i < ListOfSquads.Count; i++)
             {
                 ListOfSquads[i].GetComponent<SquadScript>().peRun.SetActive(true);

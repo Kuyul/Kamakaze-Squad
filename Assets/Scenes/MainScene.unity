@@ -250,6 +250,97 @@ MonoBehaviour:
   ExplosionZone: {fileID: 3282655563817964747, guid: ff31a859a9acae24a93c3047750462f7,
     type: 3}
   finishLinePassed: 0
+--- !u!1 &345513879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 345513883}
+  - component: {fileID: 345513882}
+  - component: {fileID: 345513881}
+  - component: {fileID: 345513880}
+  m_Layer: 0
+  m_Name: Road (1)
+  m_TagString: road
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &345513880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345513879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &345513881
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345513879}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &345513882
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345513879}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &345513883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345513879}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.413}
+  m_LocalScale: {x: 3.6341257, y: 1, z: 0.45644656}
+  m_Children: []
+  m_Father: {fileID: 438265262}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438265258
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,9 +426,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438265258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 120}
-  m_LocalScale: {x: 12, y: 1, z: 300}
-  m_Children: []
+  m_LocalPosition: {x: 0, y: 0, z: 51.3}
+  m_LocalScale: {x: 11.5, y: 1, z: 150}
+  m_Children:
+  - {fileID: 345513883}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -502,6 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xLimit: 5
+  xLimitMax: 7
   sensitivity: 25
   maxRotation: 60
   rotationSensitivity: 7
@@ -765,7 +858,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraScript: {fileID: 534669906}
   Player: {fileID: 1756920010}
-  PlayerSpeed: 15
+  PlayerSpeed: 17
+  PlayerMaxSpeed: 25
   peBlock: {fileID: 2829308816992472173, guid: d30c9efa13351a047a6563a08afc66bb, type: 3}
   peSquadedSplash: {fileID: 6059764457070607872, guid: 5b76b2f838d28e34d8017f3ea0ddc401,
     type: 3}
@@ -852,7 +946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1756920034, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: ChaseSpeed
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1756920034, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: KeepDistance
@@ -871,6 +965,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8088491812298351727, guid: 39ee082a9cb42914190237b4e26d0158,
         type: 3}
+    - target: {fileID: 1756920034, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
+      propertyPath: touchScript
+      value: 
+      objectReference: {fileID: 882018852}
     - target: {fileID: 2709703093122758755, guid: b6ebe8f382882bf49915a8281ecee7b6,
         type: 3}
       propertyPath: m_IsActive

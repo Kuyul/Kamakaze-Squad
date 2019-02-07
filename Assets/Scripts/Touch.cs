@@ -7,6 +7,8 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     //Declare public variables
     public float xLimit;
+    public float xLimitMax;
+
     public float sensitivity = 10.0f;
     public float maxRotation = 30f;
     public float rotationSensitivity = 5.0f;
@@ -35,6 +37,7 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private void Update()
     {
+        Debug.Log(xLimit);
         Vector2 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
         var movementOffset = currentPos.x - previousPos.x;
 
@@ -69,4 +72,11 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
        
         previousPos = currentPos;
     }
+
+    public void IncreaseXLimit()
+    {
+        xLimit = xLimitMax;
+    }
+
+    
 }

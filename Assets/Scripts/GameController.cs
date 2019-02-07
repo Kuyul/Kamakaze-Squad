@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public CameraScript CameraScript;
     public GameObject Player;
     public float PlayerSpeed;
+    public float PlayerMaxSpeed;
 
     public GameObject peBlock;
     public GameObject peSquadedSplash;
