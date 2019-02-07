@@ -10,6 +10,7 @@ public class LevelControl : MonoBehaviour
     public LevelScript[] Levels;
 
     //Declare public variables
+    public float LevelLength = 150.0f;
     public int NumberOfTries = 3;
     public GameObject FinishLinePrefab;
     public float BuildingDistance = 10.0f;
@@ -45,7 +46,7 @@ public class LevelControl : MonoBehaviour
         CurrentLevel = Levels[GetCurrentLevel() - 1];
 
         //Generate finishline
-        var finishLinePos = new Vector3(0,0,CurrentLevel.LevelLength);
+        var finishLinePos = new Vector3(0,0,LevelLength);
         Instantiate(FinishLinePrefab, finishLinePos, Quaternion.identity);
         SquadRandomiser(); //Spawn Squads
         PlaceObstacles(); //Spawn Obstacles
@@ -142,7 +143,7 @@ public class LevelControl : MonoBehaviour
         int[] a = { 0, 1, 2, 3 };
         List<int> alloc = new List<int>();
         int total = 0;
-        var numAllocationSpots = CurrentLevel.LevelLength / CurrentLevel.MinSquadDistance - 1;
+        var numAllocationSpots = LevelLength / CurrentLevel.MinSquadDistance - 1;
         while (total < CurrentLevel.NumberOfSquads)
         {
             total = 0;
@@ -178,7 +179,7 @@ public class LevelControl : MonoBehaviour
         for(int i = 0; i < CurrentLevel.NumberOfObstacles; i++)
         {
             var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange); //Obstacles share the same X range with squads
-            var zPos = Random.Range(10.0f, CurrentLevel.LevelLength - 10.0f); //10 here is the offset
+            var zPos = Random.Range(10.0f, LevelLength - 10.0f); //10 here is the offset
             var pos = new Vector3(xPos, 3.8f, zPos);
             //Check if given position overlaps with any other gameobjects in the scene
             Collider[] colliders = Physics.OverlapSphere(pos, 1); //2 is Yoffset, 1 is radius of the obstacle.. I know hardcoding is not good, but I think we can get away with it here :)
@@ -187,7 +188,7 @@ public class LevelControl : MonoBehaviour
             while(colliders.Length > 0)
             {
                 xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
-                zPos = Random.Range(20.0f, CurrentLevel.LevelLength - 10.0f);
+                zPos = Random.Range(20.0f, LevelLength - 10.0f);
                 pos = new Vector3(xPos, 3.8f, zPos);
                 colliders = Physics.OverlapSphere(pos, 1);
             }
