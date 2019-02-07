@@ -42,7 +42,7 @@ public class SquadScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "block")
         {
-            collision.gameObject.SetActive(false);
+           // collision.gameObject.SetActive(false);
             GameController.instance.Detonate(transform.position);
             gameObject.SetActive(false);
             GameObject temp = Instantiate(GameController.instance.peBlock, collision.transform.position, Quaternion.identity);

@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
 
         if (other.tag == "block")
         {
-            other.gameObject.SetActive(false);
+           // other.gameObject.SetActive(false);
             //Explode
             GameController.instance.Detonate(transform.position);
             DisablePlayer();
