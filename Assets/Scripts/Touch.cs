@@ -37,7 +37,6 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private void Update()
     {
-        Debug.Log(xLimit);
         Vector2 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
         var movementOffset = currentPos.x - previousPos.x;
 
