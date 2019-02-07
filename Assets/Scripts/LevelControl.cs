@@ -188,7 +188,7 @@ public class LevelControl : MonoBehaviour
 
             //At this point we found a vacant position
             var obj = Instantiate(Obstacle, pos, Quaternion.identity);
-            obj.GetComponent<Rigidbody>().angularVelocity = new Vector3(ObstacleAngularVel, ObstacleAngularVel, 0);
+            obj.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, ObstacleAngularVel, 0);
         }
     }
 }
