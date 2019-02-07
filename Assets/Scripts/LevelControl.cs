@@ -182,7 +182,7 @@ public class LevelControl : MonoBehaviour
             {
                 xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
                 zPos = Random.Range(20.0f, CurrentLevel.LevelLength - 10.0f);
-                pos = new Vector3(xPos, 2, zPos);
+                pos = new Vector3(xPos, 3.8f, zPos);
                 colliders = Physics.OverlapSphere(pos, 1);
             }
 
