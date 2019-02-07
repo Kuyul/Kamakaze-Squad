@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene(0);
     }
 

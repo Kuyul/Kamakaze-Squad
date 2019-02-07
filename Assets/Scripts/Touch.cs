@@ -18,10 +18,14 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private Vector2 previousPos;
     private Vector2 firstTouchPos;
 
+    void Start()
+    {
+        Player = GameController.instance.Player;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         dragging = true;
-        Player = GameController.instance.Player;
         previousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
     }
 
@@ -36,12 +40,12 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         var movementOffset = currentPos.x - previousPos.x;
 
         //Change player facing angle depending on where the player is going
-        float rotateTo;
-        if(movementOffset > 0)
+        float rotateTo = 0;
+        if(movementOffset > 0.001)
         {
             rotateTo = maxRotation;
         }
-        else if(movementOffset < 0)
+        else if(movementOffset < -0.001)
         {
             rotateTo = -maxRotation;
         }
@@ -56,9 +60,9 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (Mathf.Abs(newPosX) <= xLimit)
             {
                 Player.transform.position += new Vector3(movementOffset * multiplier, 0, 0);
-                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, rotateTo, 0), rotationSensitivity * Time.deltaTime);
             }
         }
+        Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, rotateTo, 0), rotationSensitivity * Time.deltaTime);
         previousPos = currentPos;
     }
 }
