@@ -13,7 +13,7 @@ public class BuildingScript : MonoBehaviour
         for(int i = 0; i < Cubes.Length; i++)
         {
             Destroy(Cubes[i]);
-            Instantiate(GameController.instance.peBlock, Cubes[i].transform.position, Quaternion.identity);
+         //   Instantiate(GameController.instance.peBlock, Cubes[i].transform.position, Quaternion.identity);
         }
     }
 }

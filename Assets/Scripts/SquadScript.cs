@@ -31,7 +31,7 @@ public class SquadScript : MonoBehaviour
         {
             Beanie.SetActive(true);
             Vest.SetActive(true);
-            Dynamite.SetActive(true);
+           // Dynamite.SetActive(true);
             peSquaded.SetActive(true);
             Instantiate(GameController.instance.peSquadedSplash, transform.position, Quaternion.identity);
             anim.SetTrigger("run");
@@ -45,10 +45,12 @@ public class SquadScript : MonoBehaviour
            // collision.gameObject.SetActive(false);
             GameController.instance.Detonate(transform.position);
             gameObject.SetActive(false);
+            /*
             GameObject temp = Instantiate(GameController.instance.peBlock, collision.transform.position, Quaternion.identity);
             Destroy(temp, 5f);
             GameObject temp2 = Instantiate(GameController.instance.peExplosion, transform.position, Quaternion.identity);
             Destroy(temp2, 5f);
+            */
         }
     }    
 }

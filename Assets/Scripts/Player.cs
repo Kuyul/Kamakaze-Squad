@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public GameObject Mesh;
     public GameObject Beanie;
     public GameObject Vest;
-    public GameObject Dynamite;
     public GameObject peRun;
     public GameObject peTrail;
 
@@ -63,8 +62,7 @@ public class Player : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         Mesh.SetActive(false);
         Beanie.SetActive(false);
-        Vest.SetActive(false);
-        Dynamite.SetActive(false);
+        Vest.SetActive(false);     
         peRun.SetActive(false);
         peTrail.SetActive(false);
         StartCoroutine(CheckAfterThreeSeconds());
@@ -100,12 +98,14 @@ public class Player : MonoBehaviour
         {
            // other.gameObject.SetActive(false);
             //Explode
+            /*
             GameController.instance.Detonate(transform.position);
             DisablePlayer();
             GameObject temp = Instantiate(GameController.instance.peBlock,other.transform.position,Quaternion.identity);
             Destroy(temp, 5f);
             GameObject temp2 = Instantiate(GameController.instance.peExplosion, transform.position, Quaternion.identity);
             Destroy(temp2, 5f);
+            */
         }
 
         if (other.tag == "endblock")
@@ -119,9 +119,10 @@ public class Player : MonoBehaviour
             GameController.instance.StopCamera();
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
-            GameController.instance.CamMove.enabled=true;
-            GameController.instance.CamMove.SetTrigger("CamMove");
             touchScript.IncreaseXLimit();
+            //  GameController.instance.CamMove.enabled=true;
+            // GameController.instance.CamMove.SetTrigger("CamMove");
+
 
             for (int i = 0; i < ListOfSquads.Count; i++)
             {
@@ -134,7 +135,7 @@ public class Player : MonoBehaviour
             gameObject.SetActive(false);
             Destroy(other.gameObject);
             LevelControl.instance.LevelFail();
-            Instantiate(GameController.instance.peBigBomb, other.gameObject.transform.position, Quaternion.identity);
+          //  Instantiate(GameController.instance.peBigBomb, other.gameObject.transform.position, Quaternion.identity);
         }
     }
 }
