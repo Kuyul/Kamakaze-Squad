@@ -484,7 +484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.16656561, y: -0, z: -0, w: 0.9860304}
-  m_LocalPosition: {x: 0, y: 11.63, z: -18.27}
+  m_LocalPosition: {x: 0, y: 11.63, z: -19.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 882018851}
@@ -979,9 +979,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraScript: {fileID: 534669906}
   Player: {fileID: 1756920010}
-  PlayerSpeed: 12
+  PlayerSpeed: 15
   peBlock: {fileID: 2829308816992472173, guid: d30c9efa13351a047a6563a08afc66bb, type: 3}
-  peSquad: {fileID: 6059764457070607872, guid: 5b76b2f838d28e34d8017f3ea0ddc401, type: 3}
+  peSquadedSplash: {fileID: 6059764457070607872, guid: 5b76b2f838d28e34d8017f3ea0ddc401,
+    type: 3}
   peExplosion: {fileID: 5998876251357722393, guid: 261f84640490c0a4f8b0495f46dc3e33,
     type: 3}
   peBigBomb: {fileID: 7753919420187405724, guid: abf0aad285297b8469a2312dcf6aa35f,
@@ -1083,12 +1084,17 @@ PrefabInstance:
     - target: {fileID: 2709703093122758755, guid: b6ebe8f382882bf49915a8281ecee7b6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 123144013, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 299502f0db6034a46afa0d8f789e5a58, type: 2}
+    - target: {fileID: 3016931731835257508, guid: b6ebe8f382882bf49915a8281ecee7b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
 --- !u!1 &1756920010 stripped

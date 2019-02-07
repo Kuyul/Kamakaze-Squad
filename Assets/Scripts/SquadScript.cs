@@ -8,8 +8,8 @@ public class SquadScript : MonoBehaviour
     public GameObject Beanie;
     public GameObject Vest;
     public GameObject Dynamite;
-    public GameObject peTrail;
-
+    public GameObject peSquaded;
+    public GameObject peRun;
 
     //Declare private variables
     private Animator anim;
@@ -32,7 +32,8 @@ public class SquadScript : MonoBehaviour
             Beanie.SetActive(true);
             Vest.SetActive(true);
             Dynamite.SetActive(true);
-            Instantiate(GameController.instance.peSquad, transform.position, Quaternion.identity);
+            peSquaded.SetActive(true);
+            Instantiate(GameController.instance.peSquadedSplash, transform.position, Quaternion.identity);
             anim.SetTrigger("run");
         }
     }
