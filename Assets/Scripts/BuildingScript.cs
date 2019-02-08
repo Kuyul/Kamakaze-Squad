@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class BuildingScript : MonoBehaviour
 {
+    public bool SpinningBuilding = false;
     public GameObject Bomb;
     public GameObject[] Cubes;
+
+    private void Awake()
+    {
+        var rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.angularVelocity = new Vector3(0, 45, 0);
+        }
+    }
 
     //Called from the Levelcontrol class to destroy all building blocks
     public void DestroyCubes()

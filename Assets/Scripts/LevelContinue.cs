@@ -13,6 +13,8 @@ public class LevelContinue : MonoBehaviour
     public GameObject Building;
     [HideInInspector]
     public int TriesLeft = 0;
+    [HideInInspector]
+    public int LevelsPassed = 0;
 
     //This gameobject will persist between scene reloads as we need to keep track of tries counts and building states.
     void Awake()
@@ -30,10 +32,15 @@ public class LevelContinue : MonoBehaviour
 
     //Called when GameOver or Game clear to reset the data from the previous level
     //Here we destroy existing buildings
-    public void ResetLevel()
+    public void ResetRound()
     {
         Destroy(Building);
         levelIsContinued = false;
         TriesLeft = 0;
+    }
+
+    public void ResetLevel()
+    {
+        LevelsPassed = 0;
     }
 }

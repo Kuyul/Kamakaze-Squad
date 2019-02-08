@@ -12,6 +12,7 @@ public class LevelControl : MonoBehaviour
     //Declare public variables
     public float LevelLength = 150.0f;
     public int NumberOfTries = 3;
+    public int NumberOfRoundsPerLevel = 5;
     public GameObject FinishLinePrefab;
     public float BuildingDistance = 10.0f;
     public float EndblockDistance = 3.0f;
@@ -42,8 +43,17 @@ public class LevelControl : MonoBehaviour
     //Initialise level
     void Start()
     {
-        //TODO retrieve all level information from LevelScript
-        CurrentLevel = Levels[GetCurrentLevel() - 1];
+        //Level is generated randomly retrieve all level information from LevelScript
+        if (LevelContinue.instance.LevelsPassed == NumberOfRoundsPerLevel - 1)
+        {
+            Debug.Log("Special Level");
+            CurrentLevel = Levels[Random.Range(0, Levels.Length)];
+        }
+        else
+        {
+            CurrentLevel = Levels[Random.Range(0,Levels.Length)];
+            Debug.Log("Current Level " + LevelContinue.instance.LevelsPassed);
+        }
 
         //Generate finishline
         var finishLinePos = new Vector3(0,0,LevelLength);
@@ -51,7 +61,6 @@ public class LevelControl : MonoBehaviour
         SquadRandomiser(); //Spawn Squads
         PlaceObstacles(); //Spawn Obstacles
 
-        //Spawn a random building...? maybe it shouldn't be random, but for now we'll make it random.
         //Check whether the level is a new level or a continued level. If its a new level, we'll spawn a brand new building, if its continued,
         //LevelContinue object will hold reference to the state of the building prior to continuing, so it'll begin from there.
         if (!LevelContinue.instance.levelIsContinued)
@@ -109,22 +118,23 @@ public class LevelControl : MonoBehaviour
 
     public void LevelFail()
     {
+        LevelContinue.instance.ResetRound();
         LevelContinue.instance.ResetLevel();
         GameController.instance.GameOver();
         Debug.Log("Game Over");
     }
 
+    //If level passed count is less than number of rounds per level, then do not reset the level
     private void LevelClear()
     {
-        var newLvl = GetCurrentLevel() + 1;
-        if(newLvl > Levels.Length)
+        LevelContinue.instance.LevelsPassed++;
+        LevelContinue.instance.ResetRound();
+        if (LevelContinue.instance.LevelsPassed >= NumberOfRoundsPerLevel)
         {
-            newLvl = 1;
+            LevelContinue.instance.ResetLevel();
         }
-        PlayerPrefs.SetInt("Level", newLvl);
         GameController.instance.GameOver();
         Debug.Log("Level Clear!");
-        LevelContinue.instance.ResetLevel();
         SpawnedBuilding.GetComponent<BuildingScript>().DestroyCubes();
     }
 
