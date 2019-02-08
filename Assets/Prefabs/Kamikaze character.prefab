@@ -80,7 +80,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cfdb6292cbc72074da8dc7d6c72b95f9, type: 2}
+  - {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,7 +189,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e64b2514dca55084eba0f78291a4469d, type: 2}
+  - {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1149,13 +1149,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeepDistance: 1
-  ChaseSpeed: 3.5
+  ChaseSpeed: 7
   Mesh: {fileID: 123144012}
   Beanie: {fileID: 135636238}
   Vest: {fileID: 1757814774}
-  Dynamite: {fileID: 0}
   peRun: {fileID: 3016931731835257508}
-  peTrail: {fileID: 0}
+  peTrail: {fileID: 2709703093122758755}
   touchScript: {fileID: 0}
 --- !u!1 &1757814774
 GameObject:
@@ -1214,7 +1213,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e64b2514dca55084eba0f78291a4469d, type: 2}
+  - {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1430,6 +1429,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: peRun
       objectReference: {fileID: 0}
+    - target: {fileID: 3016931731514639453, guid: 470c600d50acf1142a31eb3524c41e50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7321470399238086567, guid: 470c600d50acf1142a31eb3524c41e50,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1568,6 +1572,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00696aa7e93977d48a28a493d1420973, type: 3}
+--- !u!1 &2709703093122758755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4528337165299905582, guid: 00696aa7e93977d48a28a493d1420973,
+    type: 3}
+  m_PrefabInstance: {fileID: 1967279411639979085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2709703093122758684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,

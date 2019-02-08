@@ -13,8 +13,8 @@ public class GameController : MonoBehaviour
     public GameObject Player;
     public float PlayerSpeed;
     public float PlayerMaxSpeed;
-    
 
+    public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
 
     public float ExplosionPower = 3.0f;

@@ -96,16 +96,9 @@ public class Player : MonoBehaviour
 
         if (other.tag == "block")
         {
-           // other.gameObject.SetActive(false);
-            //Explode
-            /*
             GameController.instance.Detonate(transform.position);
-            DisablePlayer();
-            GameObject temp = Instantiate(GameController.instance.peBlock,other.transform.position,Quaternion.identity);
-            Destroy(temp, 5f);
-            GameObject temp2 = Instantiate(GameController.instance.peExplosion, transform.position, Quaternion.identity);
-            Destroy(temp2, 5f);
-            */
+            DisablePlayer();            
+            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x,transform.position.y+2f,transform.position.z), Quaternion.identity);
         }
 
         if (other.tag == "endblock")
@@ -120,9 +113,6 @@ public class Player : MonoBehaviour
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
             touchScript.IncreaseXLimit();
-            //  GameController.instance.CamMove.enabled=true;
-            // GameController.instance.CamMove.SetTrigger("CamMove");
-
 
             for (int i = 0; i < ListOfSquads.Count; i++)
             {

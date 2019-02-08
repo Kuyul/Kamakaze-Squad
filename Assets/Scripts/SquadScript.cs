@@ -45,12 +45,7 @@ public class SquadScript : MonoBehaviour
            // collision.gameObject.SetActive(false);
             GameController.instance.Detonate(transform.position);
             gameObject.SetActive(false);
-            /*
-            GameObject temp = Instantiate(GameController.instance.peBlock, collision.transform.position, Quaternion.identity);
-            Destroy(temp, 5f);
-            GameObject temp2 = Instantiate(GameController.instance.peExplosion, transform.position, Quaternion.identity);
-            Destroy(temp2, 5f);
-            */
+            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
         }
     }    
 }
