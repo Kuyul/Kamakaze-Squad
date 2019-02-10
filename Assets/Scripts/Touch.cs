@@ -18,6 +18,7 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool dragging;
     private Vector2 previousPos;
     private Vector2 firstTouchPos;
+    private Vector2 releaseTouchPos;
 
     void Start()
     {
@@ -28,54 +29,62 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         dragging = true;
         previousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
+        firstTouchPos = previousPos;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         dragging = false;
+        releaseTouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
+        if(Mathf.Abs(releaseTouchPos.x - firstTouchPos.x) > 2f)
+        {
+            GameController.instance.GameStarted = true;
+            GameController.instance.SwipeToPlay();
+        }
     } 
 
     private void Update()
     {
-        Vector2 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
-        var movementOffset = currentPos.x - previousPos.x;
+        if (GameController.instance.GameStarted)
+        {
+            Vector2 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
+            var movementOffset = currentPos.x - previousPos.x;
 
-        //Change player facing angle depending on where the player is going
-        float rotateTo = 0;
-        if(movementOffset > 0.01)
-        {
-            rotateTo = maxRotation;
-        }
-        else if(movementOffset < -0.01)
-        {
-            rotateTo = -maxRotation;
-        }
-        else
-        {
-            rotateTo = 0;
-        }
-
-        if (dragging)
-        {
-            var newPosX = Player.transform.position.x + movementOffset;
-            if (Mathf.Abs(newPosX) <= xLimit)
+            //Change player facing angle depending on where the player is going
+            float rotateTo = 0;
+            if (movementOffset > 0.01)
             {
-                Player.transform.position += new Vector3(movementOffset, 0, 0);
-                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, rotateTo, 0), rotationSensitivity * Time.deltaTime);
+                rotateTo = maxRotation;
             }
+            else if (movementOffset < -0.01)
+            {
+                rotateTo = -maxRotation;
+            }
+            else
+            {
+                rotateTo = 0;
+            }
+
+            if (dragging)
+            {
+                var newPosX = Player.transform.position.x + movementOffset;
+                if (Mathf.Abs(newPosX) <= xLimit)
+                {
+                    Player.transform.position += new Vector3(movementOffset, 0, 0);
+                    Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, rotateTo, 0), rotationSensitivity * Time.deltaTime);
+                }
+            }
+            else
+            {
+                Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, 0, 0), rotationSensitivity * Time.deltaTime);
+            }
+
+            previousPos = currentPos;
         }
-        else
-        {
-            Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, Quaternion.Euler(0, 0, 0), rotationSensitivity * Time.deltaTime);
-        }
-       
-        previousPos = currentPos;
     }
 
     public void IncreaseXLimit()
     {
         xLimit = xLimitMax;
-    }
-
-    
+    } 
 }

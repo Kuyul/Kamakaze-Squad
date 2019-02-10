@@ -35,6 +35,7 @@ public class SquadScript : MonoBehaviour
             peSquaded.SetActive(true);
             Instantiate(GameController.instance.peSquadedSplash, transform.position, Quaternion.identity);
             anim.SetTrigger("run");
+            GameController.instance.IncrementCurrentscore();
         }
     }
 

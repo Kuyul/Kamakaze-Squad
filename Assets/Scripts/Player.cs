@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = Vector3.forward * GameController.instance.PlayerSpeed;
+        rb.velocity = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -42,11 +42,6 @@ public class Player : MonoBehaviour
                 ListOfSquads[i].gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
-    }
-
-    public void UpdateSpeed()
-    {
-        rb.velocity = Vector3.forward * GameController.instance.PlayerSpeed;
     }
 
     IEnumerator Delay(Collider other)
@@ -97,8 +92,8 @@ public class Player : MonoBehaviour
         if (other.tag == "block")
         {
             GameController.instance.Detonate(transform.position);
-            DisablePlayer();            
-            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x,transform.position.y+2f,transform.position.z), Quaternion.identity);
+            DisablePlayer();
+            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
         }
 
         if (other.tag == "endblock")
@@ -125,7 +120,12 @@ public class Player : MonoBehaviour
             gameObject.SetActive(false);
             Destroy(other.gameObject);
             LevelControl.instance.LevelFail();
-          //  Instantiate(GameController.instance.peBigBomb, other.gameObject.transform.position, Quaternion.identity);
+            //  Instantiate(GameController.instance.peBigBomb, other.gameObject.transform.position, Quaternion.identity);
         }
+    }
+
+    public void SetPlayerVelocity()
+    {
+        rb.velocity = Vector3.forward* GameController.instance.PlayerSpeed;        
     }
 }

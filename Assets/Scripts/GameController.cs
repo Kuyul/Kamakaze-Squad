@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
 
     //Declare public variables
     public CameraScript CameraScript;
+    public Player PlayerScript;
+
     public GameObject Player;
     public float PlayerSpeed;
     public float PlayerMaxSpeed;
@@ -17,13 +19,24 @@ public class GameController : MonoBehaviour
     public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
 
+    public GameObject highscoreGO;  
+    public GameObject currentscoreGO;
+    public GameObject swipetoplayGO;
+
+    public Text HighscoreText;
+    public Text CurrentscoreText;
+    public Text CurrentLevelText;
+    public Text NextLevelText;
+
+    public bool GameStarted;
+
     public float ExplosionPower = 3.0f;
     public float ExplosionRadius = 5.0f;
     public float ExplosionUpForce = 1.0f;
     public ForceMode expForceMode;
 
     //Declare private variables
-    private Player PlayerScript;
+
 
     private void Awake()
     {
@@ -36,28 +49,10 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerScript = Player.GetComponent<Player>();
-        InvokeRepeating("IncreaseSpeed", 1f, 1f);
-    }
-
-    // increase speed through invoke method every x seconds
-    public void IncreaseSpeed()
-    {
-        PlayerSpeed += 0.5f;
-        PlayerScript.UpdateSpeed();
-
-        if (PlayerSpeed >= 10)
-        {
-            CancelInvoke("IncreaseSpeed");
-        }
-    }
-
-    // called when you hit sign to reset velocity
-    public void ResetSpeed()
-    {
-        CancelInvoke();
-        PlayerSpeed = 1;
-        InvokeRepeating("IncreaseSpeed", 0f, 1f);
+        HighscoreText.text = PlayerPrefs.GetInt("highscore", 0).ToString();
+        CurrentscoreText.text = PlayerPrefs.GetInt("currentscore", 0).ToString();
+        CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel",1).ToString();
+        NextLevelText.text = PlayerPrefs.GetInt("nextlevel", PlayerPrefs.GetInt("currentlevel",1)+1).ToString();
     }
 
     //Called from Player class to stop camera movement when player reaches the finishline
@@ -101,6 +96,27 @@ public class GameController : MonoBehaviour
                 Rigidbody rb = hit.GetComponent<Rigidbody>();
                 rb.AddExplosionForce(ExplosionPower, pos, ExplosionRadius, ExplosionUpForce, expForceMode);
             }
+        }
+    }
+
+    public void SwipeToPlay()
+    {
+        PlayerScript.SetPlayerVelocity();
+        swipetoplayGO.SetActive(false);
+        highscoreGO.SetActive(false);
+        currentscoreGO.SetActive(true);
+    }
+
+    // update score by 1 everytime this function is called
+    public void IncrementCurrentscore()
+    {
+        PlayerPrefs.SetInt("currentscore", PlayerPrefs.GetInt("currentscore", 0) + 1);
+        CurrentscoreText.text = PlayerPrefs.GetInt("currentscore").ToString();
+
+        // update highscore if current score is greater then highscore
+        if (PlayerPrefs.GetInt("currentscore") >= PlayerPrefs.GetInt("highscore", 0))
+        {
+            PlayerPrefs.SetInt("highscore", PlayerPrefs.GetInt("currentscore"));
         }
     }
 }
