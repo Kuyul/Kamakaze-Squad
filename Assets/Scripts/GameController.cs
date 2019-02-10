@@ -119,4 +119,13 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("highscore", PlayerPrefs.GetInt("currentscore"));
         }
     }
+
+    public void IncrementLevel()
+    {
+        PlayerPrefs.SetInt("currentlevel", PlayerPrefs.GetInt("currentlevel", 1) + 1);
+        PlayerPrefs.SetInt("nextlevel", PlayerPrefs.GetInt("currentlevel", 1) + 1);
+
+        CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel", 1).ToString();
+        NextLevelText.text = PlayerPrefs.GetInt("nextlevel", PlayerPrefs.GetInt("currentlevel", 1) + 1).ToString();
+    }
 }
