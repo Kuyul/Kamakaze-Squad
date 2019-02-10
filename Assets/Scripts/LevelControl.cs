@@ -10,6 +10,9 @@ public class LevelControl : MonoBehaviour
     public LevelScript[] Levels;
 
     //Declare public variables
+    public GameObject Road;
+    public float RoadZOffset = 300.0f;
+    public float RoadYOffset = -30.0f;
     public float LevelLength = 150.0f;
     public int NumberOfTries = 3;
     public int NumberOfRoundsPerLevel = 5;
@@ -78,7 +81,7 @@ public class LevelControl : MonoBehaviour
         }
 
         //Instantiate an explosion zone below the building
-        ExplosionZone.transform.localScale = new Vector3(BuildingDistance * 2, 1.1f, BuildingDistance * 2);
+        ExplosionZone.transform.localScale = new Vector3(100f, 1.5f, 100f);
         Instantiate(ExplosionZone, SpawnedBuilding.transform.position, Quaternion.identity);
 
         Bomb = SpawnedBuilding.GetComponent<BuildingScript>().Bomb;
@@ -130,6 +133,7 @@ public class LevelControl : MonoBehaviour
     //If level passed count is less than number of rounds per level, then do not reset the level
     private void LevelClear()
     {
+        GameController.instance.IncrementLevel();
         LevelContinue.instance.LevelsPassed++;
         LevelContinue.instance.ResetRound();
         if (LevelContinue.instance.LevelsPassed >= NumberOfRoundsPerLevel)
