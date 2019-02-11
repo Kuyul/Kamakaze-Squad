@@ -109,10 +109,8 @@ public class LevelControl : MonoBehaviour
         {
             DontDestroyOnLoad(LevelContinue.instance.Building);
             LevelContinue.instance.TriesLeft--;
-            Debug.Log("Tries Left: " + LevelContinue.instance.TriesLeft);
             LevelContinue.instance.levelIsContinued = true;
             GameController.instance.GameOver();
-            Debug.Log("Game Continued");
         }
        
     }
@@ -121,8 +119,13 @@ public class LevelControl : MonoBehaviour
     {
         LevelContinue.instance.ResetRound();
         LevelContinue.instance.ResetLevel();
-        GameController.instance.GameOver();
-        Debug.Log("Game Over");
+        StartCoroutine(DeathPanelDelay(1f));
+    }
+
+    IEnumerator DeathPanelDelay(float t)
+    {
+        yield return new WaitForSeconds(t);
+        GameController.instance.DeathPanel.SetActive(true);
     }
 
     //If level passed count is less than number of rounds per level, then do not reset the level
@@ -141,7 +144,6 @@ public class LevelControl : MonoBehaviour
             var nextRoadPos = GetCurrentRoadPosition();
             GameController.instance.SetNewCameraPosition(nextRoadPos);
         }
-        Debug.Log("Level Clear!");
     }
 
     //Called internally and from gamecontroller

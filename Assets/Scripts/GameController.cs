@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     public float PlayerSpeed;
     public float PlayerMaxSpeed;
 
+    public GameObject DeathPanel;
     public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
     public GameObject peEnemyPop;
@@ -76,12 +77,12 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         PlayerPrefs.SetInt("currentscore", 0);
-        StartCoroutine(Delay());
+        StartCoroutine(Delay(2f));
     }
 
-    IEnumerator Delay()
+    IEnumerator Delay(float time)
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(time);
         SceneManager.LoadScene(0);
     }
 
@@ -153,5 +154,10 @@ public class GameController : MonoBehaviour
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetInt("currentscore", 0);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }
