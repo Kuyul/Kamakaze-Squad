@@ -33,7 +33,7 @@ public class LevelControl : MonoBehaviour
     public bool finishLinePassed = false;
 
     //Declare private variables
-    private LevelScript CurrentLevel;
+    private List<LevelScript> InstantiatedLevels;
     private GameObject SpawnedBuilding;
     private GameObject Bomb;
     private bool BombLanded = false;
@@ -71,6 +71,7 @@ public class LevelControl : MonoBehaviour
         }*/
 
         var currentLevel = Levels[Random.Range(0, Levels.Length)];
+        InstantiatedLevels.Add(currentLevel);
 
         //Generate Road
         var roadPos = new Vector3(0, RoadYOffset * level, RoadZOffset * level);
@@ -154,6 +155,7 @@ public class LevelControl : MonoBehaviour
         if (LevelContinue.instance.LevelsPassed >= NumberOfRoundsPerLevel)
         {
             GameController.instance.GameOver();
+            LevelContinue.instance.ResetLevel();
         }
         else
         {

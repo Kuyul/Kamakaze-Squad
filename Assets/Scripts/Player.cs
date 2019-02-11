@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
         Vest.SetActive(true);
         peRun.SetActive(true);
         peTrail.SetActive(true);
+        touchScript.ResetXLimit();
     }
 
     //Wait for three seconds after player is disabled. See whether the bomb has fallen.

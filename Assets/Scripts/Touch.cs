@@ -7,6 +7,7 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     //Declare public variables
     public float xLimit;
+    public float xLimitNormal = 5.0f;
     public float xLimitMax;
 
     public float sensitivity = 10.0f;
@@ -87,4 +88,9 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         xLimit = xLimitMax;
     } 
+
+    public void ResetXLimit()
+    {
+        xLimit = xLimitNormal;
+    }
 }
