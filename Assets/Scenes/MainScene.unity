@@ -311,8 +311,9 @@ MonoBehaviour:
   - {fileID: 2253452635090185024, guid: 7f02ce2dfdf9a6c4d9964f22d5e4a9e6, type: 3}
   - {fileID: 7315730663237145299, guid: 8ed175175c4174c4c95e0cd34e7edf6c, type: 3}
   - {fileID: 7146497882581505072, guid: 0170027210734dd4d8cdaf96ce510207, type: 3}
-  - {fileID: 4669450194373021575, guid: bba1cffcd855655468ac23b32d1108cd, type: 3}
   - {fileID: 5837597244593108224, guid: 0bb56ee5481d70a4b82746185ac8224d, type: 3}
+  - {fileID: 4669450194373021575, guid: bba1cffcd855655468ac23b32d1108cd, type: 3}
+  - {fileID: 5999763088878336243, guid: 50652444d84438a45aec9ea44294c003, type: 3}
   Road: {fileID: 6671263062129640309, guid: f74379e3e06257f428e25d879ec887f4, type: 3}
   RoadZOffset: 175
   RoadYOffset: 0
@@ -338,6 +339,7 @@ MonoBehaviour:
   FirstObstacleDistance: 10
   ObstacleXAxisDiv: 2
   finishLinePassed: 0
+  InstantiatedLevels: []
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +391,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 350
   field of view: 50
   orthographic: 0
   orthographic size: 5
@@ -1322,6 +1324,7 @@ MonoBehaviour:
   Building: {fileID: 0}
   TriesLeft: 0
   LevelsPassed: 0
+  EnemysThisLevel: 0
 --- !u!4 &1822732169
 Transform:
   m_ObjectHideFlags: 0
