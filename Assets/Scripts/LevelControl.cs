@@ -76,7 +76,7 @@ public class LevelControl : MonoBehaviour
         //LevelContinue object will hold reference to the state of the building prior to continuing, so it'll begin from there.
         if (!LevelContinue.instance.levelIsContinued)
         {
-            SpawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0.6f, BuildingDistance), Quaternion.identity);
+            SpawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0, BuildingDistance), Quaternion.identity);
             LevelContinue.instance.Building = SpawnedBuilding;
             LevelContinue.instance.TriesLeft = currentLevel.NumberOfTries;
         }
