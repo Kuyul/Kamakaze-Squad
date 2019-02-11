@@ -13,8 +13,10 @@ public class LevelContinue : MonoBehaviour
     public GameObject Building;
     [HideInInspector]
     public int TriesLeft = 0;
-    [HideInInspector]
+    //[HideInInspector]
     public int LevelsPassed = 0;
+
+    public int EnemysThisLevel;
 
     //This gameobject will persist between scene reloads as we need to keep track of tries counts and building states.
     void Awake()
@@ -30,6 +32,11 @@ public class LevelContinue : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void Start()
+    {
+        EnemysThisLevel = LevelControl.instance.InstantiatedLevels[LevelsPassed].Enemy;
+    }
+
     //Called when GameOver or Game clear to reset the data from the previous level
     //Here we destroy existing buildings
     public void ResetRound()
@@ -42,5 +49,21 @@ public class LevelContinue : MonoBehaviour
     public void ResetLevel()
     {
         LevelsPassed = 0;
+    }
+
+    public void IncrementEnemyCount()
+    {
+        EnemysThisLevel--;
+        if (EnemysThisLevel == 0)
+        {
+            StartCoroutine(Delay(2f));
+        }
+    }
+
+    IEnumerator Delay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        LevelControl.instance.LevelClear();
+        EnemysThisLevel = LevelControl.instance.InstantiatedLevels[LevelsPassed].Enemy;
     }
 }

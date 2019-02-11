@@ -10,4 +10,5 @@ public class LevelScript : MonoBehaviour
     public int NumberOfTries;
     public int NumberOfSquads;
     public int NumberOfObstacles = 5;
+    public int Enemy=1;
 }

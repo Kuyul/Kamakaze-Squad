@@ -105,7 +105,6 @@ public class Player : MonoBehaviour
         if (other.tag == "block")
         {
             GameController.instance.Detonate(transform.position);
-            LevelControl.instance.LevelClear();
             DisablePlayer();
             Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
         }
@@ -133,8 +132,7 @@ public class Player : MonoBehaviour
         {
             gameObject.SetActive(false);
             Destroy(other.gameObject);
-            LevelControl.instance.LevelFail();
-            //  Instantiate(GameController.instance.peBigBomb, other.gameObject.transform.position, Quaternion.identity);
+            LevelControl.instance.LevelFail();       
         }
     }
 

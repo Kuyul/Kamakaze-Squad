@@ -31,9 +31,9 @@ public class LevelControl : MonoBehaviour
 
     [HideInInspector]
     public bool finishLinePassed = false;
+    public List<LevelScript> InstantiatedLevels = new List<LevelScript>();
 
     //Declare private variables
-    private List<LevelScript> InstantiatedLevels = new List<LevelScript>();
     private GameObject SpawnedBuilding;
     private GameObject Bomb;
     private bool BombLanded = false;
@@ -57,19 +57,6 @@ public class LevelControl : MonoBehaviour
 
     private void SpawnRounds(int level)
     {
-        //Level is generated randomly retrieve all level information from LevelScript
-        /*
-        if (LevelContinue.instance.LevelsPassed == NumberOfRoundsPerLevel - 1)
-        {
-            Debug.Log("Special Level");
-            CurrentLevel = Levels[Random.Range(0, Levels.Length)];
-        }
-        else
-        {
-            CurrentLevel = Levels[Random.Range(0, Levels.Length)];
-            Debug.Log("Current Level " + LevelContinue.instance.LevelsPassed);
-        }*/
-
         var currentLevel = Levels[Random.Range(0, Levels.Length)];
         InstantiatedLevels.Add(currentLevel);
 
@@ -128,14 +115,6 @@ public class LevelControl : MonoBehaviour
             Debug.Log("Game Continued");
         }
        
-    }
-
-    //Called from the Bomb script to let levelhandler know that the bomb has fallen.
-    //TODO: Bomb will detonate instantly right now, but we might want to give it a little bit of time before it destroys the cubes from the scene
-    public void BombFall()
-    {
-        BombLanded = true;
-        LevelClear();
     }
 
     public void LevelFail()
