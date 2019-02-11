@@ -74,6 +74,7 @@ public class GameController : MonoBehaviour
     //GameOver
     public void GameOver()
     {
+        PlayerPrefs.SetInt("currentscore", 0);
         StartCoroutine(Delay());
     }
 
@@ -146,5 +147,10 @@ public class GameController : MonoBehaviour
         Player.transform.position = LevelControl.instance.GetCurrentRoadPosition() + new Vector3(0,0,-15f);
         PlayerScript.EnablePlayer();
         CameraScript.FollowPlayer = true;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("currentscore", 0);
     }
 }
