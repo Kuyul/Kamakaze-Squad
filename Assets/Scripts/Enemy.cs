@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float Health=3f;
+    private float Health=10f;
 
     private void OnCollisionEnter(Collision collision)
     {
