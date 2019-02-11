@@ -10,5 +10,9 @@ public class NoleaveZone : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if(other.tag == "enemy")
+        {
+            other.GetComponent<Enemy>().DestroyEnemy();
+        }
     }
 }

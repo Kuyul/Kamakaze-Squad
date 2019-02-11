@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
 
     public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
+    public GameObject peEnemyPop;
 
     public GameObject highscoreGO;  
     public GameObject currentscoreGO;
