@@ -60,7 +60,19 @@ public class Player : MonoBehaviour
         Vest.SetActive(false);     
         peRun.SetActive(false);
         peTrail.SetActive(false);
-        StartCoroutine(CheckAfterThreeSeconds());
+        
+        //StartCoroutine(CheckAfterThreeSeconds());
+    }
+
+    //Called from Gamecontroller after a signal from Camerascript saying transitioning is complete
+    public void EnablePlayer()
+    {
+        GetComponent<Collider>().enabled = true;
+        Mesh.SetActive(true);
+        Beanie.SetActive(true);
+        Vest.SetActive(true);
+        peRun.SetActive(true);
+        peTrail.SetActive(true);
     }
 
     //Wait for three seconds after player is disabled. See whether the bomb has fallen.
@@ -92,6 +104,7 @@ public class Player : MonoBehaviour
         if (other.tag == "block")
         {
             GameController.instance.Detonate(transform.position);
+            LevelControl.instance.LevelClear();
             DisablePlayer();
             Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
         }

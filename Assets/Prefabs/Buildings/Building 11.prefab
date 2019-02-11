@@ -853,7 +853,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: d3ab6a3690193114a965fae17876822e, type: 3}
 --- !u!54 &5122004350627580581
@@ -9945,6 +9945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7d94787a1a97e41a1c6afd2aa34871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpinningBuilding: 0
   Bomb: {fileID: 3575074393860791652}
   Cubes:
   - {fileID: 5113601835087224830}

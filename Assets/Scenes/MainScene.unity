@@ -305,20 +305,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - {fileID: 925257179649688561, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
-  - {fileID: 3353258821064624800, guid: e0574af56164d954f98d0f76ea7ec9a5, type: 3}
-  - {fileID: 2134101763108355015, guid: ac244eccca3bd52448a6cfcbd627a46c, type: 3}
   - {fileID: 6151306016754724926, guid: 46bce7456d7944241b1701d6e66923e4, type: 3}
   - {fileID: 3976448622762717725, guid: 0aea3076bb2842d4192d34ed519f4aeb, type: 3}
   - {fileID: 720378466766734306, guid: 738b448321585994ca417ad24afa8369, type: 3}
   - {fileID: 2253452635090185024, guid: 7f02ce2dfdf9a6c4d9964f22d5e4a9e6, type: 3}
   - {fileID: 7315730663237145299, guid: 8ed175175c4174c4c95e0cd34e7edf6c, type: 3}
   - {fileID: 7146497882581505072, guid: 0170027210734dd4d8cdaf96ce510207, type: 3}
-  - {fileID: 5837597244593108224, guid: 0bb56ee5481d70a4b82746185ac8224d, type: 3}
   - {fileID: 4669450194373021575, guid: bba1cffcd855655468ac23b32d1108cd, type: 3}
-  - {fileID: 5999763088878336243, guid: 50652444d84438a45aec9ea44294c003, type: 3}
-  Road: {fileID: 0}
+  - {fileID: 5837597244593108224, guid: 0bb56ee5481d70a4b82746185ac8224d, type: 3}
+  Road: {fileID: 6671263062129640309, guid: f74379e3e06257f428e25d879ec887f4, type: 3}
   RoadZOffset: 300
-  RoadYOffset: -30
+  RoadYOffset: -100
   LevelLength: 93
   NumberOfTries: 3
   NumberOfRoundsPerLevel: 5
@@ -439,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowPlayer: 1
+  TransitionSpeed: 100
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,6 +976,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: road10x7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671263062129640309, guid: f74379e3e06257f428e25d879ec887f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
         type: 3}

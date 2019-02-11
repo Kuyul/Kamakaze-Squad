@@ -49,7 +49,16 @@ public class LevelControl : MonoBehaviour
     //Initialise level
     void Start()
     {
+        for(int i = 0; i < NumberOfRoundsPerLevel; i++)
+        {
+            SpawnRounds(i);
+        }
+    }
+
+    private void SpawnRounds(int level)
+    {
         //Level is generated randomly retrieve all level information from LevelScript
+        /*
         if (LevelContinue.instance.LevelsPassed == NumberOfRoundsPerLevel - 1)
         {
             Debug.Log("Special Level");
@@ -57,23 +66,29 @@ public class LevelControl : MonoBehaviour
         }
         else
         {
-            CurrentLevel = Levels[Random.Range(0,Levels.Length)];
+            CurrentLevel = Levels[Random.Range(0, Levels.Length)];
             Debug.Log("Current Level " + LevelContinue.instance.LevelsPassed);
-        }
+        }*/
+
+        var currentLevel = Levels[Random.Range(0, Levels.Length)];
+
+        //Generate Road
+        var roadPos = new Vector3(0, RoadYOffset * level, RoadZOffset * level);
+        Instantiate(Road, roadPos, Quaternion.identity);
 
         //Generate finishline
-        var finishLinePos = new Vector3(0,0,LevelLength);
-        Instantiate(FinishLinePrefab, finishLinePos, Quaternion.identity);
-        SquadRandomiser(); //Spawn Squads
-        PlaceObstacles(); //Spawn Obstacles
+        var finishLinePos = new Vector3(0, 0, LevelLength);
+        Instantiate(FinishLinePrefab, finishLinePos + roadPos, Quaternion.identity);
+        SquadRandomiser(roadPos, currentLevel); //Spawn Squads
+        PlaceObstacles(roadPos, currentLevel); //Spawn Obstacles
 
         //Check whether the level is a new level or a continued level. If its a new level, we'll spawn a brand new building, if its continued,
         //LevelContinue object will hold reference to the state of the building prior to continuing, so it'll begin from there.
         if (!LevelContinue.instance.levelIsContinued)
         {
-            SpawnedBuilding = Instantiate(CurrentLevel.Building, finishLinePos + new Vector3(0, 0, BuildingDistance), Quaternion.identity);
+            SpawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0, BuildingDistance), Quaternion.identity);
             LevelContinue.instance.Building = SpawnedBuilding;
-            LevelContinue.instance.TriesLeft = CurrentLevel.NumberOfTries;
+            LevelContinue.instance.TriesLeft = currentLevel.NumberOfTries;
         }
         else
         {
@@ -82,10 +97,10 @@ public class LevelControl : MonoBehaviour
 
         //Instantiate an explosion zone below the building
         ExplosionZone.transform.localScale = new Vector3(100f, 1.5f, 100f);
-        Instantiate(ExplosionZone, SpawnedBuilding.transform.position, Quaternion.identity);
+        Instantiate(ExplosionZone, roadPos + SpawnedBuilding.transform.position, Quaternion.identity);
 
         Bomb = SpawnedBuilding.GetComponent<BuildingScript>().Bomb;
-        Instantiate(EndBlock, SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
+        Instantiate(EndBlock, roadPos + SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
     }
 
     public int GetCurrentLevel()
@@ -100,7 +115,7 @@ public class LevelControl : MonoBehaviour
     {
         if (LevelContinue.instance.TriesLeft - 1 == 0)
         {
-            LevelFail();
+            //LevelFail();
         }
         else
         {
@@ -131,18 +146,27 @@ public class LevelControl : MonoBehaviour
     }
 
     //If level passed count is less than number of rounds per level, then do not reset the level
-    private void LevelClear()
+    public void LevelClear()
     {
         GameController.instance.IncrementLevel();
         LevelContinue.instance.LevelsPassed++;
-        LevelContinue.instance.ResetRound();
+        //Below if statement is true if its boss level
         if (LevelContinue.instance.LevelsPassed >= NumberOfRoundsPerLevel)
         {
-            LevelContinue.instance.ResetLevel();
+            GameController.instance.GameOver();
         }
-        GameController.instance.GameOver();
+        else
+        {
+            var nextRoadPos = GetCurrentRoadPosition();
+            GameController.instance.SetNewCameraPosition(nextRoadPos);
+        }
         Debug.Log("Level Clear!");
-        SpawnedBuilding.GetComponent<BuildingScript>().DestroyCubes();
+    }
+
+    //Called internally and from gamecontroller
+    public Vector3 GetCurrentRoadPosition()
+    {
+        return LevelContinue.instance.LevelsPassed * new Vector3(0, RoadYOffset, RoadZOffset);
     }
 
     //Called from the Player script after 3 seconds of player hitting a block or an endblock
@@ -155,13 +179,13 @@ public class LevelControl : MonoBehaviour
     }
 
     //Randomises the squad groups on the map, the total squad count must be greater than the designated number
-    private void SquadRandomiser()
+    private void SquadRandomiser(Vector3 roadPos, LevelScript currentLevel)
     {
         int[] a = { 0, 1, 2, 3 };
         List<int> alloc = new List<int>();
         int total = 0;
-        var numAllocationSpots = LevelLength / CurrentLevel.MinSquadDistance - 1;
-        while (total < CurrentLevel.NumberOfSquads)
+        var numAllocationSpots = LevelLength / currentLevel.MinSquadDistance - 1;
+        while (total < currentLevel.NumberOfSquads)
         {
             total = 0;
             alloc.Clear();
@@ -170,7 +194,7 @@ public class LevelControl : MonoBehaviour
                 var value = a[Random.Range(0, a.Length)];
                 total += value;
                 alloc.Add(value);
-                if(total >= CurrentLevel.NumberOfSquads)
+                if(total >= currentLevel.NumberOfSquads)
                 {
                     break;
                 }
@@ -181,22 +205,22 @@ public class LevelControl : MonoBehaviour
         float zOffset = 0;
         for (int i = 0; i < alloc.Count; i++)
         {
-            zOffset += CurrentLevel.MinSquadDistance;
+            zOffset += currentLevel.MinSquadDistance;
             if (alloc[i] > 0)
             {
                 var squadObj = SquadPrefabs[alloc[i] - 1]; //Squad prefabs must be organised in an incremental manner in the inspector
                 var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
-                Instantiate(squadObj, new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
+                Instantiate(squadObj, roadPos + new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
             }
         }
     }
 
-    private void PlaceObstacles()
+    private void PlaceObstacles(Vector3 roadPos, LevelScript currentLevel)
     {
         List<int> zPosList = new List<int>(); //This list is a unique list of obstacle indexes generated at random
         var zPosDiv = (LevelLength - FirstObstacleDistance) / NumObstacleZPos;
 
-        for(int i = 0; i < CurrentLevel.NumberOfObstacles; i++)
+        for(int i = 0; i < currentLevel.NumberOfObstacles; i++)
         {
             var z = Random.Range(0, NumObstacleZPos);
             while (zPosList.Contains(z))
@@ -206,11 +230,11 @@ public class LevelControl : MonoBehaviour
             zPosList.Add(z);
         }
 
-        for(int i = 0; i < CurrentLevel.NumberOfObstacles; i++)
+        for(int i = 0; i < currentLevel.NumberOfObstacles; i++)
         {
             var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv); //Obstacles share the same X range with squads
             var zPos = FirstObstacleDistance + zPosDiv * zPosList[i];
-            var pos = new Vector3(xPos * 1.8f, 3.8f, zPos);
+            var pos = roadPos + new Vector3(xPos * 1.8f, 3.8f, zPos);
             //Check if given position overlaps with any other gameobjects in the scene
             Collider[] colliders = Physics.OverlapSphere(pos, 1); //2 is Yoffset, 1 is radius of the obstacle.. I know hardcoding is not good, but I think we can get away with it here :)
 
@@ -218,7 +242,7 @@ public class LevelControl : MonoBehaviour
             while(colliders.Length > 0)
             {
                 xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv);
-                pos = new Vector3(xPos * 1.8f, 3.8f, zPos);
+                pos = roadPos + new Vector3(xPos * 1.8f, 3.8f, zPos);
                 colliders = Physics.OverlapSphere(pos, 1);
             }
 

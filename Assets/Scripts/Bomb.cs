@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
         if (other.tag == "road")
         {
         //    Instantiate(GameController.instance.peBigBomb, transform.position, Quaternion.identity);
-            LevelControl.instance.BombFall();
+           //LevelControl.instance.BombFall();
         }
     }
 }

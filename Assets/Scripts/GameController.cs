@@ -61,6 +61,16 @@ public class GameController : MonoBehaviour
         CameraScript.FollowPlayer = false;
     }
 
+    public void ActivateCamera()
+    {
+        CameraScript.FollowPlayer = true;
+    }
+
+    public void SetNewCameraPosition(Vector3 roadPos)
+    {
+        CameraScript.SetNewCameraPos(roadPos);
+    }
+
     //GameOver
     public void GameOver()
     {
@@ -127,5 +137,14 @@ public class GameController : MonoBehaviour
 
         CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel", 1).ToString();
         NextLevelText.text = PlayerPrefs.GetInt("nextlevel", PlayerPrefs.GetInt("currentlevel", 1) + 1).ToString();
+    }
+
+    //Called from camera script signalling transitioning is complete
+    //At this point we re-activate the player
+    public void TransitioningComplete()
+    {
+        Player.transform.position = LevelControl.instance.GetCurrentRoadPosition() + new Vector3(0,0,-15f);
+        PlayerScript.EnablePlayer();
+        CameraScript.FollowPlayer = true;
     }
 }
