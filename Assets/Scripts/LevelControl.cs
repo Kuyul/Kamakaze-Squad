@@ -33,7 +33,7 @@ public class LevelControl : MonoBehaviour
     public bool finishLinePassed = false;
 
     //Declare private variables
-    private List<LevelScript> InstantiatedLevels;
+    private List<LevelScript> InstantiatedLevels = new List<LevelScript>();
     private GameObject SpawnedBuilding;
     private GameObject Bomb;
     private bool BombLanded = false;
