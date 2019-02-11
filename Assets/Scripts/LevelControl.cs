@@ -7,7 +7,8 @@ public class LevelControl : MonoBehaviour
     public static LevelControl instance;
 
     //Declare Level Gameobjects
-    public LevelScript[] Levels;
+    public LevelScript[] NormalLevels;
+    public LevelScript[] BossLevels;
 
     //Declare public variables
     public GameObject Road;
@@ -57,7 +58,15 @@ public class LevelControl : MonoBehaviour
 
     private void SpawnRounds(int level)
     {
-        var currentLevel = Levels[Random.Range(0, Levels.Length)];
+        LevelScript currentLevel = NormalLevels[Random.Range(0, NormalLevels.Length)];
+        if (level == NumberOfRoundsPerLevel - 1) //Boss level
+        {
+            currentLevel = BossLevels[Random.Range(0, BossLevels.Length)];
+        }
+        else
+        {
+            currentLevel = NormalLevels[Random.Range(0, NormalLevels.Length)];
+        }
         InstantiatedLevels.Add(currentLevel);
 
         //Generate Road

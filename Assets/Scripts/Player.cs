@@ -136,8 +136,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Called from GameController in the beginning
     public void SetPlayerVelocity()
     {
-        rb.velocity = Vector3.forward* GameController.instance.PlayerSpeed;        
+        rb.velocity = Vector3.forward* GameController.instance.PlayerSpeed;
     }
 }
