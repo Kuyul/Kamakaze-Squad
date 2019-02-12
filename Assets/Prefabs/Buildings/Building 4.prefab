@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6294370707435377610}
-  - component: {fileID: 1688452721156404143}
   m_Layer: 0
   m_Name: Building 4
   m_TagString: Untagged
@@ -59,48 +58,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1688452721156404143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217352480940934920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf7d94787a1a97e41a1c6afd2aa34871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpinningBuilding: 0
-  Bomb: {fileID: 5778545593069566707}
-  Cubes:
-  - {fileID: 6884407416945151274}
-  - {fileID: 7293410320906089153}
-  - {fileID: 7797193134559124659}
-  - {fileID: 5570244891855384600}
-  - {fileID: 2702033552885062799}
-  - {fileID: 4548436209239300480}
-  - {fileID: 2148475653181671920}
-  - {fileID: 4394042426684964145}
-  - {fileID: 832417228169609012}
-  - {fileID: 1703082841117738523}
-  - {fileID: 2299182881974824668}
-  - {fileID: 8543787248767169665}
-  - {fileID: 538582083080738687}
-  - {fileID: 7726347683098379986}
-  - {fileID: 7049054878107506652}
-  - {fileID: 8701270197816373569}
-  - {fileID: 292808801049083256}
-  - {fileID: 1914939565201963401}
-  - {fileID: 5596730096086983793}
-  - {fileID: 2755486334885991773}
-  - {fileID: 7186167989550300186}
-  - {fileID: 1698240394523684266}
-  - {fileID: 8890818485877059546}
-  - {fileID: 4246807095950781520}
-  - {fileID: 7693797470138610995}
-  - {fileID: 1068056940761418148}
-  - {fileID: 7272457357472049536}
 --- !u!1 &292808801049083256
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,12 +3070,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a758c5b15b14754695e0c9d652a53a2, type: 3}
---- !u!1 &5778545593069566707 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4983503732702350379, guid: 6a758c5b15b14754695e0c9d652a53a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1520372399755884248}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4931906740240188459 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5866173435010282227, guid: 6a758c5b15b14754695e0c9d652a53a2,

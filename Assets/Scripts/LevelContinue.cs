@@ -11,10 +11,6 @@ public class LevelContinue : MonoBehaviour
     public bool levelIsContinued = false;
     [HideInInspector]
     public GameObject Building;
-    [HideInInspector]
-    public int TriesLeft = 0;
-    //[HideInInspector]
-    public int LevelsPassed = 0;
 
     public int EnemysThisLevel;
 
@@ -32,38 +28,11 @@ public class LevelContinue : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void Start()
-    {
-        EnemysThisLevel = LevelControl.instance.InstantiatedLevels[LevelsPassed].Enemy;
-    }
-
     //Called when GameOver or Game clear to reset the data from the previous level
     //Here we destroy existing buildings
     public void ResetRound()
     {
         Destroy(Building);
         levelIsContinued = false;
-        TriesLeft = 0;
-    }
-
-    public void ResetLevel()
-    {
-        LevelsPassed = 0;
-    }
-
-    public void IncrementEnemyCount()
-    {
-        EnemysThisLevel--;
-        if (EnemysThisLevel == 0)
-        {
-            StartCoroutine(Delay(2f));
-        }
-    }
-
-    IEnumerator Delay(float time)
-    {
-        yield return new WaitForSeconds(time);
-        LevelControl.instance.LevelClear();
-        EnemysThisLevel = LevelControl.instance.InstantiatedLevels[LevelsPassed].Enemy;
     }
 }

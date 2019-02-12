@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
 
     public bool GameStarted;
 
+    public float EnemyHealth = 10.0f;
     public float ExplosionPower = 3.0f;
     public float ExplosionRadius = 5.0f;
     public float ExplosionUpForce = 1.0f;

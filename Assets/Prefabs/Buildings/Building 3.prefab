@@ -118,7 +118,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4720094105849412692}
-  - component: {fileID: 3927868194322263968}
   m_Layer: 0
   m_Name: Building 3
   m_TagString: Untagged
@@ -152,32 +151,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3927868194322263968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116756346485843800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf7d94787a1a97e41a1c6afd2aa34871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpinningBuilding: 0
-  Bomb: {fileID: 7834975501473626191}
-  Cubes:
-  - {fileID: 1679584638155389173}
-  - {fileID: 14117071548088354}
-  - {fileID: 2124653819435067501}
-  - {fileID: 5829732865913963120}
-  - {fileID: 4545757170339863009}
-  - {fileID: 6699012163053803719}
-  - {fileID: 1732482727702372069}
-  - {fileID: 4967271757583191352}
-  - {fileID: 4036755032798247840}
-  - {fileID: 2012925863952370191}
-  - {fileID: 7061526901431791588}
 --- !u!1 &1679584638155389173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,12 +1310,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a758c5b15b14754695e0c9d652a53a2, type: 3}
---- !u!1 &7834975501473626191 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4983503732702350379, guid: 6a758c5b15b14754695e0c9d652a53a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2995908089153565796}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8717648502851192471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5866173435010282227, guid: 6a758c5b15b14754695e0c9d652a53a2,

@@ -445,7 +445,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4732742679249946278}
-  - component: {fileID: 8274914107114106434}
   m_Layer: 0
   m_Name: Building 5
   m_TagString: Untagged
@@ -505,58 +504,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8274914107114106434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965935152100274217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf7d94787a1a97e41a1c6afd2aa34871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpinningBuilding: 0
-  Bomb: {fileID: 1593347026310860141}
-  Cubes:
-  - {fileID: 890446909131101349}
-  - {fileID: 8518503336881948934}
-  - {fileID: 6595194464826324066}
-  - {fileID: 1392767760572664307}
-  - {fileID: 9095564186117672184}
-  - {fileID: 1586163355331243254}
-  - {fileID: 6431883539080451651}
-  - {fileID: 6745223121994202971}
-  - {fileID: 229975662730412428}
-  - {fileID: 6751514020084866124}
-  - {fileID: 5771314380031702895}
-  - {fileID: 7309349091297221263}
-  - {fileID: 1933211732018439239}
-  - {fileID: 6063389374855176752}
-  - {fileID: 4085848828024870345}
-  - {fileID: 8973793970322187335}
-  - {fileID: 6246101315226638565}
-  - {fileID: 2460071699743227139}
-  - {fileID: 516808159195812127}
-  - {fileID: 2904979850640948255}
-  - {fileID: 245944726872922067}
-  - {fileID: 1252181780257972477}
-  - {fileID: 2389441018931470460}
-  - {fileID: 1270348066090903587}
-  - {fileID: 3100975190034311970}
-  - {fileID: 8782562969275048503}
-  - {fileID: 3912497411771301597}
-  - {fileID: 1946388738760617892}
-  - {fileID: 5854033162339479491}
-  - {fileID: 8714464867225003819}
-  - {fileID: 8986507931122383525}
-  - {fileID: 2838774127258886874}
-  - {fileID: 1858016456136945107}
-  - {fileID: 6946750686044605491}
-  - {fileID: 5104636551493070069}
-  - {fileID: 6516064432429105028}
-  - {fileID: 7320863876787123613}
 --- !u!1 &1252181780257972477
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,12 +4170,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a758c5b15b14754695e0c9d652a53a2, type: 3}
---- !u!1 &1593347026310860141 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4983503732702350379, guid: 6a758c5b15b14754695e0c9d652a53a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 5995490190441939270}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &170177155513152437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5866173435010282227, guid: 6a758c5b15b14754695e0c9d652a53a2,

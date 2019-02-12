@@ -4,34 +4,38 @@ using UnityEngine;
 
 public class BuildingScript : MonoBehaviour
 {
-    public bool SpinningBuilding = false;
-    public GameObject Bomb;
-    public GameObject[] Cubes;
+    public GameObject[] Enemies;
+    [HideInInspector]
+    public bool flag;
 
-    private void Awake()
+    private void Update()
     {
-        var rb = GetComponent<Rigidbody>();
-        if (rb != null)
+        //Flag is set when the player collides with the blocks of this building - its set from levelcontroller
+        if (flag)
         {
-            rb.angularVelocity = new Vector3(0, 45, 0);
-        }
-    }
+            var stillActive = false;
+            for(int i = 0; i < Enemies.Length; i++)
+            {
+                stillActive = Enemies[i].activeInHierarchy;
+                if (stillActive)
+                {
+                    var vel = Enemies[i].GetComponent<Rigidbody>().velocity.magnitude;
+                    //If any of these aren't moving, check with level controller whether to end the game or continue the round
+                    if (vel < 0.001f)
+                    {
+                        LevelControl.instance.ContinueLevel();
+                        flag = false;
+                        break; //We only need to run this once
+                    }
+                }
+            }
 
-    public void SetKinematicCubes(bool b)
-    {
-        for (int i = 0; i < Cubes.Length; i++)
-        {
-            Cubes[i].GetComponent<Rigidbody>().isKinematic = b;
-        }
-    }
-
-    //Called from the Levelcontrol class to destroy all building blocks
-    public void DestroyCubes()
-    {
-        for(int i = 0; i < Cubes.Length; i++)
-        {
-            Destroy(Cubes[i]);
-         //   Instantiate(GameController.instance.peBlock, Cubes[i].transform.position, Quaternion.identity);
+            //If it remains false here, this means none of them are active and therefore game clear!
+            if (!stillActive)
+            {
+                LevelControl.instance.LevelClear();
+                flag = false;
+            }
         }
     }
 }

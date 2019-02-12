@@ -990,7 +990,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8766858199448460248}
-  - component: {fileID: 530942742907553516}
   m_Layer: 0
   m_Name: Boss Building 4
   m_TagString: Untagged
@@ -1061,69 +1060,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &530942742907553516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237937079387520653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf7d94787a1a97e41a1c6afd2aa34871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpinningBuilding: 0
-  Bomb: {fileID: 481961040946841225}
-  Cubes:
-  - {fileID: 4290150404708984802}
-  - {fileID: 6069933255813719787}
-  - {fileID: 4681328476587003708}
-  - {fileID: 4696428031079080050}
-  - {fileID: 2923773612376906655}
-  - {fileID: 3331966053740484775}
-  - {fileID: 3601754595684730811}
-  - {fileID: 9154456196391999343}
-  - {fileID: 5491575288885228919}
-  - {fileID: 7467740588626448008}
-  - {fileID: 8676995481804145580}
-  - {fileID: 3344409059262469565}
-  - {fileID: 1084155757809352432}
-  - {fileID: 436027990973107769}
-  - {fileID: 425297559054069932}
-  - {fileID: 6451816953360959735}
-  - {fileID: 1127814615843314675}
-  - {fileID: 8535886057318722660}
-  - {fileID: 4595528646805453314}
-  - {fileID: 8486320640638811823}
-  - {fileID: 1976377605563850188}
-  - {fileID: 3205152101536836938}
-  - {fileID: 4396972791644442653}
-  - {fileID: 972479582577167474}
-  - {fileID: 5633645627123360286}
-  - {fileID: 7206287491284396266}
-  - {fileID: 7227732460316595622}
-  - {fileID: 9081274711218828709}
-  - {fileID: 4881691931298399484}
-  - {fileID: 2674750636252767257}
-  - {fileID: 2580849991140826519}
-  - {fileID: 912239534683975065}
-  - {fileID: 2738979935811412462}
-  - {fileID: 8226095112797052904}
-  - {fileID: 927522495018121455}
-  - {fileID: 8984022583568178582}
-  - {fileID: 8816454070378795877}
-  - {fileID: 466323276465544476}
-  - {fileID: 6580431495620131739}
-  - {fileID: 404305441244618000}
-  - {fileID: 7444460489762268146}
-  - {fileID: 6069244984600054453}
-  - {fileID: 7260954607489942441}
-  - {fileID: 7979698677010928885}
-  - {fileID: 1710802226357989770}
-  - {fileID: 8710389037254189228}
-  - {fileID: 7399923848172470424}
-  - {fileID: 4557467987796696504}
 --- !u!1 &1710802226357989770
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,12 +5380,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a758c5b15b14754695e0c9d652a53a2, type: 3}
---- !u!1 &481961040946841225 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4983503732702350379, guid: 6a758c5b15b14754695e0c9d652a53a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 4870840079590378146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1364703483489859665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5866173435010282227, guid: 6a758c5b15b14754695e0c9d652a53a2,

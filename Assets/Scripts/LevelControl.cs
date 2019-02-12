@@ -35,9 +35,9 @@ public class LevelControl : MonoBehaviour
     public List<LevelScript> InstantiatedLevels = new List<LevelScript>();
 
     //Declare private variables
-    private GameObject SpawnedBuilding;
+    private List<BuildingScript> SpawnedBuildings = new List<BuildingScript>();
     private GameObject Bomb;
-    private bool BombLanded = false;
+    private int LevelsPassed = 0;
 
     private void Awake()
     {
@@ -61,11 +61,11 @@ public class LevelControl : MonoBehaviour
         LevelScript currentLevel = NormalLevels[Random.Range(0, NormalLevels.Length)];
         if (level == NumberOfRoundsPerLevel - 1) //Boss level
         {
-            currentLevel = BossLevels[Random.Range(0, BossLevels.Length)];
+            currentLevel = Instantiate(BossLevels[Random.Range(0, BossLevels.Length)]);
         }
         else
         {
-            currentLevel = NormalLevels[Random.Range(0, NormalLevels.Length)];
+            currentLevel = Instantiate(NormalLevels[Random.Range(0, NormalLevels.Length)]);
         }
         InstantiatedLevels.Add(currentLevel);
 
@@ -81,22 +81,22 @@ public class LevelControl : MonoBehaviour
 
         //Check whether the level is a new level or a continued level. If its a new level, we'll spawn a brand new building, if its continued,
         //LevelContinue object will hold reference to the state of the building prior to continuing, so it'll begin from there.
+        GameObject spawnedBuilding;
         if (!LevelContinue.instance.levelIsContinued)
         {
-            SpawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0.6f, BuildingDistance), Quaternion.identity);
-            LevelContinue.instance.Building = SpawnedBuilding;
-            LevelContinue.instance.TriesLeft = currentLevel.NumberOfTries;
+            spawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0.6f, BuildingDistance), Quaternion.identity);
         }
         else
         {
-            SpawnedBuilding = LevelContinue.instance.Building;
+            spawnedBuilding = LevelContinue.instance.Building;
         }
+        SpawnedBuildings.Add(spawnedBuilding.GetComponent<BuildingScript>());
 
         //Instantiate an explosion zone below the building
         ExplosionZone.transform.localScale = new Vector3(100f, 1.5f, 100f);
-        Instantiate(ExplosionZone, SpawnedBuilding.transform.position, Quaternion.identity);
+        Instantiate(ExplosionZone, spawnedBuilding.transform.position, Quaternion.identity);
 
-        Instantiate(EndBlock, SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
+        Instantiate(EndBlock, spawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
     }
 
     public int GetCurrentLevel()
@@ -107,32 +107,32 @@ public class LevelControl : MonoBehaviour
     //This method determines whether the level should continue or whether we should begin a new level.
     //When we see that the bomb is still active on the buidling (means game is still not over), then we check
     //whether there are more tries left, if so, continue on with the current level while keeping the building where it was left off from this level.
-    private void ContinueLevel()
+    public void ContinueLevel()
     {
-        if (LevelContinue.instance.TriesLeft - 1 == 0)
+        InstantiatedLevels[LevelsPassed].NumberOfTries--;
+        if (InstantiatedLevels[LevelsPassed].NumberOfTries == 0)
         {
-            //LevelFail();
+            LevelFail();
         }
         else
         {
-            DontDestroyOnLoad(LevelContinue.instance.Building);
-            LevelContinue.instance.TriesLeft--;
-            LevelContinue.instance.levelIsContinued = true;
-            GameController.instance.GameOver();
+            var roadPos = GetCurrentRoadPosition();
+            InstantiatedLevels[LevelsPassed].ResetLevel();
+            SquadRandomiser(roadPos, InstantiatedLevels[LevelsPassed]);
+            PlaceObstacles(roadPos, InstantiatedLevels[LevelsPassed]);
+            GameController.instance.SetNewCameraPosition(roadPos);
         }
-       
     }
 
     public void LevelFail()
     {
-        LevelContinue.instance.ResetRound();
-        LevelContinue.instance.ResetLevel();
         StartCoroutine(DeathPanelDelay(1f));
     }
 
     IEnumerator DeathPanelDelay(float t)
     {
         yield return new WaitForSeconds(t);
+        GameController.instance.GameOver();
         GameController.instance.DeathPanel.SetActive(true);
     }
 
@@ -140,12 +140,11 @@ public class LevelControl : MonoBehaviour
     public void LevelClear()
     {
         GameController.instance.IncrementLevel();
-        LevelContinue.instance.LevelsPassed++;
+        LevelsPassed++;
         //Below if statement is true if its boss level
-        if (LevelContinue.instance.LevelsPassed >= NumberOfRoundsPerLevel)
+        if (LevelsPassed >= NumberOfRoundsPerLevel)
         {
             GameController.instance.GameOver();
-            LevelContinue.instance.ResetLevel();
         }
         else
         {
@@ -157,16 +156,14 @@ public class LevelControl : MonoBehaviour
     //Called internally and from gamecontroller
     public Vector3 GetCurrentRoadPosition()
     {
-        return LevelContinue.instance.LevelsPassed * new Vector3(0, RoadYOffset, RoadZOffset);
+        return LevelsPassed * new Vector3(0, RoadYOffset, RoadZOffset);
     }
 
-    //Called from the Player script after 3 seconds of player hitting a block or an endblock
-    public void CheckBombFallen()
+    //This is called when the player hits current levels' building.
+    public void SetBuildingFlag()
     {
-        if (!BombLanded)
-        {
-            ContinueLevel();
-        }
+        //Set the flag to true so that the game may begin counting down
+        SpawnedBuildings[LevelsPassed].flag = true;
     }
 
     //Randomises the squad groups on the map, the total squad count must be greater than the designated number
@@ -201,7 +198,8 @@ public class LevelControl : MonoBehaviour
             {
                 var squadObj = SquadPrefabs[alloc[i] - 1]; //Squad prefabs must be organised in an incremental manner in the inspector
                 var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
-                Instantiate(squadObj, roadPos + new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
+                var obj = Instantiate(squadObj, roadPos + new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
+                currentLevel.Squads.Add(obj);
             }
         }
     }
@@ -239,6 +237,7 @@ public class LevelControl : MonoBehaviour
 
             //At this point we found a vacant position
             var obj = Instantiate(Obstacle, pos, Quaternion.identity);
+            currentLevel.Obstacles.Add(obj);
             obj.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, ObstacleAngularVel, 0);
         }
     }

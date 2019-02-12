@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     //Declare public variables
     public float KeepDistance = 1.0f;
     public float ChaseSpeed = 5.0f;
+    public float CountDownSeconds = 1.0f;
     public GameObject Mesh;
     public GameObject Beanie;
     public GameObject Vest;
@@ -31,6 +32,12 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < ListOfSquads.Count; i++)
         {
+            if(ListOfSquads[i] == null)
+            {
+                //This means it was destroyed
+                ListOfSquads.RemoveAt(i);
+                break;
+            }
             if (transform.position.z - ListOfSquads[i].transform.position.z >= KeepDistance)
             {
                 var a = transform.position - ListOfSquads[i].transform.position;
@@ -60,8 +67,8 @@ public class Player : MonoBehaviour
         Vest.SetActive(false);     
         peRun.SetActive(false);
         peTrail.SetActive(false);
-        
-        //StartCoroutine(CheckAfterThreeSeconds());
+
+        StartCoroutine(CountDownDelay());
     }
 
     //Called from Gamecontroller after a signal from Camerascript saying transitioning is complete
@@ -76,11 +83,12 @@ public class Player : MonoBehaviour
         touchScript.ResetXLimit();
     }
 
-    //Wait for three seconds after player is disabled. See whether the bomb has fallen.
-    IEnumerator CheckAfterThreeSeconds()
+    IEnumerator CountDownDelay()
     {
-        yield return new WaitForSeconds(3.0f);
-        LevelControl.instance.CheckBombFallen();
+        Debug.Log("Starting Countdown");
+        yield return new WaitForSeconds(CountDownSeconds);
+        Debug.Log("Countdown Finished");
+        LevelControl.instance.SetBuildingFlag();
     }
 
     //Remove Squad from list
