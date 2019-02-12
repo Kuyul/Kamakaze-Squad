@@ -126,10 +126,12 @@ public class Player : MonoBehaviour
         if (other.tag == "finishline")
         {
             rb.velocity = Vector3.forward * GameController.instance.PlayerMaxSpeed;
-            GameController.instance.StopCamera();
+         //   GameController.instance.StopCamera();
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
             touchScript.IncreaseXLimit();
+            cameraScript.SetyOffset();
+            StartCoroutine(CameraDelay(GameController.instance.CamUpDelay));
 
             for (int i = 0; i < ListOfSquads.Count; i++)
             {
@@ -144,11 +146,12 @@ public class Player : MonoBehaviour
             LevelControl.instance.LevelFail();
             GameController.instance.StopCamera();
         }
+    }
 
-        if (other.tag == "movecam")
-        {
-            cameraScript.SetyOffset();
-        }
+    IEnumerator CameraDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GameController.instance.StopCamera();
     }
 
     //Called from GameController in the beginning

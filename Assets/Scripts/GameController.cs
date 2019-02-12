@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public GameObject Player;
     public float PlayerSpeed;
     public float PlayerMaxSpeed;
+    public float CamUpDelay;
 
     public GameObject DeathPanel;
     public GameObject pePlayerPop;
@@ -63,6 +64,8 @@ public class GameController : MonoBehaviour
     public void StopCamera()
     {
         CameraScript.FollowPlayer = false;
+        CameraScript.CamMoveUp = false;
+        CameraScript.FOVMove = false;
     }
 
     public void SetNewCameraPosition(Vector3 roadPos)
@@ -74,7 +77,7 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         PlayerPrefs.SetInt("currentscore", 0);
-        StartCoroutine(Delay(2f));
+        StartCoroutine(Delay(1.5f));
     }
 
     // Restart game doesnt reset playerprefs. Used after boss level defeated to load new scene
