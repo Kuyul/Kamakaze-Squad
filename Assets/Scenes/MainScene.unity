@@ -888,12 +888,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882018850}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &887409594 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 986817640622817010, guid: 34bdbb154d2eb754590f0407f414e82d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1327709987}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &892896986
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,46 +954,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &924675182
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1327709993}
-    m_Modifications:
-    - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 00696aa7e93977d48a28a493d1420973, type: 3}
---- !u!1 &924675183 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4528337165299905582, guid: 00696aa7e93977d48a28a493d1420973,
-    type: 3}
-  m_PrefabInstance: {fileID: 924675182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1089385127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,32 +1213,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2052666568548660195, guid: 34bdbb154d2eb754590f0407f414e82d,
         type: 3}
-      propertyPath: Mesh
-      value: 
-      objectReference: {fileID: 887409594}
-    - target: {fileID: 2052666568548660195, guid: 34bdbb154d2eb754590f0407f414e82d,
-        type: 3}
-      propertyPath: Beanie
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2052666568548660195, guid: 34bdbb154d2eb754590f0407f414e82d,
-        type: 3}
-      propertyPath: Vest
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2052666568548660195, guid: 34bdbb154d2eb754590f0407f414e82d,
-        type: 3}
-      propertyPath: peRun
-      value: 
-      objectReference: {fileID: 3016931731514639453, guid: 470c600d50acf1142a31eb3524c41e50,
-        type: 3}
-    - target: {fileID: 2052666568548660195, guid: 34bdbb154d2eb754590f0407f414e82d,
-        type: 3}
-      propertyPath: peTrail
-      value: 
-      objectReference: {fileID: 924675183}
-    - target: {fileID: 2052666568548660195, guid: 34bdbb154d2eb754590f0407f414e82d,
-        type: 3}
       propertyPath: touchScript
       value: 
       objectReference: {fileID: 882018852}
@@ -1293,11 +1221,6 @@ PrefabInstance:
       propertyPath: cameraScript
       value: 
       objectReference: {fileID: 534669906}
-    - target: {fileID: 1429166511308605752, guid: 34bdbb154d2eb754590f0407f414e82d,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6ccfea14580e0f34d944c2debc250c99, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34bdbb154d2eb754590f0407f414e82d, type: 3}
 --- !u!1 &1327709988 stripped
@@ -1318,12 +1241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cb84dda5da8f4468fc43cce3026eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1327709993 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5081033989606197414, guid: 34bdbb154d2eb754590f0407f414e82d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1327709987}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1524055201
 GameObject:
   m_ObjectHideFlags: 0
