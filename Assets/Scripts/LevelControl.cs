@@ -29,6 +29,7 @@ public class LevelControl : MonoBehaviour
     public GameObject ExplosionZone;
     public int NumObstacleZPos = 10;
     public float FirstObstacleDistance = 30.0f;
+    public float ObstacleStartingYPos = 0.0f;
     public int ObstacleXAxisDiv = 2; //From -2 to 2
 
     [HideInInspector]
@@ -231,24 +232,36 @@ public class LevelControl : MonoBehaviour
 
         for(int i = 0; i < currentLevel.NumberOfObstacles; i++)
         {
-            var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv); //Obstacles share the same X range with squads
             var zPos = FirstObstacleDistance + zPosDiv * zPosList[i];
-            var pos = roadPos + new Vector3(xPos * 1.8f, 3.8f, zPos);
-            //Check if given position overlaps with any other gameobjects in the scene
-            Collider[] colliders = Physics.OverlapSphere(pos, 1); //2 is Yoffset, 1 is radius of the obstacle.. I know hardcoding is not good, but I think we can get away with it here :)
-
+            Vector3 pos = new Vector3();
             //Re-calculate position until there is no overlap
-            while(colliders.Length > 0)
+            var collideCount = -1;
+            var fuckInfiniteLoop = 0;
+            while (collideCount != 0)
             {
-                xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv);
-                pos = roadPos + new Vector3(xPos * 1.8f, 3.8f, zPos);
-                colliders = Physics.OverlapSphere(pos, 1);
+                collideCount = 0;
+                var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv);
+                pos = roadPos + new Vector3(xPos * 1.8f, ObstacleStartingYPos, zPos);
+                //2 is Yoffset, 1 is radius of the obstacle.. I know hardcoding is not good, but I think we can get away with it here :)
+                var colliders = Physics.OverlapBox(new Vector3(pos.x, pos.y + 2f, pos.z), new Vector3(1.25f,1.25f,1.25f));
+                foreach (Collider c in colliders)
+                {
+                    if(c.tag == "squad")
+                    {
+                        collideCount++;
+                    }
+                }
+                fuckInfiniteLoop++;
+                if(fuckInfiniteLoop > 2000)
+                {
+                    UnityEditor.EditorApplication.isPlaying = false;
+                    Debug.Log("Infinite loop ffs");
+                    return;
+                }
             }
-
             //At this point we found a vacant position
             var obj = Instantiate(Obstacle, pos, Quaternion.identity);
             currentLevel.Obstacles.Add(obj);
-            obj.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, ObstacleAngularVel, 0);
         }
     }
 }
