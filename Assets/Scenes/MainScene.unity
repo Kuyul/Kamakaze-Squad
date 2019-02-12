@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1549,39 +1549,6 @@ PrefabInstance:
       propertyPath: cameraScript
       value: 
       objectReference: {fileID: 534669906}
-    - target: {fileID: 123144013, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
-    - target: {fileID: 8000704756896863600, guid: b6ebe8f382882bf49915a8281ecee7b6,
-        type: 3}
-      propertyPath: CollisionModule.plane0
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1756920036, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
-      propertyPath: m_Radius
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1756920036, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
-      propertyPath: m_Height
-      value: 2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1756920036, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
-      propertyPath: m_Center.y
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1756920036, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
-      propertyPath: m_Center.z
-      value: -0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 135636238, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1757814774, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
 --- !u!1 &1756920010 stripped

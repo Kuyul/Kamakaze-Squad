@@ -80,7 +80,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b29b9b8e16be2f742b06f8f256abd08d, type: 2}
+  - {fileID: 2100000, guid: 6ccfea14580e0f34d944c2debc250c99, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &135636239
 Transform:
   m_ObjectHideFlags: 0
@@ -1132,10 +1132,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1.85
+  m_Radius: 0.7
+  m_Height: 2.3
   m_Direction: 1
-  m_Center: {x: 0, y: 1.55, z: 0}
+  m_Center: {x: 0, y: 1.9, z: -0.1}
 --- !u!114 &1756920034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,12 +1150,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeepDistance: 1
   ChaseSpeed: 7
+  CountDownSeconds: 1
   Mesh: {fileID: 123144012}
   Beanie: {fileID: 135636238}
   Vest: {fileID: 1757814774}
   peRun: {fileID: 3016931731835257508}
   peTrail: {fileID: 2709703093122758755}
   touchScript: {fileID: 0}
+  cameraScript: {fileID: 0}
 --- !u!1 &1757814774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1757814775
 Transform:
   m_ObjectHideFlags: 0
