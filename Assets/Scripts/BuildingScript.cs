@@ -13,11 +13,26 @@ public class BuildingScript : MonoBehaviour
         //Flag is set when the player collides with the blocks of this building - its set from levelcontroller
         if (flag)
         {
-            var stillActive = false;
+            var stillActive = true;
             for(int i = 0; i < Enemies.Length; i++)
             {
                 stillActive = Enemies[i].activeInHierarchy;
+                //If anything is still active return.
                 if (stillActive)
+                {
+                    break;
+                }
+            }
+
+            //If it remains false here, this means none of them are active and therefore game clear!
+            if (!stillActive)
+            {
+                LevelControl.instance.LevelClear();
+                flag = false;
+            }
+            else
+            {
+                for (int i = 0; i < Enemies.Length; i++)
                 {
                     var vel = Enemies[i].GetComponent<Rigidbody>().velocity.magnitude;
                     //If any of these aren't moving, check with level controller whether to end the game or continue the round
@@ -28,13 +43,6 @@ public class BuildingScript : MonoBehaviour
                         break; //We only need to run this once
                     }
                 }
-            }
-
-            //If it remains false here, this means none of them are active and therefore game clear!
-            if (!stillActive)
-            {
-                LevelControl.instance.LevelClear();
-                flag = false;
             }
         }
     }

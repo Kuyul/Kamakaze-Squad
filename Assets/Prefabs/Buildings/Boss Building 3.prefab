@@ -6549,6 +6549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310075104514342318}
+  - component: {fileID: 3559464225151017307}
   m_Layer: 0
   m_Name: Boss Building 3
   m_TagString: Untagged
@@ -6643,6 +6644,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3559464225151017307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116587825638393581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7d94787a1a97e41a1c6afd2aa34871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemies:
+  - {fileID: 7235785201721781735}
+  flag: 0
 --- !u!1 &8123515397930076149
 GameObject:
   m_ObjectHideFlags: 0
@@ -8020,6 +8036,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a758c5b15b14754695e0c9d652a53a2, type: 3}
+--- !u!1 &7235785201721781735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4983503732702350379, guid: 6a758c5b15b14754695e0c9d652a53a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2396577390528111052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8082430642630415167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5866173435010282227, guid: 6a758c5b15b14754695e0c9d652a53a2,
