@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         Mesh.SetActive(true);
         Beanie.SetActive(true);
         Vest.SetActive(true);
-        peRun.SetActive(true);
+        //peRun.SetActive(true);
         peTrail.SetActive(true);
         touchScript.ResetXLimit();
     }
