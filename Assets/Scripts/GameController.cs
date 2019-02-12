@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public GameObject peSquadedSplash;
     public GameObject peEnemyPop;
 
+    public GameObject[] levelImages;
     public GameObject highscoreGO;  
     public GameObject currentscoreGO;
     public GameObject swipetoplayGO;
@@ -51,8 +52,8 @@ public class GameController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        HighscoreText.text = PlayerPrefs.GetInt("highscore", 0).ToString();
+    {        
+        HighscoreText.text = PlayerPrefs.GetInt("highscore", 0).ToString();        
         CurrentscoreText.text = PlayerPrefs.GetInt("currentscore", 0).ToString();
         CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel",1).ToString();
         NextLevelText.text = PlayerPrefs.GetInt("nextlevel", PlayerPrefs.GetInt("currentlevel",1)+1).ToString();
@@ -74,6 +75,18 @@ public class GameController : MonoBehaviour
     {
         PlayerPrefs.SetInt("currentscore", 0);
         StartCoroutine(Delay(2f));
+    }
+
+    // Restart game doesnt reset playerprefs. Used after boss level defeated to load new scene
+    public void RestartGame()
+    {
+        StartCoroutine(Delay(2f));
+    }
+
+    // used in restart button on death
+    public void RestartGameInstant()
+    {
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator Delay(float time)
@@ -154,8 +167,4 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("currentscore", 0);
     }
 
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(0);
-    }
 }

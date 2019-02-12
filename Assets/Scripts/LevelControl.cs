@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelControl : MonoBehaviour
 {
@@ -54,6 +55,9 @@ public class LevelControl : MonoBehaviour
         {
             SpawnRounds(i);
         }
+
+        // set first stage of dot dot dot to black
+        GameController.instance.levelImages[0].GetComponent<Image>().color = new Color32(50,50,50,255);
     }
 
     private void SpawnRounds(int level)
@@ -139,12 +143,18 @@ public class LevelControl : MonoBehaviour
     //If level passed count is less than number of rounds per level, then do not reset the level
     public void LevelClear()
     {
-        GameController.instance.IncrementLevel();
         LevelsPassed++;
+
+        // changes color of dot dot dot image everytime level is passed
+        if (NumberOfRoundsPerLevel>LevelsPassed)
+        {
+            GameController.instance.levelImages[LevelsPassed].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+        }
         //Below if statement is true if its boss level
         if (LevelsPassed >= NumberOfRoundsPerLevel)
         {
-            GameController.instance.GameOver();
+            GameController.instance.IncrementLevel();
+            GameController.instance.RestartGame();
         }
         else
         {
