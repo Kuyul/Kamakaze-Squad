@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -328,13 +328,15 @@ MonoBehaviour:
   - {fileID: 7508837944743023779, guid: cc1b81149d4bef04f8d1fdcbcd9e07b8, type: 3}
   - {fileID: 6725542206727169475, guid: f4be5a30a7547fe43ba1b251347ea4ff, type: 3}
   - {fileID: 5201049583884422362, guid: 2c79412fe3b5ade4e94f546ce09ec6b6, type: 3}
-  Obstacle: {fileID: 674260255471773610, guid: 8e33f3fbdac802547b8a414004141f8c, type: 3}
+  Obstacle: {fileID: 7347532697119579475, guid: f1c82708cdb9b1a4baa3e837bb67ccb5,
+    type: 3}
   ObstacleAngularVel: 5
   SquadXAxisRange: 3
   ExplosionZone: {fileID: 3282655563817964747, guid: ff31a859a9acae24a93c3047750462f7,
     type: 3}
   NumObstacleZPos: 10
   FirstObstacleDistance: 10
+  ObstacleStartingYPos: -0.65
   ObstacleXAxisDiv: 2
   finishLinePassed: 0
   InstantiatedLevels: []
