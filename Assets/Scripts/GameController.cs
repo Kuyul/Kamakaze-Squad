@@ -63,11 +63,6 @@ public class GameController : MonoBehaviour
         CameraScript.FollowPlayer = false;
     }
 
-    public void ActivateCamera()
-    {
-        CameraScript.FollowPlayer = true;
-    }
-
     public void SetNewCameraPosition(Vector3 roadPos)
     {
         CameraScript.SetNewCameraPos(roadPos);
@@ -118,6 +113,7 @@ public class GameController : MonoBehaviour
         swipetoplayGO.SetActive(false);
         highscoreGO.SetActive(false);
         currentscoreGO.SetActive(true);
+        CameraScript.MoveCam();
     }
 
     // update score by 1 everytime this function is called
