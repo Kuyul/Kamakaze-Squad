@@ -19,7 +19,6 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool dragging;
     private bool newScene=true;
     private Vector2 previousPos;
-    private Vector2 firstTouchPos;
     private Vector2 releaseTouchPos;
 
     void Start()
@@ -31,22 +30,18 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         dragging = true;
         previousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
-        firstTouchPos = previousPos;
+
+        if (newScene)
+        {
+                GameController.instance.GameStarted = true;
+                GameController.instance.SwipeToPlay();
+                newScene = false;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         dragging = false;
-        releaseTouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, sensitivity));
-        if (newScene)
-        {
-            if (Mathf.Abs(releaseTouchPos.x - firstTouchPos.x) > 2f)
-            {
-                GameController.instance.GameStarted = true;
-                GameController.instance.SwipeToPlay();
-                newScene = false;
-            }
-        }
     } 
 
     private void Update()
