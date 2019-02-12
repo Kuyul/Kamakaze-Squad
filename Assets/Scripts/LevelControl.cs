@@ -94,10 +94,9 @@ public class LevelControl : MonoBehaviour
 
         //Instantiate an explosion zone below the building
         ExplosionZone.transform.localScale = new Vector3(100f, 1.5f, 100f);
-        Instantiate(ExplosionZone, roadPos + SpawnedBuilding.transform.position, Quaternion.identity);
+        Instantiate(ExplosionZone, SpawnedBuilding.transform.position, Quaternion.identity);
 
-        //Bomb = SpawnedBuilding.GetComponent<BuildingScript>().Bomb;
-        Instantiate(EndBlock, roadPos + SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
+        Instantiate(EndBlock, SpawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
     }
 
     public int GetCurrentLevel()
