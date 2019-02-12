@@ -43,7 +43,7 @@ public class SquadScript : MonoBehaviour
         {
             GameController.instance.Detonate(transform.position);
             gameObject.SetActive(false);
-            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
+            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);            
         }
     }    
 }

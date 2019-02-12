@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
         {
             GameController.instance.Detonate(transform.position);
             DisablePlayer();
-            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
+            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);      
         }
 
         if (other.tag == "endblock")
@@ -142,9 +142,10 @@ public class Player : MonoBehaviour
         if (other.tag == "obstacle")
         {
             gameObject.SetActive(false);
-            Destroy(other.gameObject);
+           // Destroy(other.gameObject);
             LevelControl.instance.LevelFail();
             GameController.instance.StopCamera();
+            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
         }
     }
 
