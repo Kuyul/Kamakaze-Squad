@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public GameObject peTrail;
 
     public Touch touchScript;
+    public CameraScript cameraScript;
 
     //Declare private variables
     private Rigidbody rb;
@@ -140,7 +141,13 @@ public class Player : MonoBehaviour
         {
             gameObject.SetActive(false);
             Destroy(other.gameObject);
-            LevelControl.instance.LevelFail();       
+            LevelControl.instance.LevelFail();
+            GameController.instance.StopCamera();
+        }
+
+        if (other.tag == "movecam")
+        {
+            cameraScript.SetyOffset();
         }
     }
 
@@ -149,4 +156,5 @@ public class Player : MonoBehaviour
     {
         rb.velocity = Vector3.forward* GameController.instance.PlayerSpeed;
     }
+   
 }

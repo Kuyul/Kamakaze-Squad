@@ -5,13 +5,16 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     //Declare public variables
-    [HideInInspector]
-    public bool FollowPlayer = true;
+    
+    public bool FollowPlayer;
     public float TransitionSpeed = 20.0f;
+    public float ySpeed;
+    public float zSpeed;
 
     //Declare private variables
     private Vector3 initialOffset;
     private Vector3 offset;
+    private float yOffset = 0;
     private Transform Player;
 
     //New position variables
@@ -31,6 +34,7 @@ public class CameraScript : MonoBehaviour
     {
         if (IsTransitioning)
         {
+            ResetyOffset();
             transform.position = Vector3.MoveTowards(transform.position, NewRoadPos + initialOffset, TransitionSpeed * Time.deltaTime);
             if(transform.position == NewRoadPos + initialOffset)
             {
@@ -42,7 +46,8 @@ public class CameraScript : MonoBehaviour
         {
             if (FollowPlayer)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Player.transform.position.z - offset.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime * yOffset, Player.transform.position.z - offset.z);
+
             }
         }
     }
@@ -51,5 +56,20 @@ public class CameraScript : MonoBehaviour
     {
         NewRoadPos = roadPos;
         IsTransitioning = true;
+    }
+  
+    public void MoveCam()
+    {
+        FollowPlayer = true;
+    }
+
+    public void SetyOffset()
+    {
+        yOffset = ySpeed;
+    }
+
+    public void ResetyOffset()
+    {
+        yOffset = 0;
     }
 }
