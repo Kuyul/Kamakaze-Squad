@@ -254,7 +254,9 @@ public class LevelControl : MonoBehaviour
                 fuckInfiniteLoop++;
                 if(fuckInfiniteLoop > 2000)
                 {
+#if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
+#endif
                     Debug.Log("Infinite loop ffs");
                     return;
                 }
