@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,7 @@ public class LevelControl : MonoBehaviour
     public float ObstacleAngularVel = 60.0f;
     public float SquadXAxisRange = 3.0f;
     public GameObject ExplosionZone;
+    public int NumberOfRoadDivides = 20;
     public int NumObstacleZPos = 10;
     public float FirstObstacleDistance = 30.0f;
     public float ObstacleStartingYPos = 0.0f;
@@ -40,6 +42,7 @@ public class LevelControl : MonoBehaviour
     private List<BuildingScript> SpawnedBuildings = new List<BuildingScript>();
     private GameObject Bomb;
     private int LevelsPassed = 0;
+    private float PlacementDistance;
 
     private void Awake()
     {
@@ -52,7 +55,9 @@ public class LevelControl : MonoBehaviour
     //Initialise level
     void Start()
     {
-        for(int i = 0; i < NumberOfRoundsPerLevel; i++)
+        PlacementDistance = (LevelLength - FirstObstacleDistance) / NumberOfRoadDivides;
+
+        for (int i = 0; i < NumberOfRoundsPerLevel; i++)
         {
             SpawnRounds(i);
         }
@@ -182,34 +187,37 @@ public class LevelControl : MonoBehaviour
     {
         int[] a = { 0, 1, 2, 3 };
         List<int> alloc = new List<int>();
-        int total = 0;
-        var numAllocationSpots = LevelLength / currentLevel.MinSquadDistance - 1;
-        while (total < currentLevel.NumberOfSquads)
+        var numAllocationSpots = NumberOfRoadDivides / 2;
+        alloc = Enumerable.Repeat(0, numAllocationSpots).ToList(); //Populate the baskets with 0
+
+
+        //Check Statement to prevent the code from going infinite in while loop
+        if(currentLevel.NumberOfSquads > alloc.Count * 3)
         {
-            total = 0;
-            alloc.Clear();
-            for (int i = 0; i < numAllocationSpots; i++)
+            Debug.Log("Total number of squads for this level exceeds the amount of allocation spots - Defaulting it to maximum count");
+            currentLevel.NumberOfSquads = alloc.Count * 3;
+        }
+
+        for (int i = 0; i < currentLevel.NumberOfSquads; i++)
+        {
+            var ran = Random.Range(0, alloc.Count); //Select a random index and add 1 to it
+            while (alloc[ran] > 3) //Select another location if its already full
             {
-                var value = a[Random.Range(0, a.Length)];
-                total += value;
-                alloc.Add(value);
-                if(total >= currentLevel.NumberOfSquads)
-                {
-                    break;
-                }
+                ran = Random.Range(0, alloc.Count);
             }
+            alloc[ran]++;
         }
 
         //Once the squad counts are allocated, run a loop spawning them
-        float zOffset = 0;
+        float zOffset = FirstObstacleDistance;
         for (int i = 0; i < alloc.Count; i++)
         {
-            zOffset += currentLevel.MinSquadDistance;
             if (alloc[i] > 0)
             {
                 var squadObj = SquadPrefabs[alloc[i] - 1]; //Squad prefabs must be organised in an incremental manner in the inspector
                 var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
-                var obj = Instantiate(squadObj, roadPos + new Vector3(xPos, 0,zOffset), Quaternion.Euler(0,180,0));
+                var zPos = FirstObstacleDistance + PlacementDistance * 2 * i + PlacementDistance; //2i*d + d
+                var obj = Instantiate(squadObj, roadPos + new Vector3(xPos, 0, zPos), Quaternion.Euler(0,180,0));
                 currentLevel.Squads.Add(obj);
             }
         }
@@ -218,7 +226,7 @@ public class LevelControl : MonoBehaviour
     private void PlaceObstacles(Vector3 roadPos, LevelScript currentLevel)
     {
         List<int> zPosList = new List<int>(); //This list is a unique list of obstacle indexes generated at random
-        var zPosDiv = (LevelLength - FirstObstacleDistance) / NumObstacleZPos;
+        var numAllocationspots = NumberOfRoadDivides / 2;
 
         for(int i = 0; i < currentLevel.NumberOfObstacles; i++)
         {
@@ -232,34 +240,9 @@ public class LevelControl : MonoBehaviour
 
         for(int i = 0; i < currentLevel.NumberOfObstacles; i++)
         {
-            var zPos = FirstObstacleDistance + zPosDiv * zPosList[i];
-            Vector3 pos = new Vector3();
-            //Re-calculate position until there is no overlap
-            var collideCount = -1;
-            var fuckInfiniteLoop = 0;
-            while (collideCount != 0)
-            {
-                collideCount = 0;
-                var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv);
-                pos = roadPos + new Vector3(xPos * 1.8f, ObstacleStartingYPos, zPos);
-                //2 is Yoffset, 1 is radius of the obstacle.. I know hardcoding is not good, but I think we can get away with it here :)
-                var colliders = Physics.OverlapBox(new Vector3(pos.x, pos.y + 2f, pos.z), new Vector3(1.25f,1.25f,1.25f));
-                foreach (Collider c in colliders)
-                {
-                    if(c.tag == "squad")
-                    {
-                        collideCount++;
-                    }
-                }
-                fuckInfiniteLoop++;
-                if(fuckInfiniteLoop > 2000)
-                {
-                    UnityEditor.EditorApplication.isPlaying = false;
-                    Debug.Log("Infinite loop ffs");
-                    return;
-                }
-            }
-            //At this point we found a vacant position
+            var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv);
+            var zPos = FirstObstacleDistance + PlacementDistance * 2 * zPosList[i]; //2i*d
+            var pos = roadPos + new Vector3(xPos * 1.8f, ObstacleStartingYPos, zPos);
             var obj = Instantiate(Obstacle, pos, Quaternion.identity);
             currentLevel.Obstacles.Add(obj);
         }
