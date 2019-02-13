@@ -10,7 +10,7 @@ public class LevelScript : MonoBehaviour
     public int NumberOfTries = 1;
     public int NumberOfSquads = 7;
     public int NumberOfObstacles = 5;
-    public int Enemy=1;
+
     [HideInInspector]
     public List<GameObject> Obstacles = new List<GameObject>();
     [HideInInspector]

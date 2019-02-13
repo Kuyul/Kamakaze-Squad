@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -303,8 +303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NormalLevels:
-  - {fileID: 29961759659734556, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
-  - {fileID: 29961759659734556, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
   - {fileID: 29961759659734556, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
   BossLevels:
   - {fileID: 1661479073653140120, guid: 735f031ea87c4a04c8b6e93f4f10aa42, type: 3}
@@ -1300,7 +1298,7 @@ MonoBehaviour:
   CurrentLevelText: {fileID: 717654497}
   NextLevelText: {fileID: 1947221776}
   GameStarted: 0
-  EnemyHealth: 10
+  EnemyHealth: 7
   ExplosionPower: 8
   ExplosionRadius: 4
   ExplosionUpForce: 0
