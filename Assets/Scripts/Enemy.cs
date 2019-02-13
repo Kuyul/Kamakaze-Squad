@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > GameController.instance.EnemyHealth)
