@@ -34,6 +34,7 @@ public class LevelControl : MonoBehaviour
     public float ObstacleStartingYPos = 0.0f;
     public int ObstacleXAxisDiv = 2; //From -2 to 2
     public float ObstacleXDistance = 2.0f;
+    public int FirstRoundNumObstacles = 3;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -87,20 +88,9 @@ public class LevelControl : MonoBehaviour
         //Generate finishline
         var finishLinePos = new Vector3(0, 0, LevelLength);
         Instantiate(FinishLinePrefab, finishLinePos + roadPos, Quaternion.identity);
-        SquadRandomiser(roadPos, currentLevel); //Spawn Squads
-        PlaceObstacles(roadPos, currentLevel); //Spawn Obstacles
+        SpawnSquadsObstacles(roadPos, currentLevel, level + FirstRoundNumObstacles); //Spawn Squads
 
-        //Check whether the level is a new level or a continued level. If its a new level, we'll spawn a brand new building, if its continued,
-        //LevelContinue object will hold reference to the state of the building prior to continuing, so it'll begin from there.
-        GameObject spawnedBuilding;
-        if (!LevelContinue.instance.levelIsContinued)
-        {
-            spawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0.6f, BuildingDistance), Quaternion.identity);
-        }
-        else
-        {
-            spawnedBuilding = LevelContinue.instance.Building;
-        }
+        GameObject spawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0.6f, BuildingDistance), Quaternion.identity);
         SpawnedBuildings.Add(spawnedBuilding.GetComponent<BuildingScript>());
 
         //Instantiate an explosion zone below the building
@@ -129,8 +119,7 @@ public class LevelControl : MonoBehaviour
         {
             var roadPos = GetCurrentRoadPosition();
             InstantiatedLevels[LevelsPassed].ResetLevel();
-            SquadRandomiser(roadPos, InstantiatedLevels[LevelsPassed]);
-            PlaceObstacles(roadPos, InstantiatedLevels[LevelsPassed]);
+            SpawnSquadsObstacles(roadPos, InstantiatedLevels[LevelsPassed], LevelsPassed + FirstRoundNumObstacles);
             GameController.instance.SetNewCameraPosition(roadPos);
         }
     }
@@ -190,14 +179,14 @@ public class LevelControl : MonoBehaviour
     }
 
     //Randomises the squad groups on the map, the total squad count must be greater than the designated number
-    private void SquadRandomiser(Vector3 roadPos, LevelScript currentLevel)
+    private void SpawnSquadsObstacles(Vector3 roadPos, LevelScript currentLevel, int numObstacles)
     {
         var numAllocationSpots = NumberOfRoadDivides / 2;
         //----------------------------Obstacle Allocation--------------------------------------------------
         List<int> obstacleAlloc = new List<int>(); //This list is a unique list of obstacle indexes generated at random
         obstacleAlloc = Enumerable.Repeat(0, numAllocationSpots).ToList();
 
-        for (int i = 0; i < currentLevel.NumberOfObstacles; i++)
+        for (int i = 0; i < numObstacles; i++)
         {
             var ran = Random.Range(0, obstacleAlloc.Count); //Select a random index and add 1 to it
             while (obstacleAlloc[ran] >= 1) //Select another location if its already full
@@ -265,10 +254,5 @@ public class LevelControl : MonoBehaviour
                 currentLevel.Squads.Add(obj);
             }
         }
-    }
-
-    private void PlaceObstacles(Vector3 roadPos, LevelScript currentLevel)
-    {
-      
     }
 }
