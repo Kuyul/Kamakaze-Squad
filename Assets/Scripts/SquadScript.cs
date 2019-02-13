@@ -7,7 +7,6 @@ public class SquadScript : MonoBehaviour
     //Declare public variables
     public GameObject Beanie;
     public GameObject Vest;
-    public GameObject Dynamite;
     public GameObject peSquaded;
     public GameObject peRun;
 
