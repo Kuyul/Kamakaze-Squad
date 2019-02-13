@@ -14,12 +14,6 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        StartCoroutine(EnemyPopDelay());
-    }
-
-    IEnumerator EnemyPopDelay()
-    {
-        yield return new WaitForSeconds(0.2f);
         Instantiate(GameController.instance.peEnemyPop, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
     }
