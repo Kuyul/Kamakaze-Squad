@@ -9,7 +9,6 @@ public class NoleaveZone : MonoBehaviour
         if (other.tag == "block")
         {
             Destroy(other.gameObject);
-            Instantiate(GameController.instance.peBox, other.transform.position, Quaternion.identity);
         }
         if(other.tag == "enemy")
         {

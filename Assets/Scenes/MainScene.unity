@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NormalLevels:
-  - {fileID: 29961759659734556, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
+  - {fileID: 7328817771785164859, guid: 0bb56ee5481d70a4b82746185ac8224d, type: 3}
   BossLevels:
   - {fileID: 1661479073653140120, guid: 735f031ea87c4a04c8b6e93f4f10aa42, type: 3}
   - {fileID: 1585637236371344400, guid: 08ebb0790cb299d4ba4648558620111f, type: 3}
@@ -338,6 +338,7 @@ MonoBehaviour:
   ObstacleStartingYPos: 0
   ObstacleXAxisDiv: 2
   ObstacleXDistance: 3.2
+  FirstRoundNumObstacles: 3
   finishLinePassed: 0
   InstantiatedLevels: []
 --- !u!1 &534669902
@@ -1283,7 +1284,6 @@ MonoBehaviour:
     type: 3}
   textMesh: {fileID: 2837732032431853504, guid: a4ebf4b4b64e57b498b95eca5484520e,
     type: 3}
-  peBox: {fileID: 4084151899110867645, guid: 495299eb106b5f448b0396521fda6847, type: 3}
   levelImages:
   - {fileID: 1809408018}
   - {fileID: 1909688373}
@@ -1299,8 +1299,8 @@ MonoBehaviour:
   NextLevelText: {fileID: 1947221776}
   GameStarted: 0
   EnemyHealth: 7
-  ExplosionPower: 8
-  ExplosionRadius: 4
+  ExplosionPower: 3.5
+  ExplosionRadius: 5
   ExplosionUpForce: 0
   expForceMode: 1
 --- !u!4 &1595922487
@@ -1708,6 +1708,84 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 253dabc60d5f1a541b2c88ff9a8825a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Name: 
   m_EditorClassIdentifier: 
   levelIsContinued: 0
