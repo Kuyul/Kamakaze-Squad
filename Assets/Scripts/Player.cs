@@ -9,8 +9,6 @@ public class Player : MonoBehaviour
     public float ChaseSpeed = 5.0f;
     public float CountDownSeconds = 1.0f;
     public GameObject Mesh;
-    public GameObject Beanie;
-    public GameObject Vest;
     public GameObject peRun;
     public GameObject peTrail;
 
@@ -63,9 +61,7 @@ public class Player : MonoBehaviour
     private void DisablePlayer()
     {
         GetComponent<Collider>().enabled = false;
-        Mesh.SetActive(false);
-        Beanie.SetActive(false);
-        Vest.SetActive(false);     
+        Mesh.SetActive(false);     
         peRun.SetActive(false);
         peTrail.SetActive(false);
 
@@ -77,8 +73,6 @@ public class Player : MonoBehaviour
     {
         GetComponent<Collider>().enabled = true;
         Mesh.SetActive(true);
-        Beanie.SetActive(true);
-        Vest.SetActive(true);
         //peRun.SetActive(true);
         peTrail.SetActive(true);
         touchScript.ResetXLimit();
@@ -127,7 +121,6 @@ public class Player : MonoBehaviour
         if (other.tag == "finishline")
         {
             rb.velocity = Vector3.forward * GameController.instance.PlayerMaxSpeed;
-         //   GameController.instance.StopCamera();
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
             touchScript.IncreaseXLimit();

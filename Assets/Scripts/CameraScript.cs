@@ -26,7 +26,6 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Camera.main.fieldOfView);
         Player = GameController.instance.Player.transform;
         initialOffset = transform.position; //offset from 0,0,0
         offset = Player.transform.position - transform.position;
