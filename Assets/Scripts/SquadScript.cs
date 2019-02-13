@@ -5,8 +5,6 @@ using UnityEngine;
 public class SquadScript : MonoBehaviour
 {
     //Declare public variables
-    public GameObject Beanie;
-    public GameObject Vest;
     public GameObject peSquaded;
     public GameObject peRun;
 
@@ -27,13 +25,14 @@ public class SquadScript : MonoBehaviour
 
         if (other.tag == "player")
         {
-            Beanie.SetActive(true);
-            Vest.SetActive(true);
             peSquaded.SetActive(true);
-            Instantiate(GameController.instance.peSquadedSplash, transform.position, Quaternion.identity);
+            GameObject temp = Instantiate(GameController.instance.peSquadedSplash, transform.position, Quaternion.identity);
+            Destroy(temp, 1f);
+            GameObject temp2 = Instantiate(GameController.instance.textMesh, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
+            Destroy(temp2, 1.5f);
             anim.SetTrigger("run");
             GameController.instance.IncrementCurrentscore();
-            Instantiate(GameController.instance.textMesh, new Vector3(transform.position.x, transform.position.y+2, transform.position.z), Quaternion.identity);
+
         }
     }
 
@@ -43,7 +42,8 @@ public class SquadScript : MonoBehaviour
         {
             GameController.instance.Detonate(transform.position);
             gameObject.SetActive(false);
-            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);            
+            GameObject temp3 = Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
+            Destroy(temp3, 5f);
         }
     }    
 }
