@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
     public GameObject peEnemyPop;
+    public GameObject textMesh;
 
     public GameObject[] levelImages;
     public GameObject highscoreGO;  
@@ -45,6 +46,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 300;
         if (instance == null)
         {
             instance = this;

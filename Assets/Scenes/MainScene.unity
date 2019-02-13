@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -314,13 +314,13 @@ MonoBehaviour:
   - {fileID: 735261960358984424, guid: 713adc8fdec8c5f42a367097b129b3ef, type: 3}
   Road: {fileID: 6671263062129640309, guid: f74379e3e06257f428e25d879ec887f4, type: 3}
   RoadZOffset: 175
-  RoadYOffset: 40
-  LevelLength: 80
+  RoadYOffset: 50
+  LevelLength: 90
   NumberOfTries: 3
   NumberOfRoundsPerLevel: 5
   FinishLinePrefab: {fileID: 1094440860404183172, guid: 5289b325b1a1e884eb7bca7c06797fd7,
     type: 3}
-  BuildingDistance: 35
+  BuildingDistance: 27
   EndblockDistance: 15
   EndBlock: {fileID: 2899244374349684154, guid: 6bd39fdfbeda26b43999269517bd8dd6,
     type: 3}
@@ -443,8 +443,8 @@ MonoBehaviour:
   FollowPlayer: 0
   FOVMove: 0
   TransitionSpeed: 100
-  ySpeed: 30
-  FOVspeed: 30
+  ySpeed: 35
+  FOVspeed: 35
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,80 +1241,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
---- !u!1001 &1538364283
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6671263062129640309, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_Name
-      value: road10x7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640309, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671263062129640310, guid: f74379e3e06257f428e25d879ec887f4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f74379e3e06257f428e25d879ec887f4, type: 3}
 --- !u!1 &1595922485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,13 +1275,15 @@ MonoBehaviour:
   Player: {fileID: 1756920010}
   PlayerSpeed: 20
   PlayerMaxSpeed: 30
-  CamUpDelay: 0.5
+  CamUpDelay: 0.4
   DeathPanel: {fileID: 1999035308}
   pePlayerPop: {fileID: 8000704757855681988, guid: 53221c5d15d58ff4bb7a32b353db9dcb,
     type: 3}
   peSquadedSplash: {fileID: 6059764457070607872, guid: 5b76b2f838d28e34d8017f3ea0ddc401,
     type: 3}
   peEnemyPop: {fileID: 8000704757855681988, guid: e9cfacb7f98415941bc52e1826524fa2,
+    type: 3}
+  textMesh: {fileID: 2837732032431853504, guid: a4ebf4b4b64e57b498b95eca5484520e,
     type: 3}
   levelImages:
   - {fileID: 1809408018}
@@ -1550,6 +1478,10 @@ PrefabInstance:
       propertyPath: cameraScript
       value: 
       objectReference: {fileID: 534669906}
+    - target: {fileID: 1756920034, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
+      propertyPath: ChaseSpeed
+      value: 6.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
 --- !u!1 &1756920010 stripped

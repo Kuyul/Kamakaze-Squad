@@ -9,8 +9,6 @@ public class Player : MonoBehaviour
     public float ChaseSpeed = 5.0f;
     public float CountDownSeconds = 1.0f;
     public GameObject Mesh;
-    public GameObject Beanie;
-    public GameObject Vest;
     public GameObject peRun;
     public GameObject peTrail;
 
@@ -63,9 +61,7 @@ public class Player : MonoBehaviour
     private void DisablePlayer()
     {
         GetComponent<Collider>().enabled = false;
-        Mesh.SetActive(false);
-        Beanie.SetActive(false);
-        Vest.SetActive(false);     
+        Mesh.SetActive(false);     
         peRun.SetActive(false);
         peTrail.SetActive(false);
 
@@ -77,8 +73,6 @@ public class Player : MonoBehaviour
     {
         GetComponent<Collider>().enabled = true;
         Mesh.SetActive(true);
-        Beanie.SetActive(true);
-        Vest.SetActive(true);
         //peRun.SetActive(true);
         peTrail.SetActive(true);
         touchScript.ResetXLimit();
@@ -106,7 +100,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "squad")
-        {
+        {            
             ListOfSquads.Add(other.gameObject);
             StartCoroutine(Delay(other));
         }
@@ -115,7 +109,8 @@ public class Player : MonoBehaviour
         {
             GameController.instance.Detonate(transform.position);
             DisablePlayer();
-            Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);      
+            GameObject temp =  Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
+            Destroy(temp, 5f);
         }
 
         if (other.tag == "endblock")
@@ -126,7 +121,6 @@ public class Player : MonoBehaviour
         if (other.tag == "finishline")
         {
             rb.velocity = Vector3.forward * GameController.instance.PlayerMaxSpeed;
-         //   GameController.instance.StopCamera();
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
             touchScript.IncreaseXLimit();
@@ -142,7 +136,6 @@ public class Player : MonoBehaviour
         if (other.tag == "obstacle")
         {
             gameObject.SetActive(false);
-           // Destroy(other.gameObject);
             LevelControl.instance.LevelFail();
             GameController.instance.StopCamera();
             Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
