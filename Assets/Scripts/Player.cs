@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "squad")
-        {
+        {            
             ListOfSquads.Add(other.gameObject);
             StartCoroutine(Delay(other));
         }

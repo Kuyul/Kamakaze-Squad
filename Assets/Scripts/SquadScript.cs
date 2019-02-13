@@ -33,6 +33,7 @@ public class SquadScript : MonoBehaviour
             Instantiate(GameController.instance.peSquadedSplash, transform.position, Quaternion.identity);
             anim.SetTrigger("run");
             GameController.instance.IncrementCurrentscore();
+            Instantiate(GameController.instance.textMesh, new Vector3(transform.position.x, transform.position.y+2, transform.position.z), Quaternion.identity);
         }
     }
 

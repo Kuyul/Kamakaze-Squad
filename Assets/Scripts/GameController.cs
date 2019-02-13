@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
     public GameObject peEnemyPop;
+    public GameObject textMesh;
 
     public GameObject[] levelImages;
     public GameObject highscoreGO;  
