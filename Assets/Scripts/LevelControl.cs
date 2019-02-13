@@ -35,6 +35,8 @@ public class LevelControl : MonoBehaviour
     public int ObstacleXAxisDiv = 2; //From -2 to 2
     public float ObstacleXDistance = 2.0f;
     public int FirstRoundNumObstacles = 3;
+    public bool TriggerTutorial = true;
+    public GameObject Tutorial;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -42,7 +44,7 @@ public class LevelControl : MonoBehaviour
 
     //Declare private variables
     private List<BuildingScript> SpawnedBuildings = new List<BuildingScript>();
-    private GameObject Bomb;
+    //private GameObject Bomb;
     private int LevelsPassed = 0;
     private float PlacementDistance;
 
@@ -57,15 +59,22 @@ public class LevelControl : MonoBehaviour
     //Initialise level
     void Start()
     {
-        PlacementDistance = (LevelLength - FirstObstacleDistance) / NumberOfRoadDivides;
-
-        for (int i = 0; i < NumberOfRoundsPerLevel; i++)
+        if (GetCurrentLevel() == 0)
         {
-            SpawnRounds(i);
+            Tutorial.SetActive(true);
         }
+        else
+        {
+            PlacementDistance = (LevelLength - FirstObstacleDistance) / NumberOfRoadDivides;
 
-        // set first stage of dot dot dot to black
-        GameController.instance.levelImages[0].GetComponent<Image>().color = new Color32(50,50,50,255);
+            for (int i = 0; i < NumberOfRoundsPerLevel; i++)
+            {
+                SpawnRounds(i);
+            }
+
+            // set first stage of dot dot dot to black
+            GameController.instance.levelImages[0].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+        }
     }
 
     private void SpawnRounds(int level)
@@ -102,7 +111,7 @@ public class LevelControl : MonoBehaviour
 
     public int GetCurrentLevel()
     {
-        return PlayerPrefs.GetInt("Level", 1);
+        return PlayerPrefs.GetInt("currentlevel", 0);
     }
 
     //This method determines whether the level should continue or whether we should begin a new level.
@@ -110,26 +119,33 @@ public class LevelControl : MonoBehaviour
     //whether there are more tries left, if so, continue on with the current level while keeping the building where it was left off from this level.
     public void ContinueLevel()
     {
-        InstantiatedLevels[LevelsPassed].NumberOfTries--;
-        if (InstantiatedLevels[LevelsPassed].NumberOfTries == 0)
+        if (Tutorial.activeInHierarchy)
         {
             LevelFail();
         }
         else
         {
-            var roadPos = GetCurrentRoadPosition();
-            InstantiatedLevels[LevelsPassed].ResetLevel();
-            SpawnSquadsObstacles(roadPos, InstantiatedLevels[LevelsPassed], LevelsPassed + FirstRoundNumObstacles);
-            GameController.instance.SetNewCameraPosition(roadPos);
+            InstantiatedLevels[LevelsPassed].NumberOfTries--;
+            if (InstantiatedLevels[LevelsPassed].NumberOfTries == 0)
+            {
+                LevelFail();
+            }
+            else
+            {
+                var roadPos = GetCurrentRoadPosition();
+                InstantiatedLevels[LevelsPassed].ResetLevel();
+                SpawnSquadsObstacles(roadPos, InstantiatedLevels[LevelsPassed], LevelsPassed + FirstRoundNumObstacles);
+                GameController.instance.SetNewCameraPosition(roadPos);
+            }
         }
     }
 
     public void LevelFail()
     {
-        StartCoroutine(DeathPanelDelay(1f));
+        StartCoroutine(DelayDeathPanel(1f));
     }
 
-    IEnumerator DeathPanelDelay(float t)
+    IEnumerator DelayDeathPanel(float t)
     {
         yield return new WaitForSeconds(t);
         GameController.instance.GameOver();
@@ -139,30 +155,62 @@ public class LevelControl : MonoBehaviour
     //If level passed count is less than number of rounds per level, then do not reset the level
     public void LevelClear()
     {
-        LevelsPassed++;
-
-        // changes color of dot dot dot image everytime level is passed
-        if (NumberOfRoundsPerLevel>LevelsPassed)
+        if (Tutorial.activeInHierarchy)
         {
-            GameController.instance.levelImages[LevelsPassed].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
-        }
-        //Below if statement is true if its boss level
-        if (LevelsPassed >= NumberOfRoundsPerLevel)
-        {
-            GameController.instance.IncrementLevel();
-            GameController.instance.RestartGame();
+            StartCoroutine(DelayLevelClear(1f, 1f));
         }
         else
         {
-            StartCoroutine(Delay(1f));
+            LevelsPassed++;
+
+            // changes color of dot dot dot image everytime level is passed
+            if (NumberOfRoundsPerLevel > LevelsPassed)
+            {
+                GameController.instance.levelImages[LevelsPassed].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+            }
+
+            if (NumberOfRoundsPerLevel == LevelsPassed + 1)
+            {
+                StartCoroutine(DelayBossPanel(0.5f, 1.5f));
+            }
+
+
+            //Below if statement is true if its boss level is cleared
+            if (LevelsPassed >= NumberOfRoundsPerLevel)
+            {
+                StartCoroutine(DelayLevelClear(1f, 1f));
+            }
+
+            // else move camera to next round and continue
+            else
+            {
+                StartCoroutine(DelayCameraTransition(1f));
+            }
         }
     }
 
-    IEnumerator Delay(float t)
+    IEnumerator DelayLevelClear(float t1,float t2)
+    {
+        yield return new WaitForSeconds(t1);
+        GameController.instance.LevelClearPanel.SetActive(true);
+        yield return new WaitForSeconds(t2);
+        GameController.instance.IncrementLevel();
+        GameController.instance.RestartGame();
+    }
+
+    IEnumerator DelayCameraTransition(float t)
     {
         yield return new WaitForSeconds(t);
         var nextRoadPos = GetCurrentRoadPosition();
         GameController.instance.SetNewCameraPosition(nextRoadPos);
+    }
+
+    IEnumerator DelayBossPanel(float t1,float t2)
+    {
+        yield return new WaitForSeconds(t1);
+        GameController.instance.BossPanel.SetActive(true);
+        yield return new WaitForSeconds(t2);
+        GameController.instance.BossPanel.SetActive(false);
     }
 
     //Called internally and from gamecontroller
@@ -174,8 +222,15 @@ public class LevelControl : MonoBehaviour
     //This is called when the player hits current levels' building.
     public void SetBuildingFlag()
     {
-        //Set the flag to true so that the game may begin counting down
-        SpawnedBuildings[LevelsPassed].flag = true;
+        if (Tutorial.activeInHierarchy)
+        {
+            Tutorial.GetComponent<TutorialScript>().Building.GetComponent<BuildingScript>().flag = true;
+        }
+        else
+        {
+            //Set the flag to true so that the game may begin counting down
+            SpawnedBuildings[LevelsPassed].flag = true;
+        }
     }
 
     //Randomises the squad groups on the map, the total squad count must be greater than the designated number

@@ -79,9 +79,7 @@ public class Player : MonoBehaviour
 
     IEnumerator CountDownDelay()
     {
-        Debug.Log("Starting Countdown");
         yield return new WaitForSeconds(CountDownSeconds);
-        Debug.Log("Countdown Finished");
         LevelControl.instance.SetBuildingFlag();
     }
 
