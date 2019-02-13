@@ -6,7 +6,6 @@ public class NoleaveZone : MonoBehaviour
 {
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("hmm");
         if (other.tag == "block")
         {
             Destroy(other.gameObject);
