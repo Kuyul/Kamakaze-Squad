@@ -35,6 +35,8 @@ public class LevelControl : MonoBehaviour
     public int ObstacleXAxisDiv = 2; //From -2 to 2
     public float ObstacleXDistance = 2.0f;
     public int FirstRoundNumObstacles = 3;
+    public bool TriggerTutorial = true;
+    public GameObject Tutorial;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -57,15 +59,22 @@ public class LevelControl : MonoBehaviour
     //Initialise level
     void Start()
     {
-        PlacementDistance = (LevelLength - FirstObstacleDistance) / NumberOfRoadDivides;
-
-        for (int i = 0; i < NumberOfRoundsPerLevel; i++)
+        if (TriggerTutorial)
         {
-            SpawnRounds(i);
+            Tutorial.SetActive(true);
         }
+        else
+        {
+            PlacementDistance = (LevelLength - FirstObstacleDistance) / NumberOfRoadDivides;
 
-        // set first stage of dot dot dot to black
-        GameController.instance.levelImages[0].GetComponent<Image>().color = new Color32(50,50,50,255);
+            for (int i = 0; i < NumberOfRoundsPerLevel; i++)
+            {
+                SpawnRounds(i);
+            }
+
+            // set first stage of dot dot dot to black
+            GameController.instance.levelImages[0].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+        }
     }
 
     private void SpawnRounds(int level)

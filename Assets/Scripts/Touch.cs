@@ -93,4 +93,10 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         xLimit = xLimitNormal;
     }
+
+    //Only used in tutorial script
+    public void SetDraggingToFalse()
+    {
+        dragging = false;
+    }
 }
