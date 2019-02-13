@@ -73,7 +73,6 @@ public class Player : MonoBehaviour
     {
         GetComponent<Collider>().enabled = true;
         Mesh.SetActive(true);
-        //peRun.SetActive(true);
         peTrail.SetActive(true);
         touchScript.ResetXLimit();
     }

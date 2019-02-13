@@ -165,9 +165,15 @@ public class LevelControl : MonoBehaviour
         }
         else
         {
-            var nextRoadPos = GetCurrentRoadPosition();
-            GameController.instance.SetNewCameraPosition(nextRoadPos);
+            StartCoroutine(Delay(1f));
         }
+    }
+
+    IEnumerator Delay(float t)
+    {
+        yield return new WaitForSeconds(t);
+        var nextRoadPos = GetCurrentRoadPosition();
+        GameController.instance.SetNewCameraPosition(nextRoadPos);
     }
 
     //Called internally and from gamecontroller

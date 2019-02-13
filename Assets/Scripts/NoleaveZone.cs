@@ -6,9 +6,11 @@ public class NoleaveZone : MonoBehaviour
 {
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("hmm");
         if (other.tag == "block")
         {
             Destroy(other.gameObject);
+            Instantiate(GameController.instance.peBox, other.transform.position, Quaternion.identity);
         }
         if(other.tag == "enemy")
         {
