@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 2728205493370982686}
   - component: {fileID: 2728205493370982685}
   - component: {fileID: 2728205493370982684}
-  - component: {fileID: 2728205493370982659}
   - component: {fileID: 1876732458975646503}
   - component: {fileID: 3970183437866291062}
   m_Layer: 0
   m_Name: Popup cube
-  m_TagString: obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2728205493370982659
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2728205493370982658}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1876732458975646503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +227,6 @@ GameObject:
   - component: {fileID: 6668807678849629668}
   - component: {fileID: 6668807678849629593}
   - component: {fileID: 6668807678849629594}
-  - component: {fileID: 6668807678849629595}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -308,19 +293,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6668807678849629595
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6668807678849629669}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7347532697119579475
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,9 +302,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7347532697119579484}
+  - component: {fileID: 8393810550483763285}
   m_Layer: 0
   m_Name: Popup obstacle
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,3 +326,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8393810550483763285
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7347532697119579475}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

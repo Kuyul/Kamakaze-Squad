@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 300;
         if (instance == null)
         {
             instance = this;
