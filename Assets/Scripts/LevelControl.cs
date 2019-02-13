@@ -233,10 +233,10 @@ public class LevelControl : MonoBehaviour
             
             if(obstacleAlloc[i] > 0)
             {
-                var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance;
+                var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance / ObstacleXAxisDiv;
                 while(xPos == squadXpos)
                 {
-                    xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance;
+                    xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance / ObstacleXAxisDiv;
                 }
                 obstacleXpos = xPos;
                 var zPos = FirstObstacleDistance + PlacementDistance * 2 * i; //2i*d
@@ -248,10 +248,10 @@ public class LevelControl : MonoBehaviour
             if (squadAlloc[i] > 0)
             {
                 var squadObj = SquadPrefabs[squadAlloc[i] - 1]; //Squad prefabs must be organised in an incremental manner in the inspector
-                var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance;
+                var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance / ObstacleXAxisDiv;
                 while (xPos == obstacleXpos)
                 {
-                    xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance;
+                    xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance / ObstacleXAxisDiv;
                 }
                 squadXpos = xPos;
                 var zPos = FirstObstacleDistance + PlacementDistance * 2 * i + PlacementDistance; //2i*d + d
