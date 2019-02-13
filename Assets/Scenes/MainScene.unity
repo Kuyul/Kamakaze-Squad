@@ -1415,100 +1415,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
---- !u!1001 &1749516148
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2837732032431853504, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_Name
-      value: TestMeshParent
-      objectReference: {fileID: 0}
-    - target: {fileID: 2837732032431853504, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105067422822688963, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1614798270871774956, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1122263066403692040, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1122263066403692040, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1122263066403692040, guid: a4ebf4b4b64e57b498b95eca5484520e,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 855638015
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a4ebf4b4b64e57b498b95eca5484520e, type: 3}
 --- !u!1001 &1756920009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1572,6 +1478,10 @@ PrefabInstance:
       propertyPath: cameraScript
       value: 
       objectReference: {fileID: 534669906}
+    - target: {fileID: 1756920034, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
+      propertyPath: ChaseSpeed
+      value: 6.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
 --- !u!1 &1756920010 stripped
