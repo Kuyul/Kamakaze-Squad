@@ -146,23 +146,40 @@ public class LevelControl : MonoBehaviour
         {
             GameController.instance.levelImages[LevelsPassed].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
         }
+
+        if (NumberOfRoundsPerLevel == LevelsPassed + 1)
+        {
+            StartCoroutine(DelayBossPanel(0.5f, 1.5f));
+        }
+
+
         //Below if statement is true if its boss level
         if (LevelsPassed >= NumberOfRoundsPerLevel)
         {
             GameController.instance.IncrementLevel();
             GameController.instance.RestartGame();
         }
+
+        // else move camera to next round and continue
         else
         {
-            StartCoroutine(Delay(1f));
+            StartCoroutine(DelayCameraTransition(1f));
         }
     }
 
-    IEnumerator Delay(float t)
+    IEnumerator DelayCameraTransition(float t)
     {
         yield return new WaitForSeconds(t);
         var nextRoadPos = GetCurrentRoadPosition();
         GameController.instance.SetNewCameraPosition(nextRoadPos);
+    }
+
+    IEnumerator DelayBossPanel(float t1,float t2)
+    {
+        yield return new WaitForSeconds(t1);
+        GameController.instance.BossPanel.SetActive(true);
+        yield return new WaitForSeconds(t2);
+        GameController.instance.BossPanel.SetActive(false);
     }
 
     //Called internally and from gamecontroller

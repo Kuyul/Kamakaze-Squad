@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     public float CamUpDelay;
 
     public GameObject DeathPanel;
+    public GameObject BossPanel;
     public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
     public GameObject peEnemyPop;
