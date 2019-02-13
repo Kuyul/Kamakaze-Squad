@@ -9,6 +9,8 @@ public class TutorialScript : MonoBehaviour
     public GameObject TutorialRoad;
     public GameObject Touch;
     public GameObject Building;
+    public GameObject LevelPanel;
+    public GameObject TutorialText;
 
     //Declare private variables
     private int count = 0;
@@ -19,6 +21,8 @@ public class TutorialScript : MonoBehaviour
     {
         //Initially set touch to inactive to prevent movement
         Touch.SetActive(false);
+        LevelPanel.SetActive(false);
+        TutorialText.SetActive(true);
     }
 
     void Update()
@@ -48,7 +52,6 @@ public class TutorialScript : MonoBehaviour
             Touch.SetActive(true);
         }
 
-        Debug.Log("Tutorial" + count + " Activated");
         Tutorials[count].SetActive(true);
         ActiveTutorial = Tutorials[count];
         Waiting = true;

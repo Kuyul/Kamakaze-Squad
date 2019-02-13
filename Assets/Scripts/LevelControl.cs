@@ -59,7 +59,7 @@ public class LevelControl : MonoBehaviour
     //Initialise level
     void Start()
     {
-        if (TriggerTutorial)
+        if (GetCurrentLevel() == 0)
         {
             Tutorial.SetActive(true);
         }
@@ -111,7 +111,7 @@ public class LevelControl : MonoBehaviour
 
     public int GetCurrentLevel()
     {
-        return PlayerPrefs.GetInt("Level", 1);
+        return PlayerPrefs.GetInt("currentlevel", 0);
     }
 
     //This method determines whether the level should continue or whether we should begin a new level.
@@ -119,17 +119,24 @@ public class LevelControl : MonoBehaviour
     //whether there are more tries left, if so, continue on with the current level while keeping the building where it was left off from this level.
     public void ContinueLevel()
     {
-        InstantiatedLevels[LevelsPassed].NumberOfTries--;
-        if (InstantiatedLevels[LevelsPassed].NumberOfTries == 0)
+        if (Tutorial.activeInHierarchy)
         {
             LevelFail();
         }
         else
         {
-            var roadPos = GetCurrentRoadPosition();
-            InstantiatedLevels[LevelsPassed].ResetLevel();
-            SpawnSquadsObstacles(roadPos, InstantiatedLevels[LevelsPassed], LevelsPassed + FirstRoundNumObstacles);
-            GameController.instance.SetNewCameraPosition(roadPos);
+            InstantiatedLevels[LevelsPassed].NumberOfTries--;
+            if (InstantiatedLevels[LevelsPassed].NumberOfTries == 0)
+            {
+                LevelFail();
+            }
+            else
+            {
+                var roadPos = GetCurrentRoadPosition();
+                InstantiatedLevels[LevelsPassed].ResetLevel();
+                SpawnSquadsObstacles(roadPos, InstantiatedLevels[LevelsPassed], LevelsPassed + FirstRoundNumObstacles);
+                GameController.instance.SetNewCameraPosition(roadPos);
+            }
         }
     }
 
@@ -148,30 +155,37 @@ public class LevelControl : MonoBehaviour
     //If level passed count is less than number of rounds per level, then do not reset the level
     public void LevelClear()
     {
-        LevelsPassed++;
-
-        // changes color of dot dot dot image everytime level is passed
-        if (NumberOfRoundsPerLevel>LevelsPassed)
+        if (Tutorial.activeInHierarchy)
         {
-            GameController.instance.levelImages[LevelsPassed].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+            StartCoroutine(DelayLevelClear(1f, 1f));
         }
-
-        if (NumberOfRoundsPerLevel == LevelsPassed + 1)
-        {
-            StartCoroutine(DelayBossPanel(0.5f, 1.5f));
-        }
-
-
-        //Below if statement is true if its boss level is cleared
-        if (LevelsPassed >= NumberOfRoundsPerLevel)
-        {
-            StartCoroutine(DelayLevelClear(1f,1f));
-        }
-
-        // else move camera to next round and continue
         else
         {
-            StartCoroutine(DelayCameraTransition(1f));
+            LevelsPassed++;
+
+            // changes color of dot dot dot image everytime level is passed
+            if (NumberOfRoundsPerLevel > LevelsPassed)
+            {
+                GameController.instance.levelImages[LevelsPassed].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+            }
+
+            if (NumberOfRoundsPerLevel == LevelsPassed + 1)
+            {
+                StartCoroutine(DelayBossPanel(0.5f, 1.5f));
+            }
+
+
+            //Below if statement is true if its boss level is cleared
+            if (LevelsPassed >= NumberOfRoundsPerLevel)
+            {
+                StartCoroutine(DelayLevelClear(1f, 1f));
+            }
+
+            // else move camera to next round and continue
+            else
+            {
+                StartCoroutine(DelayCameraTransition(1f));
+            }
         }
     }
 
@@ -208,8 +222,15 @@ public class LevelControl : MonoBehaviour
     //This is called when the player hits current levels' building.
     public void SetBuildingFlag()
     {
-        //Set the flag to true so that the game may begin counting down
-        SpawnedBuildings[LevelsPassed].flag = true;
+        if (Tutorial.activeInHierarchy)
+        {
+            Tutorial.GetComponent<TutorialScript>().Building.GetComponent<BuildingScript>().flag = true;
+        }
+        else
+        {
+            //Set the flag to true so that the game may begin counting down
+            SpawnedBuildings[LevelsPassed].flag = true;
+        }
     }
 
     //Randomises the squad groups on the map, the total squad count must be greater than the designated number

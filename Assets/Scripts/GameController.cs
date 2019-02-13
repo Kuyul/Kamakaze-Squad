@@ -60,8 +60,8 @@ public class GameController : MonoBehaviour
     {        
         HighscoreText.text = PlayerPrefs.GetInt("highscore", 0).ToString();        
         CurrentscoreText.text = PlayerPrefs.GetInt("currentscore", 0).ToString();
-        CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel",1).ToString();
-        NextLevelText.text = PlayerPrefs.GetInt("nextlevel", PlayerPrefs.GetInt("currentlevel",1)+1).ToString();
+        CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel",0).ToString();
+        NextLevelText.text = PlayerPrefs.GetInt("nextlevel", PlayerPrefs.GetInt("currentlevel",0)+1).ToString();
     }
 
     //Called from Player class to stop camera movement when player reaches the finishline
@@ -152,11 +152,11 @@ public class GameController : MonoBehaviour
 
     public void IncrementLevel()
     {
-        PlayerPrefs.SetInt("currentlevel", PlayerPrefs.GetInt("currentlevel", 1) + 1);
-        PlayerPrefs.SetInt("nextlevel", PlayerPrefs.GetInt("currentlevel", 1) + 1);
+        PlayerPrefs.SetInt("currentlevel", PlayerPrefs.GetInt("currentlevel", 0) + 1);
+        PlayerPrefs.SetInt("nextlevel", PlayerPrefs.GetInt("currentlevel", 0) + 1);
 
-        CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel", 1).ToString();
-        NextLevelText.text = PlayerPrefs.GetInt("nextlevel", PlayerPrefs.GetInt("currentlevel", 1) + 1).ToString();
+        CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel", 0).ToString();
+        NextLevelText.text = PlayerPrefs.GetInt("nextlevel", PlayerPrefs.GetInt("currentlevel", 0) + 1).ToString();
     }
 
     //Called from camera script signalling transitioning is complete
@@ -172,6 +172,11 @@ public class GameController : MonoBehaviour
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetInt("currentscore", 0);
+    }
+
+    public void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
 }
