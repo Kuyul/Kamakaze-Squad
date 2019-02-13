@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > GameController.instance.EnemyHealth)
@@ -15,6 +14,12 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        StartCoroutine(EnemyPopDelay());
+    }
+
+    IEnumerator EnemyPopDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
         Instantiate(GameController.instance.peEnemyPop, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
     }
