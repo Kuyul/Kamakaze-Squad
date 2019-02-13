@@ -33,6 +33,7 @@ public class LevelControl : MonoBehaviour
     public float FirstObstacleDistance = 30.0f;
     public float ObstacleStartingYPos = 0.0f;
     public int ObstacleXAxisDiv = 2; //From -2 to 2
+    public float ObstacleXDistance = 2.0f;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -185,9 +186,24 @@ public class LevelControl : MonoBehaviour
     //Randomises the squad groups on the map, the total squad count must be greater than the designated number
     private void SquadRandomiser(Vector3 roadPos, LevelScript currentLevel)
     {
+        var numAllocationSpots = NumberOfRoadDivides / 2;
+        //----------------------------Obstacle Allocation--------------------------------------------------
+        List<int> zPosList = new List<int>(); //This list is a unique list of obstacle indexes generated at random
+        zPosList = Enumerable.Repeat(0, numAllocationSpots).ToList();
+
+        for (int i = 0; i < currentLevel.NumberOfObstacles; i++)
+        {
+            var ran = Random.Range(0, zPosList.Count); //Select a random index and add 1 to it
+            while (zPosList[ran] >= 1) //Select another location if its already full
+            {
+                ran = Random.Range(0, zPosList.Count);
+            }
+            zPosList[ran]++;
+        }
+
+        //----------------------------Squad Allocation--------------------------------------------------
         int[] a = { 0, 1, 2, 3 };
         List<int> alloc = new List<int>();
-        var numAllocationSpots = NumberOfRoadDivides / 2;
         alloc = Enumerable.Repeat(0, numAllocationSpots).ToList(); //Populate the baskets with 0
 
 
@@ -201,21 +217,37 @@ public class LevelControl : MonoBehaviour
         for (int i = 0; i < currentLevel.NumberOfSquads; i++)
         {
             var ran = Random.Range(0, alloc.Count); //Select a random index and add 1 to it
-            while (alloc[ran] > 3) //Select another location if its already full
+            while (alloc[ran] >= 3) //Select another location if its already full
             {
                 ran = Random.Range(0, alloc.Count);
             }
             alloc[ran]++;
         }
 
-        //Once the squad counts are allocated, run a loop spawning them
+        //Once the squad counts are allocated, run a loop spawning squads and obstacles
         float zOffset = FirstObstacleDistance;
         for (int i = 0; i < alloc.Count; i++)
         {
+            float obstacleXpos = -999f;
+            
+            if(zPosList[i] > 0)
+            {
+                var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance;
+                obstacleXpos = xPos;
+                var zPos = FirstObstacleDistance + PlacementDistance * 2 * i; //2i*d
+                var pos = roadPos + new Vector3(xPos, ObstacleStartingYPos, zPos);
+                var obj = Instantiate(Obstacle, pos, Quaternion.identity);
+                currentLevel.Obstacles.Add(obj);
+            }
+
             if (alloc[i] > 0)
             {
                 var squadObj = SquadPrefabs[alloc[i] - 1]; //Squad prefabs must be organised in an incremental manner in the inspector
-                var xPos = Random.Range(-SquadXAxisRange, SquadXAxisRange);
+                var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance;
+                    while(xPos == obstacleXpos)
+                    {
+                        xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance;
+                    }
                 var zPos = FirstObstacleDistance + PlacementDistance * 2 * i + PlacementDistance; //2i*d + d
                 var obj = Instantiate(squadObj, roadPos + new Vector3(xPos, 0, zPos), Quaternion.Euler(0,180,0));
                 currentLevel.Squads.Add(obj);
@@ -225,26 +257,6 @@ public class LevelControl : MonoBehaviour
 
     private void PlaceObstacles(Vector3 roadPos, LevelScript currentLevel)
     {
-        List<int> zPosList = new List<int>(); //This list is a unique list of obstacle indexes generated at random
-        var numAllocationspots = NumberOfRoadDivides / 2;
-
-        for(int i = 0; i < currentLevel.NumberOfObstacles; i++)
-        {
-            var z = Random.Range(0, NumObstacleZPos);
-            while (zPosList.Contains(z))
-            {
-                z = Random.Range(0, NumObstacleZPos);
-            }
-            zPosList.Add(z);
-        }
-
-        for(int i = 0; i < currentLevel.NumberOfObstacles; i++)
-        {
-            var xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv);
-            var zPos = FirstObstacleDistance + PlacementDistance * 2 * zPosList[i]; //2i*d
-            var pos = roadPos + new Vector3(xPos * 1.8f, ObstacleStartingYPos, zPos);
-            var obj = Instantiate(Obstacle, pos, Quaternion.identity);
-            currentLevel.Obstacles.Add(obj);
-        }
+      
     }
 }
