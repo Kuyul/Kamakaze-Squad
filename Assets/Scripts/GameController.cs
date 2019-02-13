@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
 
     public GameObject DeathPanel;
     public GameObject BossPanel;
+    public GameObject LevelClearPanel;
     public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
     public GameObject peEnemyPop;

@@ -42,7 +42,7 @@ public class LevelControl : MonoBehaviour
 
     //Declare private variables
     private List<BuildingScript> SpawnedBuildings = new List<BuildingScript>();
-    private GameObject Bomb;
+    //private GameObject Bomb;
     private int LevelsPassed = 0;
     private float PlacementDistance;
 
@@ -126,10 +126,10 @@ public class LevelControl : MonoBehaviour
 
     public void LevelFail()
     {
-        StartCoroutine(DeathPanelDelay(1f));
+        StartCoroutine(DelayDeathPanel(1f));
     }
 
-    IEnumerator DeathPanelDelay(float t)
+    IEnumerator DelayDeathPanel(float t)
     {
         yield return new WaitForSeconds(t);
         GameController.instance.GameOver();
@@ -153,11 +153,10 @@ public class LevelControl : MonoBehaviour
         }
 
 
-        //Below if statement is true if its boss level
+        //Below if statement is true if its boss level is cleared
         if (LevelsPassed >= NumberOfRoundsPerLevel)
         {
-            GameController.instance.IncrementLevel();
-            GameController.instance.RestartGame();
+            StartCoroutine(DelayLevelClear(1f,1f));
         }
 
         // else move camera to next round and continue
@@ -165,6 +164,15 @@ public class LevelControl : MonoBehaviour
         {
             StartCoroutine(DelayCameraTransition(1f));
         }
+    }
+
+    IEnumerator DelayLevelClear(float t1,float t2)
+    {
+        yield return new WaitForSeconds(t1);
+        GameController.instance.LevelClearPanel.SetActive(true);
+        yield return new WaitForSeconds(t2);
+        GameController.instance.IncrementLevel();
+        GameController.instance.RestartGame();
     }
 
     IEnumerator DelayCameraTransition(float t)
