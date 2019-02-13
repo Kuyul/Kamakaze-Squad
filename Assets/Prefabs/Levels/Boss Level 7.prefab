@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6464780431250795810
+--- !u!1 &8232024012305952898
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4520636772257173983}
-  - component: {fileID: 989477652180306054}
+  - component: {fileID: 1340081237296498585}
+  - component: {fileID: 411101389055035869}
   m_Layer: 0
-  m_Name: Level 24
+  m_Name: Boss Level 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4520636772257173983
+--- !u!4 &1340081237296498585
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6464780431250795810}
+  m_GameObject: {fileID: 8232024012305952898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.5390625, y: 4.903135, z: 89.22479}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,22 +31,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &989477652180306054
+--- !u!114 &411101389055035869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6464780431250795810}
+  m_GameObject: {fileID: 8232024012305952898}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67f01ad560a8fd7468fdfd987bc8fc33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MinSquadDistance: 15
-  Building: {fileID: 6182282495382948108, guid: 1d8d4935e4b3a004a98c8728a73c6785,
+  Building: {fileID: 2382336640745805104, guid: c1cee415c1674444794b39dac017f8ee,
     type: 3}
   NumberOfTries: 1
   NumberOfSquads: 7
   NumberOfObstacles: 5
   Enemy: 1
+  Obstacles: []
+  Squads: []
