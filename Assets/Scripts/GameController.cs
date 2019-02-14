@@ -84,12 +84,6 @@ public class GameController : MonoBehaviour
         StartCoroutine(Delay(1.5f));
     }
 
-    // Restart game doesnt reset playerprefs. Used after boss level defeated to load new scene
-    public void RestartGame()
-    {
-        StartCoroutine(Delay(2f));
-    }
-
     // used in restart button on death
     public void RestartGameInstant()
     {
