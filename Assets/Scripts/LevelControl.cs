@@ -100,7 +100,9 @@ public class LevelControl : MonoBehaviour
             //Different pool of more challenging boss levels
             else
             {
-                currentLevel = Instantiate(HardBossLevels[(GetCurrentLevel() - 1) % HardBossLevels.Length]);
+                var index = (GetCurrentLevel() - 1) % (HardBossLevels.Length/2);
+                var bossLevel = Random.Range(1, 3) * (index + 1) - 1; 
+                currentLevel = Instantiate(HardBossLevels[bossLevel]);
             }
         }
         else
