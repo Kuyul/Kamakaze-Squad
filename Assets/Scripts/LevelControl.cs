@@ -171,7 +171,7 @@ public class LevelControl : MonoBehaviour
 
             if (NumberOfRoundsPerLevel == LevelsPassed + 1)
             {
-                StartCoroutine(DelayBossPanel(0.9f, 0.85f));
+                StartCoroutine(DelayBossPanel(0.9f, 0.88f));
             }
 
 
