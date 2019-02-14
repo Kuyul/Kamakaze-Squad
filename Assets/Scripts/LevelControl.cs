@@ -289,7 +289,7 @@ public class LevelControl : MonoBehaviour
                     xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance / ObstacleXAxisDiv;
                 }
                 obstacleXpos = xPos;
-                var zPos = FirstObstacleDistance + PlacementDistance * 2 * i; //2i*d
+                var zPos = FirstObstacleDistance + PlacementDistance * 2 * i + PlacementDistance; //2i*d + d
                 var pos = roadPos + new Vector3(xPos, ObstacleStartingYPos, zPos);
                 var obj = Instantiate(Obstacle, pos, Quaternion.identity);
                 currentLevel.Obstacles.Add(obj);
@@ -304,7 +304,7 @@ public class LevelControl : MonoBehaviour
                     xPos = Random.Range(-ObstacleXAxisDiv, ObstacleXAxisDiv + 1) * ObstacleXDistance / ObstacleXAxisDiv;
                 }
                 squadXpos = xPos;
-                var zPos = FirstObstacleDistance + PlacementDistance * 2 * i + PlacementDistance; //2i*d + d
+                var zPos = FirstObstacleDistance + PlacementDistance * 2 * i; //2i*d
                 var obj = Instantiate(squadObj, roadPos + new Vector3(xPos, 0, zPos), Quaternion.Euler(0,180,0));
                 currentLevel.Squads.Add(obj);
             }
