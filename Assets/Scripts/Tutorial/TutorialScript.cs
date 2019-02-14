@@ -11,16 +11,17 @@ public class TutorialScript : MonoBehaviour
     public GameObject Building;
     public GameObject LevelPanel;
     public GameObject TutorialText;
+    public float TutPopupDelay;
 
     //Declare private variables
     private int count = 0;
     private GameObject ActiveTutorial;
     private bool Waiting = false;
+    private bool Stop=true;
+    private float CurrentTime=0;
 
     private void Start()
     {
-        //Initially set touch to inactive to prevent movement
-        Touch.SetActive(false);
         LevelPanel.SetActive(false);
         TutorialText.SetActive(true);
     }
@@ -36,9 +37,19 @@ public class TutorialScript : MonoBehaviour
 
             if (Waiting)
             {
+                Touch.GetComponent<Touch>().dragging = true;
+                Touch.SetActive(true);
                 ActiveTutorial.SetActive(false);
                 Waiting = false;
                 Time.timeScale = 1;
+            }
+        }
+        if (!Stop)
+        {
+            if (Time.realtimeSinceStartup > CurrentTime + TutPopupDelay)
+            {
+                Waiting = true;
+                Stop = true;
             }
         }
     }
@@ -46,19 +57,13 @@ public class TutorialScript : MonoBehaviour
     //Called from tutorial triggers
     public void DisplayTutorial()
     {
-        //touch will be reactivated on first obstacle encounter
-        if(count == 0)
-        {
-            Touch.SetActive(true);
-        }
-
+        Touch.SetActive(false);
         Tutorials[count].SetActive(true);
         ActiveTutorial = Tutorials[count];
-        Waiting = true;
-        Time.timeScale = 0;
         count++;
-
-        //Stop dragging
-        Touch.GetComponent<Touch>().SetDraggingToFalse();
+        CurrentTime = Time.realtimeSinceStartup;
+        Stop = false;
+        Touch.GetComponent<Touch>().dragging = false;
+        Time.timeScale = 0;
     }
 }

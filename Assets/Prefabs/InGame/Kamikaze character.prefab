@@ -56,12 +56,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123144012}
-  m_LocalRotation: {x: -0.50000006, y: -0.49999997, z: -0.49999997, w: 0.50000006}
-  m_LocalPosition: {x: 0.029728211, y: 0.53137684, z: -0.109584995}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071069}
+  m_LocalPosition: {x: 0.00021689532, y: 0.003138933, z: -0.0075595733}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1756920012}
-  m_RootOrder: 1
+  m_Father: {fileID: 1267051400}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &123144013
 SkinnedMeshRenderer:
@@ -80,7 +80,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ccfea14580e0f34d944c2debc250c99, type: 2}
+  - {fileID: 2100000, guid: 51114654ace1e49eba6b351a53999bad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -495,6 +495,7 @@ Transform:
   - {fileID: 1601452932}
   - {fileID: 1209540595}
   - {fileID: 7321470399558080862}
+  - {fileID: 123144014}
   m_Father: {fileID: 1756920012}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1082,7 +1083,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1267051400}
-  - {fileID: 123144014}
   - {fileID: 2709703093122758684}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1149,11 +1149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeepDistance: 1
-  ChaseSpeed: 7
+  ChaseSpeed: 5.5
   CountDownSeconds: 1
   Mesh: {fileID: 123144012}
-  Beanie: {fileID: 135636238}
-  Vest: {fileID: 1757814774}
   peRun: {fileID: 3016931731835257508}
   peTrail: {fileID: 2709703093122758755}
   touchScript: {fileID: 0}
@@ -1512,11 +1510,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1756920012}
     m_Modifications:
-    - target: {fileID: 4528337165299905582, guid: 00696aa7e93977d48a28a493d1420973,
-        type: 3}
-      propertyPath: m_Name
-      value: peTrail
-      objectReference: {fileID: 0}
     - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1555,7 +1548,7 @@ PrefabInstance:
     - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
         type: 3}
@@ -1571,6 +1564,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528337165299905582, guid: 00696aa7e93977d48a28a493d1420973,
+        type: 3}
+      propertyPath: m_Name
+      value: peTrail
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00696aa7e93977d48a28a493d1420973, type: 3}

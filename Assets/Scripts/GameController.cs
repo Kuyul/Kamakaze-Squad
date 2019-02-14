@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public Player PlayerScript;
 
     public GameObject Player;
+    public GameObject Crown;
     public float PlayerSpeed;
     public float PlayerMaxSpeed;
     public float CamUpDelay;
@@ -37,6 +38,7 @@ public class GameController : MonoBehaviour
 
     public bool GameStarted;
 
+    public float CrownSpinSpeed;
     public float EnemyHealth = 10.0f;
     public float ExplosionPower = 3.0f;
     public float ExplosionRadius = 5.0f;

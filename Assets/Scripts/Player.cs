@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
     private void DisablePlayer()
     {
         GetComponent<Collider>().enabled = false;
+        GameController.instance.Crown.SetActive(false);
         Mesh.SetActive(false);     
         peRun.SetActive(false);
         peTrail.SetActive(false);
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour
     public void EnablePlayer()
     {
         GetComponent<Collider>().enabled = true;
+        GameController.instance.Crown.SetActive(true);
         Mesh.SetActive(true);
         peTrail.SetActive(true);
         touchScript.ResetXLimit();

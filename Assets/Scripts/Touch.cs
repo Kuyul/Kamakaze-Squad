@@ -13,10 +13,10 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public float sensitivity = 10.0f;
     public float maxRotation = 30f;
     public float rotationSensitivity = 5.0f;
+    public bool dragging;
 
     //Declare private variables
     private GameObject Player;
-    private bool dragging;
     private bool newScene=true;
     private Vector2 previousPos;
     private Vector2 releaseTouchPos;
@@ -92,11 +92,5 @@ public class Touch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void ResetXLimit()
     {
         xLimit = xLimitNormal;
-    }
-
-    //Only used in tutorial script
-    public void SetDraggingToFalse()
-    {
-        dragging = false;
     }
 }
