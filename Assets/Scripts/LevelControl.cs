@@ -10,7 +10,8 @@ public class LevelControl : MonoBehaviour
 
     //Declare Level Gameobjects
     public LevelScript[] NormalLevels;
-    public LevelScript[] BossLevels;
+    public LevelScript[] EasyBossLevels;
+    public LevelScript[] HardBossLevels;
 
     //Declare public variables
     public GameObject Road;
@@ -37,6 +38,8 @@ public class LevelControl : MonoBehaviour
     public int FirstRoundNumObstacles = 3;
     public bool TriggerTutorial = true;
     public GameObject Tutorial;
+    public int StartingPoolSize = 5;
+    public int PoolIncreasePerLevel = 2;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -44,6 +47,8 @@ public class LevelControl : MonoBehaviour
 
     //Declare private variables
     private List<BuildingScript> SpawnedBuildings = new List<BuildingScript>();
+    private List<GameObject> Rounds = new List<GameObject>();
+    private List<int> NoOverlapList = new List<int>();
     //private GameObject Bomb;
     private int LevelsPassed = 0;
     private float PlacementDistance;
@@ -71,7 +76,7 @@ public class LevelControl : MonoBehaviour
             {
                 SpawnRounds(i);
             }
-
+            ShowRounds();
             // set first stage of dot dot dot to black
             GameController.instance.levelImages[0].GetComponent<Image>().color = new Color32(50, 50, 50, 255);
         }
@@ -79,34 +84,65 @@ public class LevelControl : MonoBehaviour
 
     private void SpawnRounds(int level)
     {
-        LevelScript currentLevel = NormalLevels[Random.Range(0, NormalLevels.Length)];
+        //Add rounds so we can control which rounds to show
+        GameObject round = new GameObject("Round " + level);
+        Rounds.Add(round);
+
+        LevelScript currentLevel;
+       
         if (level == NumberOfRoundsPerLevel - 1) //Boss level
         {
-            currentLevel = Instantiate(BossLevels[Random.Range(0, BossLevels.Length)]);
+            //Boss levels are incrementally spawned, i.e. level 1 = always boss level 1, level 2 = boss level 2... and so on
+            if (GetCurrentLevel() <= 7)
+            {
+                currentLevel = Instantiate(EasyBossLevels[(GetCurrentLevel() - 1) % EasyBossLevels.Length]);
+            }
+            //Different pool of more challenging boss levels
+            else
+            {
+                currentLevel = Instantiate(HardBossLevels[(GetCurrentLevel() - 1) % HardBossLevels.Length]);
+            }
         }
         else
         {
-            currentLevel = Instantiate(NormalLevels[Random.Range(0, NormalLevels.Length)]);
+            var poolSize = StartingPoolSize + GetCurrentLevel() * PoolIncreasePerLevel;
+            if(poolSize > NormalLevels.Length)
+            {
+                poolSize = NormalLevels.Length;
+            }
+
+            var index = Random.Range(0, poolSize);
+            while (NoOverlapList.Contains(index))
+            {
+                index = Random.Range(0, poolSize);
+            }
+            NoOverlapList.Add(index);
+
+            currentLevel = Instantiate(NormalLevels[index]);
         }
         InstantiatedLevels.Add(currentLevel);
 
         //Generate Road
         var roadPos = new Vector3(0, RoadYOffset * level, RoadZOffset * level);
-        Instantiate(Road, roadPos, Quaternion.identity);
+        var road = Instantiate(Road, roadPos, Quaternion.identity);
 
         //Generate finishline
         var finishLinePos = new Vector3(0, 0, LevelLength);
-        Instantiate(FinishLinePrefab, finishLinePos + roadPos, Quaternion.identity);
-        SpawnSquadsObstacles(roadPos, currentLevel, level + FirstRoundNumObstacles); //Spawn Squads
+        var finishline = Instantiate(FinishLinePrefab, finishLinePos + roadPos, Quaternion.identity);
+        finishline.transform.SetParent(round.transform);
+        SpawnSquadsObstacles(roadPos, currentLevel, level + FirstRoundNumObstacles, round); //Spawn Squads
 
         GameObject spawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0.6f, BuildingDistance), Quaternion.identity);
         SpawnedBuildings.Add(spawnedBuilding.GetComponent<BuildingScript>());
+        spawnedBuilding.transform.SetParent(round.transform);
 
         //Instantiate an explosion zone below the building
         ExplosionZone.transform.localScale = new Vector3(100f, 1.5f, 100f);
-        Instantiate(ExplosionZone, spawnedBuilding.transform.position, Quaternion.identity);
+        var explosionZone = Instantiate(ExplosionZone, spawnedBuilding.transform.position, Quaternion.identity);
+        explosionZone.transform.SetParent(road.transform);
 
-        Instantiate(EndBlock, spawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
+        var endBlock = Instantiate(EndBlock, spawnedBuilding.transform.position + new Vector3(0, 0, EndblockDistance), Quaternion.identity);
+        endBlock.transform.SetParent(road.transform);
     }
 
     public int GetCurrentLevel()
@@ -134,7 +170,7 @@ public class LevelControl : MonoBehaviour
             {
                 var roadPos = GetCurrentRoadPosition();
                 InstantiatedLevels[LevelsPassed].ResetLevel();
-                SpawnSquadsObstacles(roadPos, InstantiatedLevels[LevelsPassed], LevelsPassed + FirstRoundNumObstacles);
+                SpawnSquadsObstacles(roadPos, InstantiatedLevels[LevelsPassed], LevelsPassed + FirstRoundNumObstacles, Rounds[LevelsPassed]);
                 GameController.instance.SetNewCameraPosition(roadPos);
             }
         }
@@ -234,7 +270,7 @@ public class LevelControl : MonoBehaviour
     }
 
     //Randomises the squad groups on the map, the total squad count must be greater than the designated number
-    private void SpawnSquadsObstacles(Vector3 roadPos, LevelScript currentLevel, int numObstacles)
+    private void SpawnSquadsObstacles(Vector3 roadPos, LevelScript currentLevel, int numObstacles, GameObject round)
     {
         var numAllocationSpots = NumberOfRoadDivides / 2;
         //----------------------------Obstacle Allocation--------------------------------------------------
@@ -293,6 +329,7 @@ public class LevelControl : MonoBehaviour
                 var pos = roadPos + new Vector3(xPos, ObstacleStartingYPos, zPos);
                 var obj = Instantiate(Obstacle, pos, Quaternion.identity);
                 currentLevel.Obstacles.Add(obj);
+                obj.transform.SetParent(round.transform);
             }
             squadXpos = -999f;
             if (squadAlloc[i] > 0)
@@ -307,6 +344,23 @@ public class LevelControl : MonoBehaviour
                 var zPos = FirstObstacleDistance + PlacementDistance * 2 * i; //2i*d
                 var obj = Instantiate(squadObj, roadPos + new Vector3(xPos, 0, zPos), Quaternion.Euler(0,180,0));
                 currentLevel.Squads.Add(obj);
+                obj.transform.SetParent(round.transform);
+            }
+        }
+    }
+
+    //We only need to show maximum of two rounds - this is called from the start of this class as well as gamecontroller class when camera transitioning is complete
+    public void ShowRounds()
+    {
+        for(int i = 0; i < NumberOfRoundsPerLevel; i++)
+        {
+            if (i == LevelsPassed || i == LevelsPassed + 1)
+            {
+                Rounds[i].SetActive(true);
+            }
+            else
+            {
+                Rounds[i].SetActive(false);
             }
         }
     }
