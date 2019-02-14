@@ -36,7 +36,7 @@ public class BuildingScript : MonoBehaviour
                 {
                     var vel = Enemies[i].GetComponent<Rigidbody>().velocity.magnitude;
                     //If any of these aren't moving, check with level controller whether to end the game or continue the round
-                    if (vel < 0.01f)
+                    if (vel < 0.1f)
                     {
                         LevelControl.instance.ContinueLevel();
                         flag = false;
