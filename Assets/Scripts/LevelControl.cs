@@ -40,6 +40,7 @@ public class LevelControl : MonoBehaviour
     public GameObject Tutorial;
     public int StartingPoolSize = 5;
     public int PoolIncreasePerLevel = 2;
+    public int DefaultSquadCountAdjust = 0;
 
     [HideInInspector]
     public bool finishLinePassed = false;
@@ -294,9 +295,10 @@ public class LevelControl : MonoBehaviour
         List<int> squadAlloc = new List<int>();
         squadAlloc = Enumerable.Repeat(0, numAllocationSpots).ToList(); //Populate the baskets with 0
 
+        currentLevel.NumberOfSquads += DefaultSquadCountAdjust;
 
         //Check Statement to prevent the code from going infinite in while loop
-        if(currentLevel.NumberOfSquads > squadAlloc.Count * 3)
+        if (currentLevel.NumberOfSquads > squadAlloc.Count * 3)
         {
             Debug.Log("Total number of squads for this level exceeds the amount of allocation spots - Defaulting it to maximum count");
             currentLevel.NumberOfSquads = squadAlloc.Count * 3;
