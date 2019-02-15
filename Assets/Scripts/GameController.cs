@@ -82,8 +82,7 @@ public class GameController : MonoBehaviour
     //GameOver
     public void GameOver()
     {
-        PlayerPrefs.SetInt("currentscore", 0);
-        StartCoroutine(Delay(1.5f));
+        PlayerPrefs.SetInt("currentscore", 0);        
     }
 
     // used in restart button on death
