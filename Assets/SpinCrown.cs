@@ -6,6 +6,7 @@ public class SpinCrown : MonoBehaviour
 {
     public Transform player;
     public float yHeight;
+    public float zHeight;
 
     private Rigidbody rb;
 
@@ -19,6 +20,6 @@ public class SpinCrown : MonoBehaviour
     void Update()
     {
         rb.angularVelocity = new Vector3(0,GameController.instance.CrownSpinSpeed,0);
-        transform.position = new Vector3(player.position.x, player.position.y+yHeight, player.position.z);
+        transform.position = new Vector3(player.position.x, player.position.y+yHeight, player.position.z+ zHeight);
     }
 }

@@ -720,6 +720,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418052380}
   m_CullTransparentMesh: 0
+--- !u!1 &437493704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1442196089, guid: bb1e3c58beab5ec46ab34401d444137b,
+    type: 3}
+  m_PrefabInstance: {fileID: 789530236}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,8 +827,8 @@ MonoBehaviour:
   FollowPlayer: 0
   FOVMove: 0
   TransitionSpeed: 100
-  ySpeed: 35
-  FOVspeed: 35
+  ySpeed: 25
+  FOVspeed: 15
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,11 +1181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1442196094, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19999999
+      value: 3.156
       objectReference: {fileID: 0}
     - target: {fileID: 1442196094, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -15.11
       objectReference: {fileID: 0}
     - target: {fileID: 1442196094, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1213,10 +1219,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1442196094, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442196094, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442196094, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1442196090, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1756920012}
+    - target: {fileID: 1442196090, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
+      propertyPath: yHeight
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442196090, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
+      propertyPath: zHeight
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb1e3c58beab5ec46ab34401d444137b, type: 3}
 --- !u!1 &841085955
@@ -2026,7 +2052,7 @@ MonoBehaviour:
   CameraScript: {fileID: 534669906}
   PlayerScript: {fileID: 1756920011}
   Player: {fileID: 1756920010}
-  Crown: {fileID: 0}
+  Crown: {fileID: 437493704}
   PlayerSpeed: 20
   PlayerMaxSpeed: 30
   CamUpDelay: 0.4
