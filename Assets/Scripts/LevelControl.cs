@@ -41,6 +41,7 @@ public class LevelControl : MonoBehaviour
     public int StartingPoolSize = 5;
     public int PoolIncreasePerLevel = 2;
     public int DefaultSquadCountAdjust = 0;
+    public float BuildingScale = 1.5f;
 
     public Color[] BackgroundColors;
     public Material[] EvenMaterials;
@@ -148,6 +149,7 @@ public class LevelControl : MonoBehaviour
         GameObject spawnedBuilding = Instantiate(currentLevel.Building, roadPos + finishLinePos + new Vector3(0, 0.6f, BuildingDistance), Quaternion.identity);
         SpawnedBuildings.Add(spawnedBuilding.GetComponent<BuildingScript>());
         spawnedBuilding.transform.SetParent(round.transform);
+        spawnedBuilding.transform.localScale = new Vector3(BuildingScale, BuildingScale, BuildingScale);
 
         //Instantiate an explosion zone below the building
         ExplosionZone.transform.localScale = new Vector3(100f, 1.5f, 100f);
