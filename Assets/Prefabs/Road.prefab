@@ -660,6 +660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6671263062129640310}
+  - component: {fileID: 4411594571293033582}
   m_Layer: 0
   m_Name: road10x7
   m_TagString: Untagged
@@ -704,6 +705,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4411594571293033582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671263062129640309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54fb4ecfd5788cc448d57abaa07b1622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EvenRoads:
+  - {fileID: 6671263061882770003}
+  - {fileID: 6671263061279771555}
+  - {fileID: 6671263062330615385}
+  - {fileID: 6671263062948875808}
+  - {fileID: 6671263062447994939}
+  - {fileID: 6671263062782352396}
+  - {fileID: 6671263062154591843}
+  - {fileID: 6671263062922574965}
+  - {fileID: 6671263062526594823}
+  - {fileID: 6671263062351286095}
+  OddRoads:
+  - {fileID: 6671263061344868880}
+  - {fileID: 6671263061649933767}
+  - {fileID: 6671263062837654138}
+  - {fileID: 6671263062472547062}
+  - {fileID: 6671263061965848151}
+  - {fileID: 6671263061680060754}
+  - {fileID: 6671263062657676023}
+  - {fileID: 6671263062142878009}
+  - {fileID: 6671263063106122862}
+  - {fileID: 8141315783316619680}
+  EvenMaterials: []
+  OddMaterials: []
 --- !u!1 &6671263062142878009
 GameObject:
   m_ObjectHideFlags: 0
