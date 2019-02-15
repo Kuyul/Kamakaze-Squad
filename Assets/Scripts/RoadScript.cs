@@ -7,20 +7,17 @@ public class RoadScript : MonoBehaviour
     public GameObject[] EvenRoads;
     public GameObject[] OddRoads;
 
-    public Material[] EvenMaterials;
-    public Material[] OddMaterials;
-
     private void Start()
     {
         var lvl = LevelControl.instance.GetCurrentLevel();
-        if (EvenMaterials.Length > 0)
+        if (LevelControl.instance.EvenMaterials.Length > 0)
         {
-            var index = (lvl - 1) % EvenMaterials.Length;
+            var index = (lvl - 1) % LevelControl.instance.EvenMaterials.Length;
 
             for (int i = 0; i < EvenRoads.Length; i++)
             {
-                EvenRoads[i].GetComponent<MeshRenderer>().material = EvenMaterials[index];
-                OddRoads[i].GetComponent<MeshRenderer>().material = OddMaterials[index];
+                EvenRoads[i].GetComponent<MeshRenderer>().material = LevelControl.instance.EvenMaterials[index];
+                OddRoads[i].GetComponent<MeshRenderer>().material = LevelControl.instance.OddMaterials[index];
             }
         }
     }

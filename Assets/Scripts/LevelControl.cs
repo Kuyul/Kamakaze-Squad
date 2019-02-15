@@ -42,6 +42,10 @@ public class LevelControl : MonoBehaviour
     public int PoolIncreasePerLevel = 2;
     public int DefaultSquadCountAdjust = 0;
 
+    public Color[] BackgroundColors;
+    public Material[] EvenMaterials;
+    public Material[] OddMaterials;
+
     [HideInInspector]
     public bool finishLinePassed = false;
     public List<LevelScript> InstantiatedLevels = new List<LevelScript>();
@@ -71,6 +75,12 @@ public class LevelControl : MonoBehaviour
         }
         else
         {
+            //Alternating background colors per level
+            if (BackgroundColors.Length > 0)
+            {
+                var colorIndex = (GetCurrentLevel() - 1) % BackgroundColors.Length;
+                Camera.main.backgroundColor = BackgroundColors[colorIndex];
+            }
             PlacementDistance = (LevelLength - FirstObstacleDistance) / NumberOfRoadDivides;
 
             for (int i = 0; i < NumberOfRoundsPerLevel; i++)
