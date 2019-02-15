@@ -135,6 +135,7 @@ public class Player : MonoBehaviour
         if (other.tag == "obstacle")
         {
             gameObject.SetActive(false);
+            GameController.instance.Crown.SetActive(false);
             LevelControl.instance.LevelFail();
             GameController.instance.StopCamera();
             Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
