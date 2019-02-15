@@ -17,6 +17,10 @@ public class RoadScript : MonoBehaviour
             for (int i = 0; i < EvenRoads.Length; i++)
             {
                 EvenRoads[i].GetComponent<MeshRenderer>().material = LevelControl.instance.EvenMaterials[index];
+            }
+
+            for(int i = 0; i < OddRoads.Length; i++)
+            {
                 OddRoads[i].GetComponent<MeshRenderer>().material = LevelControl.instance.OddMaterials[index];
             }
         }
