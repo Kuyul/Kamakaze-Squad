@@ -206,7 +206,7 @@ public class LevelControl : MonoBehaviour
     {
         if (Tutorial.activeInHierarchy)
         {
-            StartCoroutine(DelayLevelClear(1f, 1f));
+            StartCoroutine(DelayLevelClear(0.1f, 0.25f, 2.1f));
         }
         else
         {
@@ -227,7 +227,7 @@ public class LevelControl : MonoBehaviour
             //Below if statement is true if its boss level is cleared
             if (LevelsPassed >= NumberOfRoundsPerLevel)
             {
-                StartCoroutine(DelayLevelClear(0.4f, 1.6f));
+                StartCoroutine(DelayLevelClear(0.1f, 0.25f, 2.1f));
             }
 
             // else move camera to next round and continue
@@ -238,13 +238,14 @@ public class LevelControl : MonoBehaviour
         }
     }
 
-    IEnumerator DelayLevelClear(float t1,float t2)
+    IEnumerator DelayLevelClear(float t1,float t2, float t3)
     {
         yield return new WaitForSeconds(t1);
         GameController.instance.peConfettiLeft.SetActive(true);
         GameController.instance.peConfettiRight.SetActive(true);
-        GameController.instance.LevelClearPanel.SetActive(true);
         yield return new WaitForSeconds(t2);
+        GameController.instance.LevelClearPanel.SetActive(true);
+        yield return new WaitForSeconds(t3);
         GameController.instance.IncrementLevel();
         GameController.instance.RestartGameInstant();
     }
