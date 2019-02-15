@@ -24,7 +24,8 @@ public class GameController : MonoBehaviour
     public GameObject pePlayerPop;
     public GameObject peSquadedSplash;
     public GameObject peEnemyPop;
-    public GameObject textMesh;    
+    public GameObject textMesh;
+    public GameObject textMeshEnemy;
 
     public GameObject[] levelImages;
     public GameObject highscoreGO;  
@@ -134,9 +135,9 @@ public class GameController : MonoBehaviour
     }
 
     // update score by 1 everytime this function is called
-    public void IncrementCurrentscore()
+    public void IncrementCurrentscore(int i)
     {
-        PlayerPrefs.SetInt("currentscore", PlayerPrefs.GetInt("currentscore", 0) + 1);
+        PlayerPrefs.SetInt("currentscore", PlayerPrefs.GetInt("currentscore", 0) + i);
         CurrentscoreText.text = PlayerPrefs.GetInt("currentscore").ToString();
 
         // update highscore if current score is greater then highscore

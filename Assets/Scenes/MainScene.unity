@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -497,7 +497,7 @@ MonoBehaviour:
   - {fileID: 501511024221120502, guid: 06ccd0d7233a30e4b9b313e137bb6144, type: 3}
   Road: {fileID: 6671263062129640309, guid: f74379e3e06257f428e25d879ec887f4, type: 3}
   RoadZOffset: 175
-  RoadYOffset: 50
+  RoadYOffset: 65
   LevelLength: 90
   NumberOfTries: 3
   NumberOfRoundsPerLevel: 5
@@ -827,7 +827,7 @@ MonoBehaviour:
   CamMoveUp: 1
   FollowPlayer: 0
   FOVMove: 0
-  TransitionSpeed: 100
+  TransitionSpeed: 165
   ySpeed: 25
   FOVspeed: 15
 --- !u!114 &534669907
@@ -1986,6 +1986,8 @@ MonoBehaviour:
   peEnemyPop: {fileID: 8000704757855681988, guid: e9cfacb7f98415941bc52e1826524fa2,
     type: 3}
   textMesh: {fileID: 2837732032431853504, guid: a4ebf4b4b64e57b498b95eca5484520e,
+    type: 3}
+  textMeshEnemy: {fileID: 2837732032431853504, guid: 73197c34528091041a4f9b36c1de987d,
     type: 3}
   levelImages:
   - {fileID: 1809408018}

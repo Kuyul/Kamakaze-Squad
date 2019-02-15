@@ -31,7 +31,7 @@ public class SquadScript : MonoBehaviour
             GameObject temp2 = Instantiate(GameController.instance.textMesh, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
             Destroy(temp2, 1.5f);
             anim.SetTrigger("run");
-            GameController.instance.IncrementCurrentscore();
+            GameController.instance.IncrementCurrentscore(1);
 
         }
     }
