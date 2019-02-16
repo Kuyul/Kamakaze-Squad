@@ -90,5 +90,5 @@ public class CameraScript : MonoBehaviour
     {
         yOffset = 0;
         FollowPlayer = true;
-    }  
+    } 
 }

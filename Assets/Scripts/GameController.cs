@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     public GameObject Crown;
     public float PlayerSpeed;
     public float PlayerMaxSpeed;
+    public float PlayerFeverSpeed;
     public float CamUpDelay;
 
     public GameObject DeathPanel;
@@ -176,5 +177,4 @@ public class GameController : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
-
 }

@@ -42,6 +42,9 @@ public class LevelControl : MonoBehaviour
     public int PoolIncreasePerLevel = 2;
     public int DefaultSquadCountAdjust = 0;
     public float BuildingScale = 1.5f;
+    public bool FeverTimeActive = true;
+    public float FeverTimeSlowmoScale = 0.5f;
+    public float FeverTimeSlowmoTime = .3f;
 
     public Color[] BackgroundColors;
     public Material[] EvenMaterials;
@@ -382,5 +385,26 @@ public class LevelControl : MonoBehaviour
                 Rounds[i].SetActive(false);
             }
         }
+    }
+
+    public void DecrementSquadCount()
+    {
+        InstantiatedLevels[LevelsPassed].NumberOfSquads--;
+        if(InstantiatedLevels[LevelsPassed].NumberOfSquads == 0)
+        {
+            if (FeverTimeActive)
+            {
+                StartCoroutine(FeverTime());
+            }
+        }
+    }
+
+    IEnumerator FeverTime()
+    {
+        Time.timeScale = FeverTimeSlowmoScale;
+        Debug.Log("Fever Time!!");
+        yield return new WaitForSeconds(FeverTimeSlowmoTime * Time.timeScale);
+        Time.timeScale = 1;
+        GameController.instance.PlayerScript.SetFeverSpeed();
     }
 }

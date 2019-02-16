@@ -32,7 +32,7 @@ public class SquadScript : MonoBehaviour
             Destroy(temp2, 1.5f);
             anim.SetTrigger("run");
             GameController.instance.IncrementCurrentscore(1);
-
+            LevelControl.instance.DecrementSquadCount();
         }
     }
 
@@ -46,4 +46,5 @@ public class SquadScript : MonoBehaviour
             Destroy(temp3, 5f);
         }
     }    
+
 }

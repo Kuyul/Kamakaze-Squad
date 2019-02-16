@@ -119,7 +119,11 @@ public class Player : MonoBehaviour
 
         if (other.tag == "finishline")
         {
-            rb.velocity = Vector3.forward * GameController.instance.PlayerMaxSpeed;
+            //Because if rb.velocity is greater than Player Max Speed this means that fevertime was activated.. Pretty Yame but I'm tired today.
+            if (rb.velocity.magnitude <= GameController.instance.PlayerMaxSpeed)
+            {
+                rb.velocity = Vector3.forward * GameController.instance.PlayerMaxSpeed;
+            }
             LevelControl.instance.finishLinePassed = true;
             peRun.SetActive(true);
             touchScript.IncreaseXLimit();
@@ -152,6 +156,11 @@ public class Player : MonoBehaviour
     public void SetPlayerVelocity()
     {
         rb.velocity = Vector3.forward* GameController.instance.PlayerSpeed;
+    }
+    
+    public void SetFeverSpeed()
+    {
+        rb.velocity = Vector3.forward * GameController.instance.PlayerFeverSpeed;
     }
    
 }
