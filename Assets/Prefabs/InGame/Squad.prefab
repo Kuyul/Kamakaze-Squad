@@ -526,7 +526,7 @@ Transform:
   m_GameObject: {fileID: 664442469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.081, z: 31.11}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
   - {fileID: 1979705809}
   - {fileID: 253289064}
@@ -580,10 +580,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 3
+  m_Radius: 0.65
+  m_Height: 4.0657587
   m_Direction: 1
-  m_Center: {x: 0, y: 2, z: -0.12}
+  m_Center: {x: 0, y: 2.532876, z: -0.12000002}
 --- !u!114 &8088491812298351727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,8 +596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678faab55232daa41ae870b95bb02f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Beanie: {fileID: 1649986928}
-  Vest: {fileID: 693666200}
   peSquaded: {fileID: 9079676267739976615}
   peRun: {fileID: 2337092893976524751}
 --- !u!1 &678745295
