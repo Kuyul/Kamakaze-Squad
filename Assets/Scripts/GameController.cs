@@ -177,4 +177,9 @@ public class GameController : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
+
+    public void SetPlayerSpeed(float speed)
+    {
+        PlayerScript.SetPlayerSpeed(speed);
+    }
 }

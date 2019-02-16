@@ -158,9 +158,9 @@ public class Player : MonoBehaviour
         rb.velocity = Vector3.forward* GameController.instance.PlayerSpeed;
     }
     
-    public void SetFeverSpeed()
+    public void SetPlayerSpeed(float speed)
     {
-        rb.velocity = Vector3.forward * GameController.instance.PlayerFeverSpeed;
+        rb.velocity = Vector3.forward * speed;
     }
    
 }
