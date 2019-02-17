@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
 
         if (other.tag == "block")
         {
+            EZCameraShake.CameraShaker.Instance.Shake(EZCameraShake.CameraShakePresets.HitObstacle);
             GameController.instance.Detonate(transform.position);
             DisablePlayer();
             GameObject temp =  Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
@@ -138,6 +139,7 @@ public class Player : MonoBehaviour
 
         if (other.tag == "obstacle")
         {
+            EZCameraShake.CameraShaker.Instance.Shake(EZCameraShake.CameraShakePresets.Bump);
             gameObject.SetActive(false);
             GameController.instance.Crown.SetActive(false);
             LevelControl.instance.LevelFail();

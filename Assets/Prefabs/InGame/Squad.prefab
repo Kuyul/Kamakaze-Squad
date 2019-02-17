@@ -581,9 +581,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.65
-  m_Height: 4.0657587
+  m_Height: 4
   m_Direction: 1
-  m_Center: {x: 0, y: 2.532876, z: -0.12000002}
+  m_Center: {x: 0, y: 2.5, z: -0.12000002}
 --- !u!114 &8088491812298351727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,16 +1505,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 664442473}
     m_Modifications:
-    - target: {fileID: 4528337165299905582, guid: 00696aa7e93977d48a28a493d1420973,
-        type: 3}
-      propertyPath: m_Name
-      value: peTrail
-      objectReference: {fileID: 0}
-    - target: {fileID: 4528337165299905582, guid: 00696aa7e93977d48a28a493d1420973,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4528337165299905617, guid: 00696aa7e93977d48a28a493d1420973,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1570,6 +1560,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4528337165299905582, guid: 00696aa7e93977d48a28a493d1420973,
+        type: 3}
+      propertyPath: m_Name
+      value: peTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528337165299905582, guid: 00696aa7e93977d48a28a493d1420973,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00696aa7e93977d48a28a493d1420973, type: 3}
 --- !u!4 &5203989061369643236 stripped
@@ -1585,16 +1585,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 664442473}
     m_Modifications:
-    - target: {fileID: 181749142341769993, guid: 0fa1e88baba45844ab487020a0e98f22,
-        type: 3}
-      propertyPath: m_Name
-      value: peSquadedlarge
-      objectReference: {fileID: 0}
-    - target: {fileID: 181749142341769993, guid: 0fa1e88baba45844ab487020a0e98f22,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8269465939885542942, guid: 0fa1e88baba45844ab487020a0e98f22,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1648,6 +1638,16 @@ PrefabInstance:
     - target: {fileID: 8269465939885542942, guid: 0fa1e88baba45844ab487020a0e98f22,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181749142341769993, guid: 0fa1e88baba45844ab487020a0e98f22,
+        type: 3}
+      propertyPath: m_Name
+      value: peSquadedlarge
+      objectReference: {fileID: 0}
+    - target: {fileID: 181749142341769993, guid: 0fa1e88baba45844ab487020a0e98f22,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
