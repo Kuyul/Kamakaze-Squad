@@ -404,6 +404,7 @@ public class LevelControl : MonoBehaviour
         //Time.timeScale = FeverTimeSlowmoScale;
         GameController.instance.SetPlayerSpeed(GameController.instance.PlayerSpeed * FeverTimeSlowmoScale);
         Debug.Log("Fever Time!!");
+        GameController.instance.PlayerScript.PeRunFeverActivate();
         yield return new WaitForSeconds(FeverTimeSlowmoTime);
         Time.timeScale = 1;
         GameController.instance.PlayerScript.SetPlayerSpeed(GameController.instance.PlayerFeverSpeed);

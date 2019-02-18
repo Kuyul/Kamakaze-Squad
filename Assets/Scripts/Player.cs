@@ -12,7 +12,9 @@ public class Player : MonoBehaviour
     public float CountDownSeconds = 1.0f;
     public GameObject Mesh;
     public GameObject peRun;
+    public GameObject peRunFever;
     public GameObject peTrail;
+    public GameObject peFever;
 
     public Touch touchScript;
     public CameraScript cameraScript;
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
         GameController.instance.Crown.SetActive(false);
         Mesh.SetActive(false);     
         peRun.SetActive(false);
+        peRunFever.SetActive(false);
         peTrail.SetActive(false);
 
         StartCoroutine(CountDownDelay());
@@ -132,17 +135,17 @@ public class Player : MonoBehaviour
             if (rb.velocity.magnitude <= GameController.instance.PlayerMaxSpeed)
             {
                 rb.velocity = Vector3.forward * GameController.instance.PlayerMaxSpeed;
+                peRun.SetActive(true);
+                for (int i = 0; i < ListOfSquads.Count; i++)
+                {
+                    ListOfSquads[i].GetComponent<SquadScript>().peRun.SetActive(true);
+                }
             }
+
             LevelControl.instance.finishLinePassed = true;
-            peRun.SetActive(true);
             touchScript.IncreaseXLimit();
             cameraScript.SetyOffset();
             StartCoroutine(CameraDelay(GameController.instance.CamUpDelay));
-
-            for (int i = 0; i < ListOfSquads.Count; i++)
-            {
-                ListOfSquads[i].GetComponent<SquadScript>().peRun.SetActive(true);
-            }
         }
 
         if (other.tag == "obstacle")
@@ -154,6 +157,19 @@ public class Player : MonoBehaviour
             GameController.instance.StopCamera();
             Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
             ChangeSquadColliders();
+        }
+    }
+
+    public void PeRunFeverActivate()
+    {
+        peRunFever.SetActive(true);
+        peTrail.SetActive(false);
+        peFever.SetActive(true);
+        for (int i = 0; i < ListOfSquads.Count; i++)
+        {
+            ListOfSquads[i].GetComponent<SquadScript>().peRunFever.SetActive(true);
+            ListOfSquads[i].GetComponent<SquadScript>().peTrail.SetActive(false);
+            ListOfSquads[i].GetComponent<SquadScript>().peFever.SetActive(true);
         }
     }
 

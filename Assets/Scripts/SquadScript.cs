@@ -6,7 +6,10 @@ public class SquadScript : MonoBehaviour
 {
     //Declare public variables
     public GameObject peSquaded;
+    public GameObject peRunFever;
     public GameObject peRun;
+    public GameObject peTrail;
+    public GameObject peFever;
 
     private bool hitPlayer = false;
 

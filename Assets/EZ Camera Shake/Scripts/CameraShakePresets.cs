@@ -83,7 +83,7 @@ namespace EZCameraShake
         {
             get
             {
-                CameraShakeInstance c = new CameraShakeInstance(3.8f, 2.5f, 0.5f, 1.25f);
+                CameraShakeInstance c = new CameraShakeInstance(3.5f, 2.5f, 0.5f, 1.25f);
                 c.PositionInfluence = Vector3.zero;
                 c.RotationInfluence = Vector3.one;
                 return c;
