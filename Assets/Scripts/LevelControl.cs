@@ -410,11 +410,14 @@ public class LevelControl : MonoBehaviour
         GameController.instance.PlayerScript.PeRunFeverActivate();
         GameController.instance.Fever.SetActive(true);
         GameController.instance.peFeverText.SetActive(true);
+        GameController.instance.FeverScore.SetActive(true);
+        GameController.instance.IncrementCurrentscore(10);
         yield return new WaitForSeconds(FeverTimeSlowmoTime);
         GameController.instance.PlayerScript.PeRunFeverActivateAfter();
         Time.timeScale = 1;
         GameController.instance.PlayerScript.SetPlayerSpeed(GameController.instance.PlayerFeverSpeed);
         GameController.instance.Fever.SetActive(false);
         GameController.instance.peFeverText.SetActive(false);
+        GameController.instance.FeverScore.SetActive(false);
     }
 }
