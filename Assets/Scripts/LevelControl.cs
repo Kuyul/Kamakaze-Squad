@@ -406,14 +406,15 @@ public class LevelControl : MonoBehaviour
 
     IEnumerator FeverTime()
     {
-        GameController.instance.SetPlayerSpeed(GameController.instance.PlayerSpeed * FeverTimeSlowmoScale);
-        Debug.Log("Fever Time!!");
+        GameController.instance.SetPlayerSpeed(GameController.instance.PlayerSpeed * FeverTimeSlowmoScale);        
         GameController.instance.PlayerScript.PeRunFeverActivate();
         GameController.instance.Fever.SetActive(true);
+        GameController.instance.peFeverText.SetActive(true);
         yield return new WaitForSeconds(FeverTimeSlowmoTime);
         GameController.instance.PlayerScript.PeRunFeverActivateAfter();
         Time.timeScale = 1;
         GameController.instance.PlayerScript.SetPlayerSpeed(GameController.instance.PlayerFeverSpeed);
         GameController.instance.Fever.SetActive(false);
+        GameController.instance.peFeverText.SetActive(false);
     }
 }

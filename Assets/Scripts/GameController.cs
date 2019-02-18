@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public GameObject textMesh;
     public GameObject peConfettiLeft;
     public GameObject peConfettiRight;
+    public GameObject peFeverText;
 
     public GameObject[] levelImages;
     public GameObject highscoreGO;  
