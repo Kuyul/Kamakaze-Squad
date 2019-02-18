@@ -394,22 +394,26 @@ public class LevelControl : MonoBehaviour
         {
             if (FeverTimeActive)
             {
-                StartCoroutine(FeverTime());
+                Fever();
             }
         }
     }
 
+    public void Fever()
+    {
+        StartCoroutine(FeverTime());
+    }
+
     IEnumerator FeverTime()
     {
-        //Time.timeScale = FeverTimeSlowmoScale;
         GameController.instance.SetPlayerSpeed(GameController.instance.PlayerSpeed * FeverTimeSlowmoScale);
-        //GameController.instance.PlayerScript.ChaseSpeed = GameController.instance.PlayerScript.ChaseSpeed * FeverTimeSlowmoTime;
         Debug.Log("Fever Time!!");
         GameController.instance.PlayerScript.PeRunFeverActivate();
-        //GameController.instance.PlayerScript.ChaseSpeed = GameController.instance.PlayerScript.ChaseSpeed * 2;
+        GameController.instance.Fever.SetActive(true);
         yield return new WaitForSeconds(FeverTimeSlowmoTime);
         GameController.instance.PlayerScript.PeRunFeverActivateAfter();
         Time.timeScale = 1;
         GameController.instance.PlayerScript.SetPlayerSpeed(GameController.instance.PlayerFeverSpeed);
+        GameController.instance.Fever.SetActive(false);
     }
 }

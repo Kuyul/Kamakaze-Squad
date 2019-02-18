@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour
     public GameObject currentscoreGO;
     public GameObject swipetoplayGO;
 
+    public GameObject Fever;
+
     public Text HighscoreText;
     public Text CurrentscoreText;
     public Text CurrentLevelText;
