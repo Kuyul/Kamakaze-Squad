@@ -8,6 +8,8 @@ public class SquadScript : MonoBehaviour
     public GameObject peSquaded;
     public GameObject peRun;
 
+    private bool hitPlayer = false;
+
     //Declare private variables
     private Animator anim;
 
@@ -25,14 +27,18 @@ public class SquadScript : MonoBehaviour
 
         if (other.tag == "player")
         {
-            peSquaded.SetActive(true);
-            GameObject temp = Instantiate(GameController.instance.peSquadedSplash, transform.position, Quaternion.identity);
-            Destroy(temp, 1f);
-            GameObject temp2 = Instantiate(GameController.instance.textMesh, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
-            Destroy(temp2, 1.5f);
-            anim.SetTrigger("run");
-            GameController.instance.IncrementCurrentscore(1);
-            LevelControl.instance.DecrementSquadCount();
+            if (!hitPlayer)
+            {
+                peSquaded.SetActive(true);
+                GameObject temp = Instantiate(GameController.instance.peSquadedSplash, transform.position, Quaternion.identity);
+                Destroy(temp, 1f);
+                GameObject temp2 = Instantiate(GameController.instance.textMesh, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
+                Destroy(temp2, 1.5f);
+                anim.SetTrigger("run");
+                GameController.instance.IncrementCurrentscore(1);
+                LevelControl.instance.DecrementSquadCount();
+                hitPlayer = true;
+            }
         }
 
         if (other.tag == "block")
