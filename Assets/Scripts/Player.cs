@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     IEnumerator Delay(Collider other)
     {
         yield return new WaitForSeconds(0);
-        other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
+        other.gameObject.GetComponent<BoxCollider>().isTrigger = false;
     }
 
     //Called when player hits a block or an endblock to disable the relevant components so that player doesn't collide with more blocks and seems like its disabled.
@@ -153,6 +153,7 @@ public class Player : MonoBehaviour
             LevelControl.instance.LevelFail();
             GameController.instance.StopCamera();
             Instantiate(GameController.instance.pePlayerPop, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
+            ChangeSquadColliders();
         }
     }
 
@@ -176,5 +177,14 @@ public class Player : MonoBehaviour
     public void ResetSquadList()
     {
         ListOfSquads.Clear();
+    }
+
+    public void ChangeSquadColliders()
+    {
+        for(int i = 0; i < ListOfSquads.Count; i++)
+        {
+            ListOfSquads[i].GetComponent<BoxCollider>().enabled = false;
+            ListOfSquads[i].GetComponent<CapsuleCollider>().enabled = true;
+        }
     }
 }
