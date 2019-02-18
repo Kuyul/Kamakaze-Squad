@@ -403,9 +403,12 @@ public class LevelControl : MonoBehaviour
     {
         //Time.timeScale = FeverTimeSlowmoScale;
         GameController.instance.SetPlayerSpeed(GameController.instance.PlayerSpeed * FeverTimeSlowmoScale);
+        //GameController.instance.PlayerScript.ChaseSpeed = GameController.instance.PlayerScript.ChaseSpeed * FeverTimeSlowmoTime;
         Debug.Log("Fever Time!!");
         GameController.instance.PlayerScript.PeRunFeverActivate();
+        //GameController.instance.PlayerScript.ChaseSpeed = GameController.instance.PlayerScript.ChaseSpeed * 2;
         yield return new WaitForSeconds(FeverTimeSlowmoTime);
+        GameController.instance.PlayerScript.PeRunFeverActivateAfter();
         Time.timeScale = 1;
         GameController.instance.PlayerScript.SetPlayerSpeed(GameController.instance.PlayerFeverSpeed);
     }

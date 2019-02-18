@@ -162,14 +162,21 @@ public class Player : MonoBehaviour
 
     public void PeRunFeverActivate()
     {
+        peFever.SetActive(true);
+        for (int i = 0; i < ListOfSquads.Count; i++)
+        {
+            ListOfSquads[i].GetComponent<SquadScript>().peFever.SetActive(true);
+        }
+    }
+
+    public void PeRunFeverActivateAfter()
+    {
         peRunFever.SetActive(true);
         peTrail.SetActive(false);
-        peFever.SetActive(true);
         for (int i = 0; i < ListOfSquads.Count; i++)
         {
             ListOfSquads[i].GetComponent<SquadScript>().peRunFever.SetActive(true);
             ListOfSquads[i].GetComponent<SquadScript>().peTrail.SetActive(false);
-            ListOfSquads[i].GetComponent<SquadScript>().peFever.SetActive(true);
         }
     }
 
