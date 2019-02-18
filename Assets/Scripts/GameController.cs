@@ -48,12 +48,15 @@ public class GameController : MonoBehaviour
     public float CrownSpinSpeed;
     public float EnemyHealth = 10.0f;
     public float ExplosionPower = 3.0f;
+    public float ExplosionPowerFever = 3.0f;
     public float ExplosionRadius = 5.0f;
+    public float ExplosionRadiusFever = 5.0f;
     public float ExplosionUpForce = 1.0f;
     public ForceMode expForceMode;
 
-    //Declare private variables
 
+    //Declare private variables
+    public bool FeverActive;
 
     private void Awake()
     {
@@ -66,7 +69,7 @@ public class GameController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
         HighscoreText.text = PlayerPrefs.GetInt("highscore", 0).ToString();        
         CurrentscoreText.text = PlayerPrefs.GetInt("currentscore", 0).ToString();
         CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel",0).ToString();
@@ -125,7 +128,14 @@ public class GameController : MonoBehaviour
             if (hit.gameObject.tag == "block")
             {
                 Rigidbody rb = hit.GetComponent<Rigidbody>();
-                rb.AddExplosionForce(ExplosionPower, pos, ExplosionRadius, ExplosionUpForce, expForceMode);
+                if (FeverActive)
+                {
+                    rb.AddExplosionForce(ExplosionPowerFever, pos, ExplosionRadiusFever, ExplosionUpForce, expForceMode);
+                }
+                else
+                {
+                    rb.AddExplosionForce(ExplosionPower, pos, ExplosionRadius, ExplosionUpForce, expForceMode);
+                }
             }
         }
     }
@@ -165,12 +175,13 @@ public class GameController : MonoBehaviour
     //At this point we re-activate the player
     public void TransitioningComplete()
     {
-        Player.transform.position = LevelControl.instance.GetCurrentRoadPosition() + new Vector3(0,0,-15f);
+        Player.transform.position = LevelControl.instance.GetCurrentRoadPosition() + new Vector3(0,0,-23f);
         PlayerScript.EnablePlayer();
         PlayerScript.SetPlayerVelocity();
         PlayerScript.ResetSquadList();
         LevelControl.instance.ShowRounds();
         CameraScript.FollowPlayer = true;
+        FeverActive = false; //Fever is always reset at the beginning of the level
     }
 
     private void OnApplicationQuit()

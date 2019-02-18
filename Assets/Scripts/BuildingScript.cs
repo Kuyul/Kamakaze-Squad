@@ -47,4 +47,13 @@ public class BuildingScript : MonoBehaviour
         }
     }
 
+    public void BuildingHit(bool hit)
+    {
+        flag = hit;
+        for(int i = 0; i < Enemies.Length; i++)
+        {
+            Enemies[i].GetComponent<Enemy>().Indicator.SetActive(!hit);
+        }
+    }
+
 }

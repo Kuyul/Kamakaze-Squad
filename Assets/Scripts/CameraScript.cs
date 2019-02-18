@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour
     public float FOVspeed;
 
     //Declare private variables
-    private Vector3 initialOffset;
+    public Vector3 initialOffset;
     private Vector3 offset;
     private float yOffset = 0;
     private Transform Player;

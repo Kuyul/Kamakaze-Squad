@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NormalLevels:
-  - {fileID: 29961759659734556, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
+  - {fileID: 38799, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
   - {fileID: 4744259958276423481, guid: 729bfa7caccdadb4b988ce447529677e, type: 3}
   - {fileID: 6574122977369000458, guid: add2bd3b9ad69584da4d0fba3e1e022c, type: 3}
   - {fileID: 1176167354633100105, guid: ac244eccca3bd52448a6cfcbd627a46c, type: 3}
@@ -481,7 +481,7 @@ MonoBehaviour:
   - {fileID: 1452608253734951906, guid: 0037054b2253f3c4bbaa67ca1541148f, type: 3}
   - {fileID: 7053637434551754477, guid: 42f297687cc120049a9dfb95943e5ca8, type: 3}
   - {fileID: 3202960735720922881, guid: a97f47b18df72b645bc83a1d23af681b, type: 3}
-  - {fileID: 4123154778786010069, guid: fcba24d3bb218db44b2a10fb5d76e659, type: 3}
+  - {fileID: 38799, guid: 3450b75d9449d894c92290b20d4222fe, type: 3}
   - {fileID: 4216906086160691956, guid: e0574af56164d954f98d0f76ea7ec9a5, type: 3}
   - {fileID: 4390584857379508673, guid: 0aea3076bb2842d4192d34ed519f4aeb, type: 3}
   - {fileID: 5143337276021643012, guid: ef6ff8e9be102344fb08e80e836e2c73, type: 3}
@@ -1660,7 +1660,7 @@ MonoBehaviour:
   xLimit: 4.5
   xLimitNormal: 5
   xLimitMax: 7
-  sensitivity: 40
+  sensitivity: 50
   maxRotation: 60
   rotationSensitivity: 7
   dragging: 0
@@ -2008,7 +2008,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170517752}
   m_LocalRotation: {x: 0.088354886, y: -0, z: -0, w: 0.99608904}
-  m_LocalPosition: {x: 0, y: 11.655936, z: -39.93221}
+  m_LocalPosition: {x: 0, y: 11.655936, z: -47.93221}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 534669905}
@@ -2034,6 +2034,7 @@ MonoBehaviour:
   TransitionSpeed: 165
   ySpeed: 25
   FOVspeed: 15
+  initialOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1313810674
 GameObject:
   m_ObjectHideFlags: 0
@@ -7049,10 +7050,13 @@ MonoBehaviour:
   GameStarted: 0
   CrownSpinSpeed: 2
   EnemyHealth: 7
-  ExplosionPower: 2.6
+  ExplosionPower: 2.7
+  ExplosionPowerFever: 3.5
   ExplosionRadius: 7.3
+  ExplosionRadiusFever: 9
   ExplosionUpForce: 0
   expForceMode: 1
+  FeverActive: 0
 --- !u!4 &1595922487
 Transform:
   m_ObjectHideFlags: 0
@@ -7447,7 +7451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1756920012, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 1756920012, guid: b6ebe8f382882bf49915a8281ecee7b6, type: 3}
       propertyPath: m_LocalRotation.x

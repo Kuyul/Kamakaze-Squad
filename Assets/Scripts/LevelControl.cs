@@ -281,12 +281,12 @@ public class LevelControl : MonoBehaviour
     {
         if (Tutorial.activeInHierarchy)
         {
-            Tutorial.GetComponent<TutorialScript>().Building.GetComponent<BuildingScript>().flag = true;
+            Tutorial.GetComponent<TutorialScript>().Building.GetComponent<BuildingScript>().BuildingHit(true);
         }
         else
         {
             //Set the flag to true so that the game may begin counting down
-            SpawnedBuildings[LevelsPassed].flag = true;
+            SpawnedBuildings[LevelsPassed].BuildingHit(true);
         }
     }
 
@@ -412,6 +412,7 @@ public class LevelControl : MonoBehaviour
         GameController.instance.peFeverText.SetActive(true);
         GameController.instance.FeverScore.SetActive(true);
         GameController.instance.IncrementCurrentscore(10);
+        GameController.instance.FeverActive = true;
         yield return new WaitForSeconds(FeverTimeSlowmoTime);
         GameController.instance.PlayerScript.PeRunFeverActivateAfter();
         Time.timeScale = 1;
