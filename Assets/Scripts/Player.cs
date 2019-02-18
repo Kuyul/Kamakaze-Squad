@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     //Declare public variables
     public float KeepDistance = 1.0f;
     public float ChaseSpeed = 5.0f;
+    public float SquadZDistance = .5f;
+    public float SquadXDistance = .5f;
     public float CountDownSeconds = 1.0f;
     public GameObject Mesh;
     public GameObject peRun;
@@ -39,8 +41,14 @@ public class Player : MonoBehaviour
             }
             if (transform.position.z - ListOfSquads[i].transform.position.z >= KeepDistance)
             {
-                var a = transform.position - ListOfSquads[i].transform.position;
+                var distX = Mathf.Pow(-1, i+1) * (i/2) * SquadXDistance;
+                var distZ = SquadZDistance * i;
+                var a = transform.position - new Vector3(distX, 0, distZ) - ListOfSquads[i].transform.position;
                 ListOfSquads[i].transform.rotation = transform.rotation;
+                if(ListOfSquads[i].transform.position.y > 0)
+                {
+                    a += new Vector3(0, -100f, 0);
+                }
                 ListOfSquads[i].gameObject.GetComponent<Rigidbody>().velocity = a * ChaseSpeed;
             }
             else
@@ -52,7 +60,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Delay(Collider other)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0);
         other.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
     }
 
@@ -165,4 +173,8 @@ public class Player : MonoBehaviour
         rb.velocity = Vector3.forward * speed;
     }
    
+    public void ResetSquadList()
+    {
+        ListOfSquads.Clear();
+    }
 }

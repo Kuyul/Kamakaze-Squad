@@ -164,6 +164,7 @@ public class GameController : MonoBehaviour
         Player.transform.position = LevelControl.instance.GetCurrentRoadPosition() + new Vector3(0,0,-15f);
         PlayerScript.EnablePlayer();
         PlayerScript.SetPlayerVelocity();
+        PlayerScript.ResetSquadList();
         LevelControl.instance.ShowRounds();
         CameraScript.FollowPlayer = true;
     }
