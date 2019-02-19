@@ -102,8 +102,14 @@ public class GameController : MonoBehaviour
     // used in restart button on death
     public void RestartGameInstant()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);      
+    }
+
+    // used in stage clear
+    public void RestartGameOnStageClear()
+    {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "game", PlayerPrefs.GetInt("currentscore"));
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator Delay(float time)

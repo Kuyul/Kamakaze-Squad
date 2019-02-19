@@ -252,7 +252,7 @@ public class LevelControl : MonoBehaviour
         GameController.instance.LevelClearPanel.SetActive(true);
         yield return new WaitForSeconds(t3);
         GameController.instance.IncrementLevel();
-        GameController.instance.RestartGameInstant();
+        GameController.instance.RestartGameOnStageClear();
     }
 
     IEnumerator DelayCameraTransition(float t)
