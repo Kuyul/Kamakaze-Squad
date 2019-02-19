@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using GameAnalyticsSDK;
 
 public class GameController : MonoBehaviour
 {
@@ -70,6 +71,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameAnalytics.Initialize();
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "game");
         HighscoreText.text = PlayerPrefs.GetInt("highscore", 0).ToString();        
         CurrentscoreText.text = PlayerPrefs.GetInt("currentscore", 0).ToString();
         CurrentLevelText.text = PlayerPrefs.GetInt("currentlevel",0).ToString();
@@ -92,13 +95,15 @@ public class GameController : MonoBehaviour
     //GameOver
     public void GameOver()
     {
-        PlayerPrefs.SetInt("currentscore", 0);        
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "game", PlayerPrefs.GetInt("currentscore"));
+        PlayerPrefs.SetInt("currentscore", 0);
     }
 
     // used in restart button on death
     public void RestartGameInstant()
     {
         SceneManager.LoadScene(0);
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "game", PlayerPrefs.GetInt("currentscore"));
     }
 
     IEnumerator Delay(float time)
